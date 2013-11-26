@@ -2,10 +2,13 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
+#include "Components.h"
+#include "GameObject.h"
 using namespace std;
 
-//Forward declaration of our Window Interface
+//Forward decleration of our Window Interface
 class IWindow;
 class IRenderer;
 
@@ -27,26 +30,35 @@ class CGameApplication
 {
 public:
 	CGameApplication(void);
-	//virtual deconstructor, so this class can be overridden
+	//virtual deconstructor, so this class can be overriden
 	virtual ~CGameApplication(void);
-	//virtual function, can be overridden
+	//virtual function, can be overriden
 	virtual bool init();
 	void run();
-	//virtual function, can be overridden
+	//virtual function, can be overriden
 	virtual void render();
-	//virtual function, can be overridden
+	//virtual function, can be overriden
 	virtual void update();
+
+	virtual bool initGame();
+
+	void clearObjectList();
 private:
 	bool parseConfigFile();
 	bool initInput();
-	bool initGame();
+	
 	bool initGraphics();
 	bool initPhysics();
 
 	bool initWindow();
-private:
+protected:
+	typedef vector<GameObject*> GameObjectList;
+	typedef vector<GameObject*>::iterator GameObjectIter;
 	IWindow * m_pWindow;
 	IRenderer * m_pRenderer;
 	GameOptionsDesc m_GameOptionDesc;
 	wstring m_ConfigFileName;
+	GameObjectList m_GameObjectList;
+
+	
 };

@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0681E1E8-648C-4FB2-8778-381E813560B4}</ProjectGuid>
+    <ProjectGuid>{07BB296C-CC8A-4AB9-9B0C-76E7F61F6C79}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>D3D10Renderer</RootNamespace>
   </PropertyGroup>
@@ -76,16 +76,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\face.png" />
-    <None Include="..\Lab1\Effects\Specular.fx" />
-    <None Include="..\Lab1\Effects\Texture.fx" />
-    <None Include="..\Lab1\Effects\Transform.fx" />
-    <None Include="Effects\Ambient_Effect.fx" />
-    <None Include="Effects\Diffuse.fx" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D3D10Renderer.h" />
+    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3D10Renderer.cpp" />

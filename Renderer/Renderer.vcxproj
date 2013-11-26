@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{0D0604A6-FD63-4858-8025-BE965692D331}</ProjectGuid>
+    <ProjectGuid>{6EA8143A-76A3-4A44-992C-77CE1EAA572D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Renderer</RootNamespace>
   </PropertyGroup>

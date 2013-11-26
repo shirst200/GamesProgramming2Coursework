@@ -13,33 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Effects">
-      <UniqueIdentifier>{41604243-73dc-4325-b038-63a221e30b70}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="..\..\..\face.png">
-      <Filter>Effects</Filter>
-    </None>
-    <None Include="..\Lab1\Effects\Transform.fx">
-      <Filter>Effects</Filter>
-    </None>
-    <None Include="..\Lab1\Effects\Texture.fx">
-      <Filter>Effects</Filter>
-    </None>
-    <None Include="Effects\Ambient_Effect.fx">
-      <Filter>Effects</Filter>
-    </None>
-    <None Include="Effects\Diffuse.fx">
-      <Filter>Effects</Filter>
-    </None>
-    <None Include="..\Lab1\Effects\Specular.fx">
-      <Filter>Effects</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D3D10Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
