@@ -224,6 +224,13 @@ void D3D10Renderer::render()
 	ID3D10Effect *pCurrentEffect=m_pDefaultEffect;
 	ID3D10EffectTechnique *pCurrentTechnique=m_pDefaultTechnique;
 	ID3D10InputLayout *pCurrentLayout=m_pDefaultVertexLayout;
+	ID3D10EffectVectorVariable * m_pDiffuseLightColour;
+	ID3D10EffectVectorVariable * m_pLightDirection;
+	ID3D10EffectVectorVariable * m_pSpecularLightColour;
+	ID3D10EffectVectorVariable * m_pAmbientLightColour;
+	XMCOLOR diffuseLightColour;
+	XMFLOAT3 lightDirection;
+	XMCOLOR specularLightColour;
 
 	XMFLOAT3 cameraPos=XMFLOAT3(0.0f,0.0f,-10.0f);
 	XMFLOAT3 focusPos=XMFLOAT3(0.0f,0.0f,0.0f);
@@ -242,6 +249,22 @@ void D3D10Renderer::render()
 		{
 			//Grab Transform
 			Transform transform=pObject->getTransfrom();
+			DirectionLightComponent *pDirectionLightComponent=static_cast<DirectionLightComponent *>(pObject->getComponent("DirectionLight"));
+			if(pDirectionLightComponent)
+			{
+				diffuseLightColour=pDirectionLightComponent->getDiffuse();
+				lightDirection=pDirectionLightComponent->getDirection();
+				specularLightColour=pDirectionLightComponent->getSpecular();
+				m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("DiffuseColour")->AsVector();
+				m_pLightDirection=pCurrentEffect->GetVariableByName("LightDirection")->AsVector();
+				m_pSpecularLightColour=pCurrentEffect->GetVariableByName("SpecularColour")->AsVector();
+				m_pAmbientLightColour=pCurrentEffect->GetVariableByName("AmbientColour")->AsVector();
+				m_pDiffuseLightColour->SetFloatVector((float*)&diffuseLightColour);
+				m_pLightDirection->SetFloatVector((float*)&lightDirection);
+				m_pSpecularLightColour->SetFloatVector((float*)&specularLightColour);
+				m_pAmbientLightColour->SetFloatVector((float*)&ambientLightColour);
+
+			}
 
 			//Now grab Visual Component
 			VisualComponent *pVisualComponent=static_cast<VisualComponent *>(pObject->getComponent("Visual"));
@@ -251,6 +274,7 @@ void D3D10Renderer::render()
 				pVertexBuffer=pVisualComponent->getVertexBuffer();
 				noVerts=pVisualComponent->getNoVerts();
 				noIndices=pVisualComponent->getNoIndices();
+
 
 				m_pD3D10Device->IASetIndexBuffer(pIndexBuffer,DXGI_FORMAT_R32_UINT,0);
 
@@ -493,4 +517,9 @@ ID3D10InputLayout * D3D10Renderer::createVertexLayout(ID3D10Effect * pEffect)
 void D3D10Renderer::addToRenderQueue(GameObject *pObject)
 {
 	m_RenderQueue.push(pObject);
+}
+
+void D3D10Renderer::setAmbientColour(float r, float b, float g, float a)
+{
+	ambientLightColour=XMCOLOR(r,g,b,a);
 }

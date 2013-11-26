@@ -28,7 +28,7 @@ public:
 	void clear(float r,float g,float b,float a);
 	void present();
 	void render();
-
+	void setAmbientColour(float r,float g,float b,float a);
 	ID3D10Effect * loadEffectFromMemory(const char *pMem);
 	ID3D10Effect * loadEffectFromFile(const char *pFilename);
 
@@ -42,6 +42,7 @@ private:
 bool fullScreen);
 	bool createInitialRenderTarget(int windowWidth, int windowHeight);
 private:
+	XMCOLOR ambientLightColour;
 	typedef std::queue<GameObject*> RenderQueue;
 	//D3D10 stuff
 	ID3D10Device * m_pD3D10Device;
