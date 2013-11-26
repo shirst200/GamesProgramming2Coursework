@@ -1,6 +1,8 @@
 float4x4 matWorld:WORLD;
 float4x4 matView:VIEW;
 float4x4 matProjection:PROJECTION;
+float4 ambientMaterial;
+float4 ambientLightColour;
 
 struct VS_INPUT
 {
@@ -25,7 +27,7 @@ PS_INPUT VS(VS_INPUT input)
 
 float4 PS(PS_INPUT input):SV_TARGET
 {
-	return float4(1.0f,1.0f,1.0f,1.0f);
+	return float4(ambientMaterial*ambientLightColour);
 }
 
 RasterizerState DisableCulling
