@@ -58,6 +58,8 @@ D3D10Renderer::D3D10Renderer()
 	m_pDepthStencilTexture=NULL;
 	m_pDefaultVertexLayout=NULL;
 	m_pDefaultEffect=NULL;
+	m_View=XMMatrixIdentity();
+	m_Projection=XMMatrixIdentity();
 }
 
 D3D10Renderer::~D3D10Renderer()
@@ -217,31 +219,24 @@ void D3D10Renderer::clear(float r,float g,float b,float a)
 
 void D3D10Renderer::render()
 {
-	int noIndices=0;
-	int noVerts=0;
-	ID3D10Buffer *pIndexBuffer=NULL;
-	ID3D10Buffer *pVertexBuffer=NULL;
-	ID3D10Effect *pCurrentEffect=m_pDefaultEffect;
-	ID3D10EffectTechnique *pCurrentTechnique=m_pDefaultTechnique;
-	ID3D10InputLayout *pCurrentLayout=m_pDefaultVertexLayout;
-
-	XMFLOAT3 cameraPos=XMFLOAT3(0.0f,0.0f,-10.0f);
-	XMFLOAT3 focusPos=XMFLOAT3(0.0f,0.0f,0.0f);
-	XMFLOAT3 up=XMFLOAT3(0.0f,1.0f,0.0f);
-	XMMATRIX view=XMMatrixLookAtLH(XMLoadFloat3(&cameraPos),XMLoadFloat3(&focusPos),XMLoadFloat3(&up));
-	XMMATRIX projection=XMMatrixPerspectiveFovLH(XM_PI/4,800.0f/640.0f,0.1f,100.0f);
-	XMMATRIX world=XMMatrixIdentity();
 
 	m_pD3D10Device->IASetPrimitiveTopology( D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP );
 	
 
 	while(!m_RenderQueue.empty())
 	{
+		int noIndices=0;
+		int noVerts=0;
+		ID3D10Buffer *pIndexBuffer=NULL;
+		ID3D10Buffer *pVertexBuffer=NULL;
+		ID3D10Effect *pCurrentEffect=m_pDefaultEffect;
+		ID3D10EffectTechnique *pCurrentTechnique=m_pDefaultTechnique;
+		ID3D10InputLayout *pCurrentLayout=m_pDefaultVertexLayout;
 		GameObject * pObject=m_RenderQueue.front();
 		if(pObject)
 		{
 			//Grab Transform
-			Transform transform=pObject->getTransfrom();
+			Transform transform=pObject->getTransform();
 
 			//Now grab Visual Component
 			VisualComponent *pVisualComponent=static_cast<VisualComponent *>(pObject->getComponent("Visual"));
@@ -291,6 +286,11 @@ void D3D10Renderer::render()
 				//Retrieve & send material stuff
 			}
 
+			XMFLOAT3 cameraPos=XMFLOAT3(0.0f,0.0f,-50.f);
+			XMFLOAT3 focusPos=XMFLOAT3(0.0f,0.0f,0.0f);
+			XMFLOAT3 up=XMFLOAT3(0.0f,1.0f,0.0f);
+			
+
 			ID3D10EffectMatrixVariable * pWorldMatrixVar=pCurrentEffect->GetVariableByName("matWorld")->AsMatrix();
 			ID3D10EffectMatrixVariable * pViewMatrixVar=pCurrentEffect->GetVariableByName("matView")->AsMatrix();
 			ID3D10EffectMatrixVariable * pProjectionMatrixVar=pCurrentEffect->GetVariableByName("matProjection")->AsMatrix();
@@ -301,11 +301,11 @@ void D3D10Renderer::render()
 			}
 			if (pViewMatrixVar)
 			{
-				pViewMatrixVar->SetMatrix((float*)&view);
+				pViewMatrixVar->SetMatrix((float*)& m_View);
 			}
 			if (pProjectionMatrixVar)
 			{
-				pProjectionMatrixVar->SetMatrix((float*)&projection);
+				pProjectionMatrixVar->SetMatrix((float*)& m_Projection);
 			}
 
 			D3D10_TECHNIQUE_DESC techniqueDesc;

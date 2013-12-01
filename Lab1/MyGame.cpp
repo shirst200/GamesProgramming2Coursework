@@ -15,9 +15,20 @@ bool MyGame::initGame()
 
 	pCube->createVertexLayout(m_pRenderer);
 	
-	pTestObj->getTransfrom().setPosition(0.5f,1.0f,1.0f);
+	pTestObj->getTransform().setPosition(2.0f,1.0f,1.0f);
 
 	m_GameObjectList.push_back(pTestObj);
+
+	CameraComponent *pCameraComp = new CameraComponent();
+	pCameraComp->setLook(0.0f,0.0f,0.0f);
+	pCameraComp->setFOV(m_GameOptionDesc.width/m_GameOptionDesc.height);
+	GameObject *pCameraGO = new GameObject();
+	pCameraGO->setName("MainCamera");
+	pCameraGO->addComponent(pCameraComp);
+	setMainCamera(pCameraComp);
+	pCameraGO->getTransform().setPosition(0.0f,0.0f,-10.0f);
+
+	m_GameObjectList.push_back(pCameraGO);
 
 	return true;
 }

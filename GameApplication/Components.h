@@ -4,3 +4,4 @@
 #include "Material.h"
 #include "VisualComponent.h"
 #include "CubeVisualComponent.h"
+#include "CameraComponent.h"
