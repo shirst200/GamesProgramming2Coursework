@@ -8,6 +8,6 @@ void CameraComponent::update(){
 		Transform t=m_pOwnerGameObject->getTransform();
 		XMFLOAT3 cameraPos=m_pOwnerGameObject->getTransform().getPosition();
 		m_View=XMMatrixLookAtLH(XMLoadFloat3(&cameraPos),XMLoadFloat3(&m_LookAt),XMLoadFloat3(&m_Up));
-		m_Projection=XMMatrixPerspectiveFovLH(m_FOV,m_AspectRatio,m_NearClip,m_FarClip);
+		m_Projection=XMMatrixPerspectiveFovLH(m_FOV,m_AspectRatio,m_Near,m_Far);
 	}
 }
