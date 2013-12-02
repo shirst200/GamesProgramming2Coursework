@@ -58,4 +58,5 @@ private:
 	ID3D10EffectTechnique * m_pDefaultTechnique;
 
 	RenderQueue m_RenderQueue;
+	GameObject * m_pMainLight;
 };

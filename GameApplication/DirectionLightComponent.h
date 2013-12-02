@@ -1,31 +1,59 @@
+//#pragma once
+//
+//#include "LightComponent.h"
+//
+//class DirectionLightComponent:public LightComponent
+//{
+//public:
+//	DirectionLightComponent()
+//	{
+//		m_Name = "DirectionalLight";
+//	};
+//
+//	~DirectionLightComponent(){};
+//	
+//	void setDirection(float x, float y, float z)
+//	{
+//		m_Direction=XMFLOAT3(x,y,z);
+//	};
+//
+//	XMFLOAT3& getDirection()
+//	{
+//		return m_Direction;
+//	};
+//private:
+//	//Represents the direction of the light
+//	XMFLOAT3 m_Direction;
+//}
+
 #pragma once
 
-#include "GameComponent.h"
+
 #include "LightComponent.h"
-#include "../Renderer/Renderer.h"
-#include "Windows.h"
-#define _XM_NO_INTRINSICS_
-#include <xnamath.h>
-#include <D3D10.h>
-#include <D3DX10.h>
+
 
 class DirectionLightComponent:public LightComponent
 {
 public:
-	DirectionLightComponent()
-	{
-		m_Name = "DirectionalLight";
-	}
-	void setDirection(float x, float y, float z)
-	{
-		m_Direction=XMFLOAT3(x,y,z);
-	}
+        DirectionLightComponent(){
+                m_LightDirection=XMFLOAT3(0.0f,0.0f,-1.0f);
+                m_Name="DirectionalLight";
+        };
 
-	XMFLOAT3& getDirection()
-	{
-		return m_Direction;
-	}
+
+        ~DirectionLightComponent(){};
+
+        void setDirection(float x,float y,float z)
+        {
+                m_LightDirection=XMFLOAT3(x,y,z);
+        };
+
+
+        XMFLOAT3& getDirection()
+        {
+                return m_LightDirection;
+        };
 private:
-	//Represents the direction of the light
-	XMFLOAT3 m_Direction;
-}
+        XMFLOAT3 m_LightDirection;
+};
+
