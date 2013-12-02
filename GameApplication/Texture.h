@@ -13,6 +13,11 @@ public:
 		name=location;
 		D3DX10CreateShaderResourceViewFromFileA(m_pD3D10Device, location ,NULL,NULL, &m_pBaseTextureMap,NULL);
 	}
+
+	Texture(Objectcock tex)
+	{
+		;
+	}
 	~Texture();
 	const char* GetName()
 	{

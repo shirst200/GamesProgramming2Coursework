@@ -2,7 +2,7 @@
 
 Texture ResourceHolder::GetTexture(LPCSTR fileName)
 {
-	Texture* tixture=new Texture(NULL);
+	Texture tixture=Texture(NULL);
 	list<Texture>::iterator ListItem;
 	for (ListItem = texture.begin();ListItem != texture.end();++ListItem)
 	{
