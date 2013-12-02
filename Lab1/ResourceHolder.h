@@ -19,7 +19,7 @@ public:
 	bool DeleteEffect(LPCSTR fileName);
 
 private:
-	std::list<Texture> texture;
+	map<Texture> texture;
 	ID3D10Effect *held_Effect[10];
 	
 };
