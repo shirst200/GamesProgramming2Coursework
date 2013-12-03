@@ -29,6 +29,29 @@ bool MyGame::initGame()
         pCameraGO->getTransform().setPosition(0.0f,0.0f,-10.0f);
 
         m_GameObjectList.push_back(pCameraGO);
+		        CubeVisualComponent *pCube1=new CubeVisualComponent();
+        pCube->create(m_pRenderer);
+        
+        Material *pMaterial1=new Material();
+        pMaterial->loadEffect("Effects/Specular.fx",m_pRenderer);
+
+
+        DirectionLightComponent *pDirLight=new DirectionLightComponent();
+
+
+        GameObject *pTestObj2=new GameObject();
+        pTestObj2->setName("TestObject2");
+        pTestObj2->addComponent(pCube1);
+        pTestObj2->addComponent(pMaterial1);
+        pTestObj2->addComponent(pDirLight);
+
+
+        pCube->createVertexLayout(m_pRenderer);
+        
+        pTestObj2->getTransform().setPosition(-2.0f,1.0f,1.0f);
+
+
+        m_GameObjectList.push_back(pTestObj2);
 
         return true;
 }

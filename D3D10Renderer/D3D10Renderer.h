@@ -46,12 +46,16 @@ public:
 	{
 		m_View=view;
 	};
-
+		        void setAmbientColour(float r,float g,float b,float a);
+ID3D10ShaderResourceView * loadTexture(const char *pFilename);
 private:
 	bool createDevice(HWND pWindowHandle,int windowWidth, int windowHeight,
 bool fullScreen);
 	bool createInitialRenderTarget(int windowWidth, int windowHeight);
+
 private:
+	        XMCOLOR ambientLightColour;
+
 	typedef std::queue<GameObject*> RenderQueue;
 	//D3D10 stuff
 	ID3D10Device * m_pD3D10Device;
@@ -59,7 +63,9 @@ private:
 	ID3D10RenderTargetView * m_pRenderTargetView;
 	ID3D10DepthStencilView * m_pDepthStencelView;
 	ID3D10Texture2D *m_pDepthStencilTexture;
-
+	        ID3D10EffectVectorVariable * m_pDiffuseLightColour;
+        ID3D10EffectVectorVariable * m_pLightDirection;
+        ID3D10EffectVectorVariable * m_pSpecularLightColour;
 	//Vertex Layout
 	ID3D10InputLayout*      m_pDefaultVertexLayout;
 	//this will be used if we have no Effect
@@ -70,4 +76,6 @@ private:
 
 	XMMATRIX m_View;
 	XMMATRIX m_Projection;
+	        GameObject * m_pMainLight;
+
 };
