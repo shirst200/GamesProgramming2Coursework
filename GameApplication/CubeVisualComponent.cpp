@@ -6,16 +6,26 @@ bool CubeVisualComponent::create(IRenderer * pRenderer)
 {
 	m_iNoVerts=8;
 	Vertex verts[8];
-	verts[0].position=XMFLOAT3(-0.5f,-0.5f,0.0f);
-	verts[1].position=XMFLOAT3(-0.5f,0.5f,0.0f);
-	verts[2].position=XMFLOAT3(0.5f,-0.5f,0.0f);
-	verts[3].position=XMFLOAT3(0.5f,0.5f,0.0f);
 
-	verts[4].position=XMFLOAT3(-0.5f,-0.5f,-5.5f);
-	verts[5].position=XMFLOAT3(-0.5f,0.5f,-5.5f);
-	verts[6].position=XMFLOAT3(0.5f,-0.5f,-5.5f);
-	verts[7].position=XMFLOAT3(0.5f,0.5f,-5.5f);
 
+    verts[0].position=XMFLOAT3(-0.5f,-0.5f,0.5f);
+    verts[1].position=XMFLOAT3(-0.5f,0.5f,0.5f);
+    verts[2].position=XMFLOAT3(0.5f,-0.5f,0.5f);        
+    verts[3].position=XMFLOAT3(0.5f,0.5f,0.5f);        
+    verts[4].position=XMFLOAT3(-0.5f,-0.5f,-0.5f);
+    verts[5].position=XMFLOAT3(-0.5f,0.5f,-0.5f);
+    verts[6].position=XMFLOAT3(0.5f,-0.5f,-0.5f);        
+    verts[7].position=XMFLOAT3(0.5f,0.5f,-0.5f);    
+
+    verts[0].textureCoords=XMFLOAT2(0.0f,1.0f);
+	verts[1].textureCoords=XMFLOAT2(0.0f,0.0f);
+    verts[2].textureCoords=XMFLOAT2(1.0f,1.0f);
+    verts[3].textureCoords=XMFLOAT2(1.0f,0.0f);
+    verts[4].textureCoords=XMFLOAT2(0.0f,1.0f);
+    verts[5].textureCoords=XMFLOAT2(0.0f,0.0f);   
+    verts[6].textureCoords=XMFLOAT2(1.0f,1.0f);
+    verts[7].textureCoords=XMFLOAT2(1.0f,0.0f);
+        
 	
 	XMVECTOR vec1 = XMLoadFloat3(&XMFLOAT3(verts[0].position.x, verts[0].position.y, verts[0].position.z));
 	XMVECTOR vec2 = XMLoadFloat3(&XMFLOAT3(verts[1].position.x, verts[1].position.y, verts[1].position.z));
@@ -45,7 +55,8 @@ bool CubeVisualComponent::create(IRenderer * pRenderer)
 	vec5 = XMLoadFloat3(&XMFLOAT3(verts[7].position.x, verts[7].position.y, verts[7].position.z));
 	vec6 = XMLoadFloat3(&XMFLOAT3(verts[6].position.x, verts[6].position.y, verts[6].position.z));
 	norm1  = XMVector3Cross(XMVectorSubtract(vec2 ,vec1), XMVectorSubtract(vec3 ,vec1));
-		for (int i =4;i<8;i++)
+
+	for (int i =4;i<8;i++)
 	{
 		verts[i].normal.x=(norm1.x+norm2.x)/2;
 		verts[i].normal.y=(norm1.y+norm2.x)/2;
