@@ -28,7 +28,7 @@ public:
 	void clear(float r,float g,float b,float a);
 	void present();
 	void render();
-
+	ID3D10ShaderResourceView * loadTexture(string fileName);
 	ID3D10Effect * loadEffectFromMemory(const char *pMem);
 	ID3D10Effect * loadEffectFromFile(const char *pFilename);
 

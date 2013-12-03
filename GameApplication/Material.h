@@ -24,6 +24,8 @@ public:
 		m_Ambient=XMCOLOR(0.3f,0.3f,0.3f,1.0f);
 		m_Diffuse=XMCOLOR(0.5f,0.5f,0.5f,1.0f);
 		m_Specular=XMCOLOR(1.0f,1.0f,1.0f,1.0f);
+		m_pDiffuseTexture = NULL;
+		m_pSpecularTexture = NULL;
 	};
 
 	~Material()
@@ -33,6 +35,23 @@ public:
 			m_pEffect->Release();
 			m_pEffect=NULL;
 		}
+		if (m_pDiffuseTexture)
+		{
+			m_pDiffuseTexture->Release();
+			m_pDiffuseTexture=NULL;
+		}
+		if (m_pSpecularTexture)
+		{
+			m_pSpecularTexture->Release();
+			m_pSpecularTexture=NULL;
+		}
+	};
+
+	void loadDiffuseTexture(string fileName, IRenderer*renderer);
+	void loadDSpecularTexture(string fileName, IRenderer*renderer);
+
+	ID3D10ShaderResourceView& GetDiffuseTexture(){
+		return m_pDiffuseTexture;
 	};
 
 	void setAmbient(float r,float g,float b,float a)
@@ -83,4 +102,6 @@ private:
 	XMCOLOR m_Specular;
 	ID3D10Effect *m_pEffect;
 	ID3D10EffectTechnique *m_pCurrentTechnique;
+	ID3D10ShaderResourceView * m_pDiffuseTexture;
+	ID3D10ShaderResourceView * m_pSpecularTexture;
 };

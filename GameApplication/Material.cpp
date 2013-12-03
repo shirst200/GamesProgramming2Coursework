@@ -22,3 +22,9 @@ void Material::switchTechnique(const string& name)
 		m_pCurrentTechnique=m_pEffect->GetTechniqueByName(name.c_str());
 	}
 }
+
+void Material::loadDiffuseTexture(string fileName,  IRenderer*renderer)
+{
+	D3D10Renderer *pD3D10Renderer=static_cast<D3D10Renderer*>(renderer);
+	m_pDiffuseTexture = pD3D10Renderer->loadTexture(fileName);
+}
