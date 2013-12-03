@@ -1,6 +1,6 @@
 #pragma once
 
-//forward declarations of the D3D10 interfaces
+//Includes files needed for the variables
 #include "D3D10.h"
 #include <map>
 
@@ -21,7 +21,7 @@ public:
 	ID3D10Effect* GetEffect(LPCSTR fileName);
 	bool DeleteEffect(LPCSTR fileName);
 
-	//Mesh manager
+	//Mesh management
 	ID3D10Mesh* GetMesh(LPCSTR fileName);
 	bool DeleteMesh(LPCSTR fileName);
 

@@ -6,8 +6,8 @@ bool CubeVisualComponent::create(IRenderer * pRenderer)
 {
 	m_iNoVerts=8;
 	Vertex verts[8];
-
-
+	
+	//Declares the position of the objects verticies
     verts[0].position=XMFLOAT3(-0.5f,-0.5f,0.5f);
     verts[1].position=XMFLOAT3(-0.5f,0.5f,0.5f);
     verts[2].position=XMFLOAT3(0.5f,-0.5f,0.5f);        
@@ -17,6 +17,7 @@ bool CubeVisualComponent::create(IRenderer * pRenderer)
     verts[6].position=XMFLOAT3(0.5f,-0.5f,-0.5f);        
     verts[7].position=XMFLOAT3(0.5f,0.5f,-0.5f);    
 
+	//Declares the texture coordinates of the object coordinates
     verts[0].textureCoords=XMFLOAT2(0.0f,1.0f);
 	verts[1].textureCoords=XMFLOAT2(0.0f,0.0f);
     verts[2].textureCoords=XMFLOAT2(1.0f,1.0f);
@@ -66,7 +67,7 @@ bool CubeVisualComponent::create(IRenderer * pRenderer)
 		verts[i].normal.y=normal.y;
 		verts[i].normal.z=normal.z;
 	}
-
+	//Declares the triangles
 	int indices[]={	0,1,2,	1,3,2,
 					1,5,3,	5,7,3,
 					3,7,2,	7,6,2,
