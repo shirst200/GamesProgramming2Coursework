@@ -80,6 +80,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="CubeVisualComponent.h" />
     <ClInclude Include="EffectComponent.h" />
