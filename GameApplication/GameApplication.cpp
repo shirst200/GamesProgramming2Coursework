@@ -14,92 +14,93 @@ using namespace std;
 //Constructor
 CGameApplication::CGameApplication(void)
 {
-	//Set to NULL
-	m_pWindow=NULL;
-	//Set to NULL
-	m_pRenderer=NULL;
-	//Set the Window name to GP2
-	m_GameOptionDesc.gameName=TEXT("GP2");
-	//Window Height and Width
-	m_GameOptionDesc.width=640;
-	m_GameOptionDesc.height=480;
-	//Full screen
-	m_GameOptionDesc.fullscreen=false;
-	//Config options
-	m_ConfigFileName=TEXT("game.cfg");
+        //Set to NULL
+        m_pWindow=NULL;
+        //Set to NULL
+        m_pRenderer=NULL;
+        //Set the Window name to GP2
+        m_GameOptionDesc.gameName=TEXT("GP2");
+        //Window Height and Width
+        m_GameOptionDesc.width=640;
+        m_GameOptionDesc.height=480;
+        //Full screen
+        m_GameOptionDesc.fullscreen=false;
+        //Config options
+        m_ConfigFileName=TEXT("game.cfg");
+        m_pMainCamera=NULL;
 }
 
 //Desconstructor
 CGameApplication::~CGameApplication(void)
 {
-	clearObjectList();
-	//Delete things in reverse order
-	if (m_pRenderer)
-	{
-		delete m_pRenderer;
-		m_pRenderer=NULL;
-	}
-	if (m_pWindow)
-	{
-		delete m_pWindow;
-		m_pWindow=NULL;
-	}
+        clearObjectList();
+        //Delete things in reverse order
+        if (m_pRenderer)
+        {
+                delete m_pRenderer;
+                m_pRenderer=NULL;
+        }
+        if (m_pWindow)
+        {
+                delete m_pWindow;
+                m_pWindow=NULL;
+        }
 }
 
 //Init
 //This initialises all subsystems
 bool CGameApplication::init()
 {
-	if(!parseConfigFile())
-		return false;
-	if (!initWindow())
-		return false;
-	if (!initGraphics())
-		return false;
-	if (!initInput())
-		return false;
-	if (!initGame())
-		return false;
-	return true;
+        if(!parseConfigFile())
+                return false;
+        if (!initWindow())
+                return false;
+        if (!initGraphics())
+                return false;
+        if (!initInput())
+                return false;
+        if (!initGame())
+                return false;
+        return true;
 }
 
 //called to parse the config file
 bool CGameApplication::parseConfigFile()
 {
 
-	return true;
+        return true;
 }
 
 //initInput - Initialises the input
 bool CGameApplication::initInput()
 {
-	return true;
+        return true;
 }
 
 //initPhysics - Initialises the physics system
 bool CGameApplication::initPhysics()
 {
-	return true;
+        return true;
 }
 
 //initGraphics - initialise the graphics subsystem
 bool CGameApplication::initGraphics()
 {
-	//check our settings first, to see what graphics mode we are in
-	m_pRenderer=new D3D10Renderer();
-	if (!m_pRenderer->init(m_pWindow->getHandleToWindow(),m_GameOptionDesc.fullscreen))
-		return false;
+        //check our settings first, to see what graphics mode we are in
+        m_pRenderer=new D3D10Renderer();
+        if (!m_pRenderer->init(m_pWindow->getHandleToWindow(),m_GameOptionDesc.fullscreen))
+                return false;
 
-	return true;
+        return true;
 }
 
 //initWindow - initialise the window
 bool CGameApplication::initWindow()
 {
-	//Create a Win32 Window
-	m_pWindow=new CWin32Window();
-	m_pWindow->init(m_GameOptionDesc.gameName,m_GameOptionDesc.width,m_GameOptionDesc.height,m_GameOptionDesc.fullscreen);
-	return true;
+        //Create a Win32 Window
+        m_pWindow=new CWin32Window();
+        m_pWindow->init(m_GameOptionDesc.gameName,m_GameOptionDesc.width,m_GameOptionDesc.height,m_GameOptionDesc.fullscreen);
+        return true;
 }
 
 
@@ -108,61 +109,66 @@ bool CGameApplication::initWindow()
 bool CGameApplication::initGame()
 {
 
-	return true;
+        return true;
 }
 
 //Called to put the game in a loop(aka game loop)
 void CGameApplication::run()
 {
-	//while the window is not closed
-	while(m_pWindow->running())
-	{
-		//check for all windows messages
-		m_pWindow->checkForWindowMessages();
-		//update
-		update();
-		//render
-		render();
-	}
+        //while the window is not closed
+        while(m_pWindow->running())
+        {
+                //check for all windows messages
+                m_pWindow->checkForWindowMessages();
+                //update
+                update();
+                //render
+                render();
+        }
 }
 
 //Render, called to draw one frame of the game
 void CGameApplication::render()
 {
-	for(GameObjectIter iter=m_GameObjectList.begin();iter!=m_GameObjectList.end();++iter)
-	{
-		m_pRenderer->addToRenderQueue((*iter));
-	}
+        if (m_pMainCamera)
+                {
+                        D3D10Renderer * pD3D10Renderer=static_cast<D3D10Renderer*>(m_pRenderer);
+                        pD3D10Renderer->setProjection(m_pMainCamera->getProjection());
+                        pD3D10Renderer->setView(m_pMainCamera->getView());
+        }
+        for(GameObjectIter iter=m_GameObjectList.begin();iter!=m_GameObjectList.end();++iter)
+        {
+                m_pRenderer->addToRenderQueue((*iter));
+        }
 
-	m_pRenderer->clear(1.0f,0.0f,0.0f,1.0f);
-	m_pRenderer->render();
-	m_pRenderer->present();
+        m_pRenderer->clear(1.0f,0.0f,0.0f,1.0f);
+        m_pRenderer->render();
+        m_pRenderer->present();
 }
 
 //Update, called to update the game
 void CGameApplication::update()
 {
-	for(GameObjectIter iter=m_GameObjectList.begin();iter!=m_GameObjectList.end();iter++)
-	{
-		(*iter)->update();
-	}
+        for(GameObjectIter iter=m_GameObjectList.begin();iter!=m_GameObjectList.end();iter++)
+        {
+                (*iter)->update();
+        }
 }
 
 void CGameApplication::clearObjectList()
 {
-	//m_GameObjectList
-	GameObjectIter iter=m_GameObjectList.begin();
-	while(iter!=m_GameObjectList.end())
-	{
-		if (*iter)
-		{
-			delete (*iter);
-			iter=m_GameObjectList.erase(iter);
-		}
-		else
-		{
-			++iter;
-		}
-	}
+        //m_GameObjectList
+        GameObjectIter iter=m_GameObjectList.begin();
+        while(iter!=m_GameObjectList.end())
+        {
+                if (*iter)
+                {
+                        delete (*iter);
+                        iter=m_GameObjectList.erase(iter);
+                }
+                else
+                {
+                        ++iter;
+                }
+        }
 }
-
