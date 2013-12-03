@@ -85,8 +85,8 @@ bool D3D10Renderer::init(void *pWindowHandle,bool fullScreen)
 	HWND window=(HWND)pWindowHandle;
 	RECT windowRect;
 	GetClientRect(window,&windowRect);
-	        ambientLightColour = XMCOLOR(0.1f,0.1f,0.1f,1.0f);
 
+	ambientLightColour = XMCOLOR(0.1f,0.1f,0.1f,1.0f);
 
 	UINT width=windowRect.right-windowRect.left;
 	UINT height=windowRect.bottom-windowRect.top;
@@ -281,71 +281,67 @@ void D3D10Renderer::render()
 
 
 			//Do we have an Effect? If we don't then use default
-Material *pMaterial=static_cast<Material*>(pObject->getComponent("Material"));
-                        if (pMaterial)
-                        {
-                                        if (pMaterial->getEffect())
-                                        {
-                                                        pCurrentEffect=pMaterial->getEffect();
-                                        }
-                                        if (pMaterial->getCurrentTechnique())
-                                        {
-                                                        pCurrentTechnique=pMaterial->getCurrentTechnique();
-                                        }
-                                        if (pMaterial->getDiffuseTexture())
-                                        {
-                                                        ID3D10EffectShaderResourceVariable * pDiffuseTextureVar=pCurrentEffect->GetVariableByName("diffuseTexture")->AsShaderResource();
-                                                        pDiffuseTextureVar->SetResource(pMaterial->getDiffuseTexture());
-                                        }
+			Material *pMaterial=static_cast<Material*>(pObject->getComponent("Material"));
+			if (pMaterial)
+			{
+				if (pMaterial->getEffect())
+				{
+					pCurrentEffect=pMaterial->getEffect();
+				}
+				if (pMaterial->getCurrentTechnique())
+				{
+					pCurrentTechnique=pMaterial->getCurrentTechnique();
+				}
+				if (pMaterial->getDiffuseTexture())
+				{
+					ID3D10EffectShaderResourceVariable * pDiffuseTextureVar=pCurrentEffect->GetVariableByName("diffuseTexture")->AsShaderResource();
+					pDiffuseTextureVar->SetResource(pMaterial->getDiffuseTexture());
+				}
 
 
-                                        if (pMaterial->getSpecularTexture())
-                                        {
-                                                        ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("specularTexture")->AsShaderResource();
-                                                        pSpecularTextureVar->SetResource(pMaterial->getSpecularTexture());
-                                        }
-                                        //Retrieve & send material stuff
-                                        ID3D10EffectVectorVariable *pAmbientMatVar=pCurrentEffect->GetVariableByName("ambientMaterial")->AsVector();
-                                        ID3D10EffectVectorVariable *pDiffuseMatVar=pCurrentEffect->GetVariableByName("diffuseMaterial")->AsVector();
-                                        ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("specularMaterial")->AsVector();
+				if (pMaterial->getSpecularTexture())
+				{
+					ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("specularTexture")->AsShaderResource();
+					pSpecularTextureVar->SetResource(pMaterial->getSpecularTexture());
+				}
+				//Retrieve & send material stuff
+				ID3D10EffectVectorVariable *pAmbientMatVar=pCurrentEffect->GetVariableByName("ambientMaterial")->AsVector();
+				ID3D10EffectVectorVariable *pDiffuseMatVar=pCurrentEffect->GetVariableByName("diffuseMaterial")->AsVector();
+				ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("specularMaterial")->AsVector();
 
 
-                                        if (pAmbientMatVar)
-                                        {
-                                                        pAmbientMatVar->SetFloatVector((float*)&pMaterial->getAmbient());
-                                        }
-                                        if (pDiffuseMatVar)
-                                        {
-                                                        pDiffuseMatVar->SetFloatVector((float*)&pMaterial->getDiffuse());
-                                        }
-                                        if (pSpecularMatVar)
-                                        {
-                                                        pSpecularMatVar->SetFloatVector((float*)&pMaterial->getSpecular());
-                                        }
-                        }
+				if (pAmbientMatVar)
+				{
+					pAmbientMatVar->SetFloatVector((float*)&pMaterial->getAmbient());
+				}
+				if (pDiffuseMatVar)
+				{
+					pDiffuseMatVar->SetFloatVector((float*)&pMaterial->getDiffuse());
+				}
+				if (pSpecularMatVar)
+				{
+					pSpecularMatVar->SetFloatVector((float*)&pMaterial->getSpecular());
+				}
+			}
 
 			ID3D10EffectMatrixVariable * pWorldMatrixVar=pCurrentEffect->GetVariableByName("matWorld")->AsMatrix();
 			ID3D10EffectMatrixVariable * pViewMatrixVar=pCurrentEffect->GetVariableByName("matView")->AsMatrix();
 			ID3D10EffectMatrixVariable * pProjectionMatrixVar=pCurrentEffect->GetVariableByName("matProjection")->AsMatrix();
+			ID3D10EffectVectorVariable * pAmbient=pCurrentEffect->GetVariableByName("ambientLightColour")->AsVector();
+			pAmbient->SetFloatVector((float*)&ambientLightColour);
 
-			                       if(m_pMainLight)
-                        {
-                                if(DirectionLightComponent *pDirectionLightComponent=static_cast<DirectionLightComponent *>(pObject->getComponent("DirectionalLight")))
-                                {
-                                
-                                        diffuseLightColour=pDirectionLightComponent->getDiffuse();
-                                        lightDirection=pDirectionLightComponent->getDirection();
-                                        specularLightColour=pDirectionLightComponent->getSpecular();
-                                        m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("diffuseLightColour")->AsVector();
-                                        m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
-                                        m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLight")->AsVector();
-                                        m_pDiffuseLightColour->SetFloatVector((float*)&diffuseLightColour);
-                                        m_pLightDirection->SetFloatVector((float*)&lightDirection);
-                                        m_pSpecularLightColour->SetFloatVector((float*)&specularLightColour);
-                                        
-
-                                }
-                        }
+            if(DirectionLightComponent *pDirectionLightComponent=static_cast<DirectionLightComponent *>(pObject->getComponent("DirectionalLight")))
+            {                     
+				diffuseLightColour=pDirectionLightComponent->getDiffuse();
+                lightDirection=pDirectionLightComponent->getDirection();
+                specularLightColour=pDirectionLightComponent->getSpecular();
+                m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("diffuseLightColour")->AsVector();
+                m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
+                m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLight")->AsVector();
+                m_pDiffuseLightColour->SetFloatVector((float*)&diffuseLightColour);
+                m_pLightDirection->SetFloatVector((float*)&lightDirection);
+				m_pSpecularLightColour->SetFloatVector((float*)&specularLightColour);
+            }
 
 			if (pWorldMatrixVar)
 			{
@@ -359,6 +355,14 @@ Material *pMaterial=static_cast<Material*>(pObject->getComponent("Material"));
 			{
 				pProjectionMatrixVar->SetMatrix((float*)&projection);
 			}
+
+			CameraComponent *pCamera=static_cast<CameraComponent*>(pObject->getComponent("Camera"));
+			if (pCamera)
+		    {
+			    Transform t=pObject->getTransform();
+                ID3D10EffectVectorVariable *pCameraVar=pCurrentEffect->GetVariableByName("cameraPosition")->AsVector();
+				pCameraVar->SetFloatVector((float*)&t.getPosition());
+            }
 
 			D3D10_TECHNIQUE_DESC techniqueDesc;
 			pCurrentTechnique->GetDesc(&techniqueDesc); 

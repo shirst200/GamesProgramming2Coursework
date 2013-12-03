@@ -7,9 +7,9 @@
 struct Vertex
 {
 	XMFLOAT3 position;
-	XMFLOAT2 textureCoords;
 	XMFLOAT3 normal;
-	
+	XMFLOAT2 textureCoords;
+
 	Vertex()
 	{
 		position=XMFLOAT3(0.0f,0.0f,0.0f);
