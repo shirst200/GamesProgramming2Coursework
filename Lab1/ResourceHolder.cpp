@@ -1,20 +1,13 @@
 #include "ResourceHolder.h"
 
-Texture ResourceHolder::GetTexture(LPCSTR fileName)
+ID3D10Texture2D* ResourceHolder::GetTexture(LPCSTR fileName)
 {
-	Texture tixture=Texture(NULL);
-	list<Texture>::iterator ListItem;
-	for (ListItem = texture.begin();ListItem != texture.end();++ListItem)
+	if(texture.find(fileName)==texture.end())
 	{
-		tixture = ListItem;
-		if(ListItem. .GetName()!=fileName)
-		{
-			return texture[i];
-		}
+		texture.insert(fileName);
+		return texture.at(fileName);
 	}
-	texture.assign(new Texture(new const CHAR('s')),texture.end());
-	Texture texture[i] = new Texture(fileName);
-	return texture[i];
+	else{return texture.at(fileName);}
 }
 
 bool ResourceHolder::DeleteTexture(LPCSTR fileName)
