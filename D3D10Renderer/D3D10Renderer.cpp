@@ -224,10 +224,7 @@ void D3D10Renderer::render()
 	ID3D10Effect *pCurrentEffect=m_pDefaultEffect;
 	ID3D10EffectTechnique *pCurrentTechnique=m_pDefaultTechnique;
 	ID3D10InputLayout *pCurrentLayout=m_pDefaultVertexLayout;
-	ID3D10EffectVectorVariable * m_pDiffuseLightColour;
-	ID3D10EffectVectorVariable * m_pLightDirection;
-	ID3D10EffectVectorVariable * m_pSpecularLightColour;
-	ID3D10EffectVectorVariable * m_pAmbientLightColour;
+
 	XMCOLOR diffuseLightColour;
 	XMFLOAT3 lightDirection;
 	XMCOLOR specularLightColour;
@@ -285,24 +282,55 @@ void D3D10Renderer::render()
 
 
 			//Do we have an Effect? If we don't then use default
-			Material *pMaterial=static_cast<Material*>(pObject->getComponent("Material"));
+            Material *pMaterial=static_cast<Material*>(pObject->getComponent("Material"));
 			if (pMaterial)
 			{
-				if (pMaterial->getEffect())
-				{
-					pCurrentEffect=pMaterial->getEffect();
-				}
-				if (pMaterial->getCurrentTechnique())
-				{
-					pCurrentTechnique=pMaterial->getCurrentTechnique();
-				}
+					if (pMaterial->getEffect())
+					{
+							pCurrentEffect=pMaterial->getEffect();
+					}
+					if (pMaterial->getCurrentTechnique())
+					{
+							pCurrentTechnique=pMaterial->getCurrentTechnique();
+					}
+					if (pMaterial->getDiffuseTexture())
+					{
+							ID3D10EffectShaderResourceVariable * pDiffuseTextureVar=pCurrentEffect->GetVariableByName("diffuseTexture")->AsShaderResource();
+							pDiffuseTextureVar->SetResource(pMaterial->getDiffuseTexture());
+					}
 
+
+					if (pMaterial->getSpecularTexture())
+					{
+							ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("specularTexture")->AsShaderResource();
+							pSpecularTextureVar->SetResource(pMaterial->getSpecularTexture());
+					}
+					//Retrieve & send material stuff
+					ID3D10EffectVectorVariable *pAmbientMatVar=pCurrentEffect->GetVariableByName("ambientMaterial")->AsVector();
+					ID3D10EffectVectorVariable *pDiffuseMatVar=pCurrentEffect->GetVariableByName("diffuseMaterial")->AsVector();
+					ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("specularMaterial")->AsVector();
+
+
+					if (pAmbientMatVar)
+					{
+							pAmbientMatVar->SetFloatVector((float*)&pMaterial->getAmbient());
+					}
+					if (pDiffuseMatVar)
+					{
+							pDiffuseMatVar->SetFloatVector((float*)&pMaterial->getDiffuse());
+					}
+					if (pSpecularMatVar)
+					{
+							pSpecularMatVar->SetFloatVector((float*)&pMaterial->getSpecular());
+					}
 			}
+
 
 			ID3D10EffectMatrixVariable * pWorldMatrixVar=pCurrentEffect->GetVariableByName("matWorld")->AsMatrix();
 			ID3D10EffectMatrixVariable * pViewMatrixVar=pCurrentEffect->GetVariableByName("matView")->AsMatrix();
 			ID3D10EffectMatrixVariable * pProjectionMatrixVar=pCurrentEffect->GetVariableByName("matProjection")->AsMatrix();
-			ID3D10EffectVectorVariable *pAmbientLightColourVar=pCurrentEffect->GetVariableByName("ambientLightColour")->AsVector();
+			ID3D10EffectVectorVariable * pAmbientLightColourVar=pCurrentEffect->GetVariableByName("ambientLightColour")->AsVector();
+			pAmbientLightColourVar->SetFloatVector((float*)&ambientLightColour);
 
 			if (pWorldMatrixVar)
 			{
@@ -326,11 +354,11 @@ void D3D10Renderer::render()
 					specularLightColour=pDirectionLightComponent->getSpecular();
 					m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("diffuseLightColour")->AsVector();
 					m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
-					m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLightColour")->AsVector();
+					m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLight")->AsVector();
 					m_pDiffuseLightColour->SetFloatVector((float*)&diffuseLightColour);
 					m_pLightDirection->SetFloatVector((float*)&lightDirection);
 					m_pSpecularLightColour->SetFloatVector((float*)&specularLightColour);
-					m_pAmbientLightColour->SetFloatVector((float*)&ambientLightColour);
+					
 
 				}
 			}
@@ -513,6 +541,21 @@ ID3D10InputLayout * D3D10Renderer::createVertexLayout(ID3D10Effect * pEffect)
 	}
 
 	return pVertexLayout;
+}
+
+
+ID3D10ShaderResourceView * D3D10Renderer::loadTexture(const char *pFilename)
+{
+        ID3D10ShaderResourceView * pTexture=NULL;
+
+
+        if (FAILED(D3DX10CreateShaderResourceViewFromFileA(m_pD3D10Device,pFilename,NULL,NULL,&pTexture,NULL)))
+        {
+                return pTexture;
+        }
+
+
+        return pTexture;
 }
 
 

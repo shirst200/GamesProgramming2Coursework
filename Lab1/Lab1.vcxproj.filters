@@ -33,6 +33,9 @@
     <None Include="Effects\Transform.fx">
       <Filter>Effects</Filter>
     </None>
+    <None Include="Effects\Specular.fx">
+      <Filter>Effects</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGame.h">
