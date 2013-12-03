@@ -241,7 +241,7 @@ void D3D10Renderer::render()
 		if(pObject)
 		{
 			//Grab Transform
-			Transform transform=pObject->getTransfrom();
+			Transform transform=pObject->getTransform();
 
 			//Now grab Visual Component
 			VisualComponent *pVisualComponent=static_cast<VisualComponent *>(pObject->getComponent("Visual"));
