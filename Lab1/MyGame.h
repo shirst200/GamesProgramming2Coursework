@@ -9,4 +9,7 @@ public:
 	~MyGame(){};
 
 	bool initGame();
+
+private:
+        bool gridSpots[];
 };
