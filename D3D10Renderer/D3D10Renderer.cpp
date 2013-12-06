@@ -225,7 +225,7 @@ void D3D10Renderer::render()
 	ID3D10EffectTechnique *pCurrentTechnique=m_pDefaultTechnique;
 	ID3D10InputLayout *pCurrentLayout=m_pDefaultVertexLayout;
 
-	XMFLOAT3 cameraPos=XMFLOAT3(0.0f,0.0f,-10.0f);
+	XMFLOAT3 cameraPos=XMFLOAT3(10.0f,0.0f,-10.0f);
 	XMFLOAT3 focusPos=XMFLOAT3(0.0f,0.0f,0.0f);
 	XMFLOAT3 up=XMFLOAT3(0.0f,1.0f,0.0f);
 	XMMATRIX view=XMMatrixLookAtLH(XMLoadFloat3(&cameraPos),XMLoadFloat3(&focusPos),XMLoadFloat3(&up));
