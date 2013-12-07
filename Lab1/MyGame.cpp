@@ -32,7 +32,7 @@ bool MyGame::initGame()
         pCameraGO->setName("MainCamera");
         pCameraGO->addComponent(pCameraComp);
         setMainCamera(pCameraComp);
-		pCameraGO->getTransform().setPosition(4.0f,10.0f,4.0f);
+		pCameraGO->getTransform().setPosition(0.0f,10.0f,4.0f);
 
         m_GameObjectList.push_back(pCameraGO);
 		

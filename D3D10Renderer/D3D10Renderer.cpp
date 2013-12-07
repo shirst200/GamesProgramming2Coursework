@@ -229,12 +229,12 @@ void D3D10Renderer::render()
 	   XMCOLOR diffuseLightColour;
         XMFLOAT3 lightDirection;
         XMCOLOR specularLightColour;
-	XMFLOAT3 cameraPos=XMFLOAT3(0.0f,0.0f,-10.0f);
-	XMFLOAT3 focusPos=XMFLOAT3(0.0f,0.0f,0.0f);
-	XMFLOAT3 up=XMFLOAT3(0.0f,1.0f,0.0f);
-	XMMATRIX view=XMMatrixLookAtLH(XMLoadFloat3(&cameraPos),XMLoadFloat3(&focusPos),XMLoadFloat3(&up));
-	XMMATRIX projection=XMMatrixPerspectiveFovLH(XM_PI/4,800.0f/640.0f,0.1f,100.0f);
-	XMMATRIX world=XMMatrixIdentity();
+	//XMFLOAT3 cameraPos=XMFLOAT3(0.0f,0.0f,-10.0f);
+	//XMFLOAT3 focusPos=XMFLOAT3(0.0f,0.0f,0.0f);
+	//XMFLOAT3 up=XMFLOAT3(0.0f,1.0f,0.0f);
+	//XMMATRIX view=XMMatrixLookAtLH(XMLoadFloat3(&cameraPos),XMLoadFloat3(&focusPos),XMLoadFloat3(&up));
+	//XMMATRIX projection=XMMatrixPerspectiveFovLH(XM_PI/4,800.0f/640.0f,0.1f,100.0f);
+	//XMMATRIX world=XMMatrixIdentity();
 
 	m_pD3D10Device->IASetPrimitiveTopology( D3D10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP );
 	
@@ -349,11 +349,11 @@ void D3D10Renderer::render()
 			}
 			if (pViewMatrixVar)
 			{
-				pViewMatrixVar->SetMatrix((float*)&view);
+				pViewMatrixVar->SetMatrix((float*)&m_View);
 			}
 			if (pProjectionMatrixVar)
 			{
-				pProjectionMatrixVar->SetMatrix((float*)&projection);
+				pProjectionMatrixVar->SetMatrix((float*)&m_Projection);
 			}
 
 			CameraComponent *pCamera=static_cast<CameraComponent*>(pObject->getComponent("Camera"));
