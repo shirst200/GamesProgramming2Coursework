@@ -23,7 +23,7 @@ bool MyGame::initGame()
 
 
         m_GameObjectList.push_back(pTestObj2);*/
-
+	
         CameraComponent *pCameraComp = new CameraComponent();
         pCameraComp->setLook(4.0f,0.0f,4.0f);
         pCameraComp->setFOV(m_GameOptionDesc.width/m_GameOptionDesc.height);
@@ -32,7 +32,7 @@ bool MyGame::initGame()
         pCameraGO->setName("MainCamera");
         pCameraGO->addComponent(pCameraComp);
         setMainCamera(pCameraComp);
-        pCameraGO->getTransform().setPosition(4.0f,10.0f,4.0f);
+		pCameraGO->getTransform().setPosition(4.0f,10.0f,4.0f);
 
         m_GameObjectList.push_back(pCameraGO);
 		

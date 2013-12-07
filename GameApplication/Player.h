@@ -9,6 +9,6 @@ private:
 public:
 	Player();
 	Player(int startPos);
-	void update(float deltaTime);					// update the balloons position based on the translation
+	void update(float deltaTime);
 	void SetMoveDirection(int dir);
 };
