@@ -25,21 +25,21 @@ bool MyGame::initGame()
         m_GameObjectList.push_back(pTestObj2);*/
 	
         CameraComponent *pCameraComp = new CameraComponent();
-        pCameraComp->setLook(4.0f,0.0f,4.0f);
+        pCameraComp->setLook(1.0f,1.0f,1.0f);
         pCameraComp->setFOV(m_GameOptionDesc.width/m_GameOptionDesc.height);
         
 		GameObject *pCameraGO = new GameObject();
         pCameraGO->setName("MainCamera");
         pCameraGO->addComponent(pCameraComp);
         setMainCamera(pCameraComp);
-		pCameraGO->getTransform().setPosition(0.0f,10.0f,4.0f);
+		pCameraGO->getTransform().setPosition(1.5f,10.0f,1.5f);
 
         m_GameObjectList.push_back(pCameraGO);
 		
 		bool gridSpots[16] = {1,1,1,1,
 							1,0,0,1,
 							1,0,0,1,
-							1,1,1,1,};
+							1,1,1,1};
 
 		for(int i=0;i<16;i++){
 			if(gridSpots[i])
