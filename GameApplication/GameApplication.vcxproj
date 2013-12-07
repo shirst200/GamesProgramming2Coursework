@@ -90,6 +90,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LightComponent.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="VisualComponent.h" />
   </ItemGroup>
@@ -99,6 +100,7 @@
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="VisualComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
