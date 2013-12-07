@@ -86,6 +86,8 @@ bool D3D10Renderer::init(void *pWindowHandle,bool fullScreen)
 	RECT windowRect;
 	GetClientRect(window,&windowRect);
 
+	ambientLightColour = XMCOLOR(0.1f,0.1f,0.1f,1.0f);
+
 	UINT width=windowRect.right-windowRect.left;
 	UINT height=windowRect.bottom-windowRect.top;
 
@@ -224,7 +226,9 @@ void D3D10Renderer::render()
 	ID3D10Effect *pCurrentEffect=m_pDefaultEffect;
 	ID3D10EffectTechnique *pCurrentTechnique=m_pDefaultTechnique;
 	ID3D10InputLayout *pCurrentLayout=m_pDefaultVertexLayout;
-
+	   XMCOLOR diffuseLightColour;
+        XMFLOAT3 lightDirection;
+        XMCOLOR specularLightColour;
 	XMFLOAT3 cameraPos=XMFLOAT3(0.0f,0.0f,-10.0f);
 	XMFLOAT3 focusPos=XMFLOAT3(0.0f,0.0f,0.0f);
 	XMFLOAT3 up=XMFLOAT3(0.0f,1.0f,0.0f);
@@ -241,7 +245,7 @@ void D3D10Renderer::render()
 		if(pObject)
 		{
 			//Grab Transform
-			Transform transform=pObject->getTransfrom();
+			Transform transform=pObject->getTransform();
 
 			//Now grab Visual Component
 			VisualComponent *pVisualComponent=static_cast<VisualComponent *>(pObject->getComponent("Visual"));
@@ -288,12 +292,56 @@ void D3D10Renderer::render()
 				{
 					pCurrentTechnique=pMaterial->getCurrentTechnique();
 				}
+				if (pMaterial->getDiffuseTexture())
+				{
+					ID3D10EffectShaderResourceVariable * pDiffuseTextureVar=pCurrentEffect->GetVariableByName("diffuseTexture")->AsShaderResource();
+					pDiffuseTextureVar->SetResource(pMaterial->getDiffuseTexture());
+				}
+
+
+				if (pMaterial->getSpecularTexture())
+				{
+					ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("specularTexture")->AsShaderResource();
+					pSpecularTextureVar->SetResource(pMaterial->getSpecularTexture());
+				}
 				//Retrieve & send material stuff
+				ID3D10EffectVectorVariable *pAmbientMatVar=pCurrentEffect->GetVariableByName("ambientMaterial")->AsVector();
+				ID3D10EffectVectorVariable *pDiffuseMatVar=pCurrentEffect->GetVariableByName("diffuseMaterial")->AsVector();
+				ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("specularMaterial")->AsVector();
+
+
+				if (pAmbientMatVar)
+				{
+					pAmbientMatVar->SetFloatVector((float*)&pMaterial->getAmbient());
+				}
+				if (pDiffuseMatVar)
+				{
+					pDiffuseMatVar->SetFloatVector((float*)&pMaterial->getDiffuse());
+				}
+				if (pSpecularMatVar)
+				{
+					pSpecularMatVar->SetFloatVector((float*)&pMaterial->getSpecular());
+				}
 			}
 
 			ID3D10EffectMatrixVariable * pWorldMatrixVar=pCurrentEffect->GetVariableByName("matWorld")->AsMatrix();
 			ID3D10EffectMatrixVariable * pViewMatrixVar=pCurrentEffect->GetVariableByName("matView")->AsMatrix();
 			ID3D10EffectMatrixVariable * pProjectionMatrixVar=pCurrentEffect->GetVariableByName("matProjection")->AsMatrix();
+			ID3D10EffectVectorVariable * pAmbient=pCurrentEffect->GetVariableByName("ambientLightColour")->AsVector();
+			pAmbient->SetFloatVector((float*)&ambientLightColour);
+
+            if(DirectionLightComponent *pDirectionLightComponent=static_cast<DirectionLightComponent *>(pObject->getComponent("DirectionalLight")))
+            {                     
+				diffuseLightColour=pDirectionLightComponent->getDiffuse();
+                lightDirection=pDirectionLightComponent->getDirection();
+                specularLightColour=pDirectionLightComponent->getSpecular();
+                m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("diffuseLightColour")->AsVector();
+                m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
+                m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLight")->AsVector();
+                m_pDiffuseLightColour->SetFloatVector((float*)&diffuseLightColour);
+                m_pLightDirection->SetFloatVector((float*)&lightDirection);
+				m_pSpecularLightColour->SetFloatVector((float*)&specularLightColour);
+            }
 
 			if (pWorldMatrixVar)
 			{
@@ -307,6 +355,14 @@ void D3D10Renderer::render()
 			{
 				pProjectionMatrixVar->SetMatrix((float*)&projection);
 			}
+
+			CameraComponent *pCamera=static_cast<CameraComponent*>(pObject->getComponent("Camera"));
+			if (pCamera)
+		    {
+			    Transform t=pObject->getTransform();
+                ID3D10EffectVectorVariable *pCameraVar=pCurrentEffect->GetVariableByName("cameraPosition")->AsVector();
+				pCameraVar->SetFloatVector((float*)&t.getPosition());
+            }
 
 			D3D10_TECHNIQUE_DESC techniqueDesc;
 			pCurrentTechnique->GetDesc(&techniqueDesc); 
@@ -493,4 +549,24 @@ ID3D10InputLayout * D3D10Renderer::createVertexLayout(ID3D10Effect * pEffect)
 void D3D10Renderer::addToRenderQueue(GameObject *pObject)
 {
 	m_RenderQueue.push(pObject);
+}
+
+
+void D3D10Renderer::setAmbientColour(float r, float b, float g, float a)
+{
+        ambientLightColour=XMCOLOR(r,g,b,a);
+}
+
+ID3D10ShaderResourceView * D3D10Renderer::loadTexture(const char *pFilename)
+{
+        ID3D10ShaderResourceView * pTexture=NULL;
+
+
+        if (FAILED(D3DX10CreateShaderResourceViewFromFileA(m_pD3D10Device,pFilename,NULL,NULL,&pTexture,NULL)))
+        {
+                return pTexture;
+        }
+
+
+        return pTexture;
 }
