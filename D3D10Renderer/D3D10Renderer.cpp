@@ -294,14 +294,14 @@ void D3D10Renderer::render()
 				}
 				if (pMaterial->getDiffuseTexture())
 				{
-					ID3D10EffectShaderResourceVariable * pDiffuseTextureVar=pCurrentEffect->GetVariableByName("diffuseTexture")->AsShaderResource();
+					ID3D10EffectShaderResourceVariable * pDiffuseTextureVar=pCurrentEffect->GetVariableByName("diffuseMap")->AsShaderResource();
 					pDiffuseTextureVar->SetResource(pMaterial->getDiffuseTexture());
 				}
 
 
 				if (pMaterial->getSpecularTexture())
 				{
-					ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("specularTexture")->AsShaderResource();
+					ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("specularMap")->AsShaderResource();
 					pSpecularTextureVar->SetResource(pMaterial->getSpecularTexture());
 				}
 				//Retrieve & send material stuff

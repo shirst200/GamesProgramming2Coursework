@@ -7,3 +7,4 @@
 #include "CameraComponent.h"
 #include "LightComponent.h"
 #include "DirectionLightComponent.h"
+#include "Player.h"

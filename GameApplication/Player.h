@@ -7,8 +7,10 @@ private:
 	int currentDir;
 
 public:
-	Player();
-	Player(int startPos);
-	void update(float deltaTime);
+	Player(int startPos){
+		currentPos = startPos;
+	};
+	~Player(){};
 	void SetMoveDirection(int dir);
+	void update();
 };
