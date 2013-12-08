@@ -91,6 +91,8 @@
     <ClInclude Include="LightComponent.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PointLightComponent.h" />
+    <ClInclude Include="SpotLightComponent.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="VisualComponent.h" />
   </ItemGroup>
