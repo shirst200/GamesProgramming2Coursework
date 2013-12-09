@@ -18,12 +18,14 @@ public:
 	float calculateLightReceved(XMFLOAT3 position)
 	{
 		
-		XMFLOAT3 pos=Transform.getPosition();
 		
-		XMFLOAT3 vectorToPosition =XMFLOAT3( pos.x-position.x,pos.y-position.y,pos.z-position.z);
-		float differance = acosf((pos.x*position.x+pos.y*position.y+pos.z*position.z)/((sqrt(pos.x*pos.x+pos.y*pos.y+pos.z*pos.z))*sqrt(position.x*position.x+position.y*position.y+position.z*position.z)));
+		XMFLOAT3 pos=Transform.getPosition();
+		XMFLOAT3 direction = Transform.getRotation();
+		XMFLOAT3 pVector =XMFLOAT3( pos.x-position.x,pos.y-position.y,pos.z-position.z);
+		float differance = acosf((direction.x*pVector.x+direction.y*pVector.y+direction.z*pVector.z)/((sqrt(direction.x*direction.x+direction.y*direction.y+direction.z*direction.z))*sqrt(pVector.x*pVector.x+pVector.y*pVector.y+pVector.z*pVector.z)));
 		if (differance>angle)
 			{return 0;}
+
 		float distance = (pos.x+position.x)*(pos.x+position.x)+(pos.y+position.y)*(pos.y+position.y)+(pos.z+position.z)*(pos.z+position.z);
 		if (distance>intencity)
 			{return 0;}
