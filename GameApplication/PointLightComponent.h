@@ -1,7 +1,7 @@
 #pragma once
 
 #include "LightComponent.h"
-#include "Transform.h"
+#include "GameObject.h"
 class PointLightComponent:public LightComponent
 {
 public:
@@ -14,7 +14,7 @@ public:
 
 	float calculateLightReceved(XMFLOAT3 position)
 	{
-		XMFLOAT3 pos=Transform.getPosition();
+		XMFLOAT3 pos=m_pOwnerGameObject->getTransform().getPosition();
 		float distance = (pos.x+position.x)*(pos.x+position.x)+(pos.y+position.y)*(pos.y+position.y)+(pos.z+position.z)*(pos.z+position.z);
 		if (distance>intencity)
 			{return 0;}
