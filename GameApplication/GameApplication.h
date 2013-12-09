@@ -54,6 +54,11 @@ public:
                 m_pPlayer=pPlayer;
         }
 
+		Player* getPlayer()
+        {
+			return m_pPlayer;
+        }
+
 private:
         bool parseConfigFile();
         bool initInput();
@@ -62,6 +67,7 @@ private:
         bool initPhysics();
 
         bool initWindow();
+		Player *m_pPlayer;
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;
@@ -72,5 +78,4 @@ protected:
         GameObjectList m_GameObjectList;
 
         CameraComponent *m_pMainCamera;
-		Player *m_pPlayer;
 };

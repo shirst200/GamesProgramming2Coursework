@@ -148,6 +148,33 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	//switch on message type - BMD
 	switch (uMsg)
 	{
+		case WM_KEYDOWN:
+			{
+				if (wParam == 0x41)
+				{
+					return 0;
+				}
+				if (wParam == 0x44)
+				{
+					return 0;
+				}
+				if (wParam == 0x57)
+				{
+					return 0;
+				}
+				if (wParam == 0x53)
+				{
+					return 0;
+				}
+				return 0;
+			}
+		
+		case WM_LBUTTONDOWN:
+			{
+				POINT mouseXY;
+				mouseXY.x = LOWORD(lParam);
+				mouseXY.y = HIWORD(lParam);
+			}
 		//Destory message
 		//The window has been closed - BMD
 		case WM_DESTROY:
