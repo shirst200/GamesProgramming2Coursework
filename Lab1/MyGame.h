@@ -14,8 +14,8 @@ public:
 	};
 
 private:
-        static const int width = 4;
-		static const int height = 4;
 
-		bool gridSpots[];
+        static const int width = 17;
+		static const int height = 21;
+		byte gridSpots[];
 };

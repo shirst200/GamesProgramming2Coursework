@@ -49,6 +49,11 @@ public:
                 m_pMainCamera=pMainCamera;
         }
 
+		 void setPlayer(Player *pPlayer)
+        {
+                m_pPlayer=pPlayer;
+        }
+
 private:
         bool parseConfigFile();
         bool initInput();
@@ -67,4 +72,5 @@ protected:
         GameObjectList m_GameObjectList;
 
         CameraComponent *m_pMainCamera;
+		Player *m_pPlayer;
 };

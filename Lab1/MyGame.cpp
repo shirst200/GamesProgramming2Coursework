@@ -25,32 +25,51 @@ bool MyGame::initGame()
         m_GameObjectList.push_back(pTestObj2);*/
 	
         CameraComponent *pCameraComp = new CameraComponent();
-        pCameraComp->setLook(1.5f,1.5f,1.5f);
+        pCameraComp->setLook(8.0f,1.5f,9.0f);
         pCameraComp->setFOV(m_GameOptionDesc.width/m_GameOptionDesc.height);
         
 		GameObject *pCameraGO = new GameObject();
         pCameraGO->setName("MainCamera");
         pCameraGO->addComponent(pCameraComp);
         setMainCamera(pCameraComp);
-		pCameraGO->getTransform().setPosition(1.5f,5.0f,-1.5f);
+		pCameraGO->getTransform().setPosition(8.0f,25.0f,8.0f);
 
         m_GameObjectList.push_back(pCameraGO);
 
-		bool gridSpots[height*width] = {1,1,1,1,
-										1,0,0,1,
-										1,0,0,1,
-										1,1,1,1};
+		byte gridSpots[height*width] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+										1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
+										1,2,1,1,0,1,1,0,1,0,1,1,0,1,1,2,1,
+										1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+										1,0,1,1,0,1,0,1,1,1,0,1,0,1,1,0,1,
+										1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,
+										1,1,1,1,0,1,1,4,1,4,1,1,0,1,1,1,1,
+										4,4,4,1,0,1,4,4,4,4,4,1,0,1,4,4,4,
+										1,1,1,1,0,1,4,1,5,1,4,1,0,1,1,1,1,
+										4,4,4,4,0,4,4,1,4,1,4,4,0,4,4,4,4,
+										1,1,1,1,0,1,4,1,1,1,4,1,0,1,1,1,1,
+										4,4,4,1,0,1,4,4,3,4,4,1,0,1,4,4,4,
+										1,1,1,1,0,1,4,1,1,1,4,1,0,1,1,1,1,
+										1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
+										1,0,1,1,0,1,1,0,1,0,1,1,0,1,1,0,1,
+										1,2,0,1,0,0,0,0,4,0,0,0,0,1,0,2,1,
+										1,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,
+										1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,
+										1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,
+										1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
+										1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+
+
+		Material *pMaterial=new Material();
+		pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
+		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
+		
 
 		for(int i=0;i<(width*height);i++){
-			if(gridSpots[i])
+
+			if(gridSpots[i]==1)
 			{
 				CubeVisualComponent *pCube=new CubeVisualComponent();
 				pCube->create(m_pRenderer);
-        
-				Material *pMaterial=new Material();
-				pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
-				pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
-
 				GameObject *pTestObj=new GameObject();
 				pTestObj->setName("TestObject");
 				pTestObj->addComponent(pCube);
@@ -58,8 +77,8 @@ bool MyGame::initGame()
 
 				pCube->createVertexLayout(m_pRenderer);
         
-				pTestObj->getTransform().setPosition(i%width, 1, i/height);
-
+				pTestObj->getTransform().setPosition(i%width, 1, (height-1)-(i/height));
+				
 				m_GameObjectList.push_back(pTestObj);
 			}
 		}
@@ -68,15 +87,16 @@ bool MyGame::initGame()
 		pCube->create(m_pRenderer);
 		Player *pPlayer = new Player(5);
 		pPlayer->SetMoveDirection(1);
-		Material *pMaterial=new Material();
-		pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
-		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
+		setPlayer(pPlayer);
+		Material *pPlayerMaterial=new Material();
+		pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
+		pPlayerMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
 
 		GameObject *pTestObj=new GameObject();
-		pTestObj->setName("TestObject");
+		pTestObj->setName("Player");
 		pTestObj->addComponent(pPlayer);
 		pTestObj->addComponent(pCube);
-		pTestObj->addComponent(pMaterial);
+		pTestObj->addComponent(pPlayerMaterial);
 
 		pCube->createVertexLayout(m_pRenderer);
         
