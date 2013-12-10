@@ -64,21 +64,12 @@ bool MyGame::initGame()
 		Material *pMaterial=new Material();
 		pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
 		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 
 		AudioComponent *gameMusic=new AudioComponent();
 		gameMusic->playSound(L"Sounds\\Kiss From A Rose.wav",true);
 
 		
-=======
->>>>>>> 7e5d42a5bdd797870b2922fda6d23b30da58d75b
-=======
->>>>>>> 7e5d42a5bdd797870b2922fda6d23b30da58d75b
-=======
->>>>>>> 7e5d42a5bdd797870b2922fda6d23b30da58d75b
 
 		for(int i=0;i<(width*height);i++){
 			if(gridSpots[i]==1)
