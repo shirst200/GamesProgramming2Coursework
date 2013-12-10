@@ -61,6 +61,7 @@ bool MyGame::initGame()
 										1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 										1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
+
 		Material *pMaterial=new Material();
 		pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
 		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
@@ -72,6 +73,7 @@ bool MyGame::initGame()
 		
 
 		for(int i=0;i<(width*height);i++){
+
 			if(gridSpots[i]==1)
 			{
 				CubeVisualComponent *pCube=new CubeVisualComponent();
@@ -83,7 +85,7 @@ bool MyGame::initGame()
 
 				pCube->createVertexLayout(m_pRenderer);
         
-				pTestObj->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				pTestObj->getTransform().setPosition(i%width, 1, (height-1)-(i/height));
 				
 				m_GameObjectList.push_back(pTestObj);
 			}
@@ -91,11 +93,12 @@ bool MyGame::initGame()
 		//Player
 		CubeVisualComponent *pCube=new CubeVisualComponent();
 		pCube->create(m_pRenderer);
-		Player *pPlayer = new Player(93);
+		Player *pPlayer = new Player(5);
 		pPlayer->SetMoveDirection(1);
 		setPlayer(pPlayer);
 		Material *pPlayerMaterial=new Material();
 		pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
+		pPlayerMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
 
 		GameObject *pTestObj=new GameObject();
 		pTestObj->setName("Player");
@@ -105,7 +108,7 @@ bool MyGame::initGame()
 
 		pCube->createVertexLayout(m_pRenderer);
         
-		pTestObj->getTransform().setPosition(8, 1, 5);
+		pTestObj->getTransform().setPosition(1, 1, 1);
 
 		m_GameObjectList.push_back(pTestObj);
 
