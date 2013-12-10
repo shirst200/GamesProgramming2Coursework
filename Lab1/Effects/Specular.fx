@@ -27,7 +27,7 @@ float3 lightDirection={10.0f,1.0f,1.0f};
 	//string Object="DirectionalLight";
 //>;
 float4 cameraPosition={0.0f,0.0f,0.0f,0.0f};
-float4 speculatMaterial={0.98f,0.0195f,0.0f,1.0f};
+float4 speculatMaterial={1.0f,1.0f,1.0f,1.0f};
 //<
 	//string UIName="Specular material";
 	//string UIWidget="Color";
@@ -80,7 +80,7 @@ float4 PS(PS_INPUT input):SV_TARGET
 	float3 lightDir=normalize(lightDirection);
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
-	float specular=pow(saturate(dot(normal,halfVec)),1.0f);
+	float specular=pow(saturate(dot(normal,halfVec)),25.0f);
 	//return float4((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight));
 	return (ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight)+(speculatMaterial*specularLightColour*specular);
 	}

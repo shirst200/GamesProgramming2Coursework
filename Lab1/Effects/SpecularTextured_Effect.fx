@@ -2,16 +2,28 @@ float4x4 matWorld:WORLD<string UIWidget="NONE";>;
 float4x4 matView:VIEW<string UIWidget="NONE";>;
 float4x4 matProjection:PROJECTION<string UIWidget="NONE";>;
 
-float4 ambientMaterial={0.5f,0.5f,0.5f,0.5f};
+float4 ambientMaterial={0.5f,0.5f,0.5f,1.0};
 //<
-//	string UIName="Ambient Material";
-//	string UIWidget="Color";
+	//string UIName="Ambient Material";
+	//string UIWidget="Color";
 //>;
-float4 ambientLightColour={0.5f,0.5f,0.5f,0.5f};
+float4 ambientLightColour={0.5f,0.5f,0.5f,1.0f};
 //<
 	//string UIName="Ambient Light Color";
 	//string UIWidget="Color";
 //>;
+
+//float4 ambientMaterial:COLOR
+//<
+	//string UIName="Ambient Material";
+	//string UIWidget="Color";
+//>;
+//float4 ambientLightColour:COLOR
+//<
+	//string UIName="Ambient Light Color";
+	//string UIWidget="Color";
+//>;
+
 float4 diffuseMaterial={1.0f,0.0225f,0.0442f,1.0f};
 //<
 	//string UIName="Diffuse Material";
@@ -22,12 +34,12 @@ float4 diffuseLightColour={0.943f,1.0f,1.0f,1.0f};
 	//string UIName="Diffuse Light Color";
 	//string UIWidget="Color";
 //>;
-float3 lightDirection={10.0f,1.0f,1.0f};
+float3 lightDirection={1.0f,1.0f,-1.0f};
 //<
 	//string Object="DirectionalLight";
 //>;
-float4 cameraPosition={0.0f,0.0f,0.0f,0.0f};
-float4 speculatMaterial={0.98f,0.0195f,0.0f,1.0f};
+float4 cameraPosition={8.0f,25.0f,8.0f,0.0f};
+float4 speculatMaterial={1.0f,1.0f,1.0f,1.0f};
 //<
 	//string UIName="Specular material";
 	//string UIWidget="Color";
@@ -88,7 +100,7 @@ float4 PS(PS_INPUT input):SV_TARGET
 	float3 lightDir=normalize(lightDirection);
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
-	float specular=pow(saturate(dot(normal,halfVec)),specularPower);
+	float specular=pow(saturate(dot(normal,halfVec)),30.0f);
 	return float4(((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight))+diffuseMap.Sample(WrapPointSampler,input.texCoord));
 }
 
