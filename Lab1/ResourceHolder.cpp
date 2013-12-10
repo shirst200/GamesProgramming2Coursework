@@ -124,7 +124,7 @@ bool ResourceHolder::DeleteMesh(LPCSTR fileName)
 	//If deleted return true
 	return true;
 }
-GameObject* RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
+GameObject* ResourceHolder::RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
 {
 	//Null Game Object
         GameObject *pRootObject=NULL;
