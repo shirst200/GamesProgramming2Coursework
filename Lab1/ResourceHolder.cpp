@@ -89,13 +89,14 @@ bool ResourceHolder::DeleteEffect(LPCSTR fileName)
 	return true;
 }
 
-/*ID3D10Mesh* ResourceHolder::GetMesh(LPCSTR fileName)
+GameObject * ResourceHolder::GetMesh(LPCSTR fileName)
 {
 	//Searches for mesh
 	if(mesh.find(fileName)==mesh.end())
 	{
 		//If not found add and return it
 		mesh.insert(fileName);
+
 		return mesh.at(fileName);
 	}
 	//If found return it
@@ -117,4 +118,8 @@ bool ResourceHolder::DeleteMesh(LPCSTR fileName)
 	}
 	//If deleted return true
 	return true;
-}*/
+}
+GameObject* RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
+{
+
+}
