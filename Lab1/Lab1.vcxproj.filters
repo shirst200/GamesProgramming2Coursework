@@ -36,12 +36,18 @@
     <None Include="Effects\Transform.fx">
       <Filter>Effects</Filter>
     </None>
+    <None Include="..\..\..\..\..\..\..\Program Files\Autodesk\FBX\FBX SDK\2014.2\lib\vs2008\x86\debug\libfbxsdk.dll">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ResourceHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\..\Program Files\Autodesk\FBX\FBX SDK\2014.2\include\fbxsdk.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

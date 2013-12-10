@@ -2,9 +2,9 @@
 
 #define FBXSDK_NEW_API
 
-#include <string>
 
-#include "..\Renderer\Renderer.h"
+#include "../D3D10Renderer/Vertex.h"
+#include "../D3D10Renderer/D3D10Renderer.h"
 
 class GameObject;
 
@@ -12,7 +12,10 @@ class GameObject;
 #include "D3D10.h"
 #include "D3DX10.h"
 #include <map>
-
+#include <string>
+#include <fbxsdk.h>
+#include "..\Renderer\Renderer.h"
+#include "..\GameApplication\components.h"
 using namespace std;
 
 class ResourceHolder
