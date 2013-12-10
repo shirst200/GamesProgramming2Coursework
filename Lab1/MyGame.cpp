@@ -24,7 +24,8 @@ bool MyGame::initGame()
 
         m_GameObjectList.push_back(pTestObj2);*/
 	
-        CameraComponent *pCameraComp = new CameraComponent();
+
+		CameraComponent *pCameraComp = new CameraComponent();
         pCameraComp->setLook(8.0f,1.5f,9.0f);
         pCameraComp->setFOV(m_GameOptionDesc.width/m_GameOptionDesc.height);
         
@@ -35,6 +36,8 @@ bool MyGame::initGame()
 		pCameraGO->getTransform().setPosition(8.0f,25.0f,8.0f);
 
         m_GameObjectList.push_back(pCameraGO);
+
+	
 
 		byte gridSpots[height*width] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 										1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
@@ -62,6 +65,11 @@ bool MyGame::initGame()
 		Material *pMaterial=new Material();
 		pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
 		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
+
+
+		AudioComponent *gameMusic=new AudioComponent();
+		gameMusic->playSound(L"Sounds\\Kiss From A Rose.wav",true);
+
 		
 
 		for(int i=0;i<(width*height);i++){
@@ -103,6 +111,8 @@ bool MyGame::initGame()
 		pTestObj->getTransform().setPosition(1, 1, 1);
 
 		m_GameObjectList.push_back(pTestObj);
+
+		
 
         return true;
 }

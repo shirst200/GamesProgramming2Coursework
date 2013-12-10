@@ -124,6 +124,7 @@ void CGameApplication::run()
                 update();
                 //render
                 render();
+				
         }
 }
 

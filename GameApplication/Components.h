@@ -8,3 +8,4 @@
 #include "LightComponent.h"
 #include "DirectionLightComponent.h"
 #include "Player.h"
+#include "AudioComponent.h"
