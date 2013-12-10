@@ -66,12 +66,15 @@ bool MyGame::initGame()
 		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 		AudioComponent *gameMusic=new AudioComponent();
 		gameMusic->playSound(L"Sounds\\Kiss From A Rose.wav",true);
 
 		
+=======
+>>>>>>> 7e5d42a5bdd797870b2922fda6d23b30da58d75b
 =======
 >>>>>>> 7e5d42a5bdd797870b2922fda6d23b30da58d75b
 =======
