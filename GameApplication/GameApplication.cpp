@@ -120,13 +120,14 @@ void CGameApplication::run()
         {
                 //check for all windows messages
                 m_pWindow->checkForWindowMessages();
+				//Get inputs from window
 				inKey = m_pWindow->getInput();
+				//send input to player
 				m_pPlayer->setKey(inKey);
                 //update
                 update();
                 //render
                 render();
-				
         }
 }
 

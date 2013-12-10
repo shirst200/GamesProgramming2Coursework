@@ -90,7 +90,7 @@ bool MyGame::initGame()
 		}
 		//Game Controller
 		GameController *controller = new GameController();
-		controller->spawnMap();
+		//controller->spawnMap();
 		setController(controller);
 
 		GameObject *pController=new GameObject();

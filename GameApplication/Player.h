@@ -7,7 +7,8 @@ private:
 	int currentPos;
 	int currentDir;
 	string currentKey;
-	GameObject *controller;
+	GameObject *gameController;
+	int desiredSpot;
 
 public:
 	Player(int startPos){
@@ -21,6 +22,9 @@ public:
 	};
 	void setController(GameObject *pController)
 	{
-		controller=pController;
+		gameController=pController;
 	};
+	int checkDesired(){
+		return desiredSpot;
+	}
 };
