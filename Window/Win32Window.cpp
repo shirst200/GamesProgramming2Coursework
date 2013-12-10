@@ -150,7 +150,6 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	{
 		case WM_KEYDOWN:
 			{
-				inputKey = "null";
 				if (wParam == 0x41)
 				{
 					inputKey = "a";
@@ -158,7 +157,7 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 				}
 				if (wParam == 0x44)
 				{
-					inputKey= "w";
+					inputKey = "w";
 					return 0;
 				}
 				if (wParam == 0x57)
