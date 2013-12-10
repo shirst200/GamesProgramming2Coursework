@@ -61,19 +61,20 @@ bool MyGame::initGame()
 										1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 										1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
-
 		Material *pMaterial=new Material();
 		pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
 		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
+<<<<<<< HEAD
 
 
 		AudioComponent *gameMusic=new AudioComponent();
 		gameMusic->playSound(L"Sounds\\Kiss From A Rose.wav",true);
 
 		
+=======
+>>>>>>> 7e5d42a5bdd797870b2922fda6d23b30da58d75b
 
 		for(int i=0;i<(width*height);i++){
-
 			if(gridSpots[i]==1)
 			{
 				CubeVisualComponent *pCube=new CubeVisualComponent();
@@ -85,7 +86,7 @@ bool MyGame::initGame()
 
 				pCube->createVertexLayout(m_pRenderer);
         
-				pTestObj->getTransform().setPosition(i%width, 1, (height-1)-(i/height));
+				pTestObj->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
 				
 				m_GameObjectList.push_back(pTestObj);
 			}
@@ -93,12 +94,11 @@ bool MyGame::initGame()
 		//Player
 		CubeVisualComponent *pCube=new CubeVisualComponent();
 		pCube->create(m_pRenderer);
-		Player *pPlayer = new Player(5);
+		Player *pPlayer = new Player(93);
 		pPlayer->SetMoveDirection(1);
 		setPlayer(pPlayer);
 		Material *pPlayerMaterial=new Material();
 		pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
-		pPlayerMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
 
 		GameObject *pTestObj=new GameObject();
 		pTestObj->setName("Player");
@@ -108,7 +108,7 @@ bool MyGame::initGame()
 
 		pCube->createVertexLayout(m_pRenderer);
         
-		pTestObj->getTransform().setPosition(1, 1, 1);
+		pTestObj->getTransform().setPosition(8, 1, 5);
 
 		m_GameObjectList.push_back(pTestObj);
 
