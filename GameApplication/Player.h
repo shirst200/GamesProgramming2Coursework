@@ -7,6 +7,7 @@ private:
 	int currentPos;
 	int currentDir;
 	string currentKey;
+	GameObject *controller;
 
 public:
 	Player(int startPos){
@@ -17,5 +18,9 @@ public:
 	void update();
 	void setKey(string gotInput){
 		currentKey = gotInput;
+	};
+	void setController(GameObject *pController)
+	{
+		controller=pController;
 	};
 };

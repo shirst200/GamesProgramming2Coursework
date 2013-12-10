@@ -88,11 +88,24 @@ bool MyGame::initGame()
 				m_GameObjectList.push_back(pTestObj);
 			}
 		}
+		//Game Controller
+		GameController *controller = new GameController();
+		controller->spawnMap();
+		setController(controller);
+
+		GameObject *pController=new GameObject();
+		pController->setName("GameController");
+		pController->addComponent(controller);
+		pController->getTransform().setPosition(-20, 20, -20);
+
+		m_GameObjectList.push_back(pController);
+
 		//Player
 		CubeVisualComponent *pCube=new CubeVisualComponent();
 		pCube->create(m_pRenderer);
 		Player *pPlayer = new Player(93);
 		pPlayer->SetMoveDirection(1);
+		pPlayer->setController(pController);
 		setPlayer(pPlayer);
 		Material *pPlayerMaterial=new Material();
 		pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
@@ -108,8 +121,6 @@ bool MyGame::initGame()
 		pTestObj->getTransform().setPosition(8, 1, 5);
 
 		m_GameObjectList.push_back(pTestObj);
-
-		
 
         return true;
 }

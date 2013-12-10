@@ -54,6 +54,11 @@ public:
                 m_pPlayer=pPlayer;
         }
 
+		 void setController(GameController *pController)
+        {
+                m_pController=pController;
+        }
+
 		Player* getPlayer()
         {
 			return m_pPlayer;
@@ -68,6 +73,7 @@ private:
 
         bool initWindow();
 		Player *m_pPlayer;
+		GameController *m_pController;
 		string inKey;
 protected:
         typedef vector<GameObject*> GameObjectList;

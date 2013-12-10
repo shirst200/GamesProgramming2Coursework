@@ -9,10 +9,6 @@ public:
 	~MyGame(){};
 	bool initGame();
 
-	bool checkGridSpot(int spot){
-		return gridSpots[spot];
-	};
-
 private:
 
         static const int width = 17;
