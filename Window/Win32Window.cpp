@@ -174,6 +174,7 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 				POINT mouseXY;
 				mouseXY.x = LOWORD(lParam);
 				mouseXY.y = HIWORD(lParam);
+				return 0;
 			}
 		//Destory message
 		//The window has been closed - BMD

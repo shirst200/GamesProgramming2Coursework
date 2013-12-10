@@ -8,7 +8,7 @@ class DirectionLightComponent:public LightComponent
 {
 public:
         DirectionLightComponent(){
-                m_LightDirection=XMFLOAT3(0.0f,0.0f,-1.0f);
+                m_LightDirection=XMFLOAT3(1.0f,1.0f,-1.0f);
                 m_Name="DirectionalLight";
         };
 

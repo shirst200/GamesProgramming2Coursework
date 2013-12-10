@@ -51,19 +51,27 @@ struct VS_INPUT
 {
 	float4 pos:POSITION;
 	float3 normal:NORMAL;
+	float2 texCoord:TEXCOORD0;
 };
-
+Texture2D diffuseMap;
+SamplerState WrapPointSampler
+{
+	Filter = MIN_MAG_LINEAR_MIP_POINT;
+	AddressU = Wrap;
+	AddressV = Wrap;
+};
 struct PS_INPUT
 {
 	float4 pos:SV_POSITION;
 	float4 cameraDirection:VIEWDIR;
 	float3 normal:NORMAL;
+	float2 texCoord:TEXCOORD0;
 };
 
 PS_INPUT VS(VS_INPUT input)
 {
 	PS_INPUT output=(PS_INPUT)0;
-	
+	output.texCoord=input.texCoord;
 	float4x4 matViewProjection=mul(matView,matProjection);
 	float4x4 matWorldViewProjection=mul(matWorld,matViewProjection);
 	float4 worldPos=mul(input.pos,matWorld);
@@ -80,10 +88,9 @@ float4 PS(PS_INPUT input):SV_TARGET
 	float3 lightDir=normalize(lightDirection);
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
-	float specular=pow(saturate(dot(normal,halfVec)),1.0f);
-	//return float4((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight));
-	return (ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight)+(speculatMaterial*specularLightColour*specular);
-	}
+	float specular=pow(saturate(dot(normal,halfVec)),specularPower);
+	return float4(((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight))+diffuseMap.Sample(WrapPointSampler,input.texCoord));
+}
 
 RasterizerState DisableCulling
 {
