@@ -63,7 +63,7 @@ bool MyGame::initGame()
 
 		Material *pMaterial=new Material();
 		pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
-		pMaterial->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
+		pMaterial->loadDiffuseTexture("Textures/quickTestBrick.png",m_pRenderer);
 
 
 		AudioComponent *gameMusic=new AudioComponent();

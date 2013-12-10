@@ -68,6 +68,7 @@ private:
 
         bool initWindow();
 		Player *m_pPlayer;
+		string inputKey;
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;

@@ -120,6 +120,7 @@ void CGameApplication::run()
         {
                 //check for all windows messages
                 m_pWindow->checkForWindowMessages();
+				inputKey = m_pWindow->getInput();
                 //update
                 update();
                 //render

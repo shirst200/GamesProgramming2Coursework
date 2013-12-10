@@ -42,8 +42,14 @@ public:
 	{
 		return m_hWND;
 	};
+
+	string getInput(){
+		return inputKey;
+	};
+
 private:
 	bool m_bIsRunning;
 	bool m_bIsFullScreen;
 	HWND m_hWND;
+	string inputKey;
 };

@@ -150,20 +150,25 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	{
 		case WM_KEYDOWN:
 			{
+				inputKey = "null";
 				if (wParam == 0x41)
 				{
+					inputKey = "a";
 					return 0;
 				}
 				if (wParam == 0x44)
 				{
+					inputKey= "w";
 					return 0;
 				}
 				if (wParam == 0x57)
 				{
+					inputKey = "d";
 					return 0;
 				}
 				if (wParam == 0x53)
 				{
+					inputKey = "s";
 					return 0;
 				}
 				return 0;
@@ -174,6 +179,7 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 				POINT mouseXY;
 				mouseXY.x = LOWORD(lParam);
 				mouseXY.y = HIWORD(lParam);
+				return 0;
 			}
 		//Destory message
 		//The window has been closed - BMD
