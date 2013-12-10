@@ -29,4 +29,5 @@ public:
 	//get a handle to the window, some APIs require a handle(think of it as a pointer) to a
 	//window
 	virtual void* getHandleToWindow()=0;
+	virtual string getInput() = 0;
 };
