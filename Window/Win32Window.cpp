@@ -157,12 +157,12 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 				}
 				if (wParam == 0x44)
 				{
-					inputKey = "w";
+					inputKey = "d";
 					return 0;
 				}
 				if (wParam == 0x57)
 				{
-					inputKey = "d";
+					inputKey = "w";
 					return 0;
 				}
 				if (wParam == 0x53)

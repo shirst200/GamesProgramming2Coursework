@@ -1,4 +1,5 @@
 #include "GameComponent.h"
+using std::string;
 
 class Player : public GameComponent
 {
