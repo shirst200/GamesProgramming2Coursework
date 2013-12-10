@@ -54,7 +54,7 @@ bool fullScreen);
 	bool createInitialRenderTarget(int windowWidth, int windowHeight);
 
 private:
-	        XMCOLOR ambientLightColour;
+	        XMFLOAT4 ambientLightColour;
 
 	typedef std::queue<GameObject*> RenderQueue;
 	//D3D10 stuff
@@ -73,7 +73,9 @@ private:
 	ID3D10EffectTechnique * m_pDefaultTechnique;
 
 	RenderQueue m_RenderQueue;
-
+		   XMFLOAT4 diffuseLightColour;
+        XMFLOAT3 lightDirection;
+        XMFLOAT4 specularLightColour;
 	XMMATRIX m_View;
 	XMMATRIX m_Projection;
 	        GameObject * m_pMainLight;

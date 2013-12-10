@@ -2,53 +2,51 @@ float4x4 matWorld:WORLD<string UIWidget="NONE";>;
 float4x4 matView:VIEW<string UIWidget="NONE";>;
 float4x4 matProjection:PROJECTION<string UIWidget="NONE";>;
 
-float4 ambientMaterial={0.5f,0.5f,0.5f,1.0};
-//<
-	//string UIName="Ambient Material";
-	//string UIWidget="Color";
-//>;
-float4 ambientLightColour={0.5f,0.5f,0.5f,1.0f};
-//<
-	//string UIName="Ambient Light Color";
-	//string UIWidget="Color";
-//>;
+//float4 ambientMaterial={0.5f,0.5f,0.5f,1.0};
 
-//float4 ambientMaterial:COLOR
-//<
-	//string UIName="Ambient Material";
-	//string UIWidget="Color";
-//>;
-//float4 ambientLightColour:COLOR
-//<
-	//string UIName="Ambient Light Color";
-	//string UIWidget="Color";
-//>;
+//float4 ambientLightColour={0.5f,0.5f,0.5f,1.0f};
 
-float4 diffuseMaterial={1.0f,0.0225f,0.0442f,1.0f};
-//<
-	//string UIName="Diffuse Material";
-	//string UIWidget="Color";
-//>;
-float4 diffuseLightColour={0.943f,1.0f,1.0f,1.0f};
-//<
-	//string UIName="Diffuse Light Color";
-	//string UIWidget="Color";
-//>;
-float3 lightDirection={1.0f,1.0f,-1.0f};
-//<
-	//string Object="DirectionalLight";
-//>;
-float4 cameraPosition={8.0f,25.0f,8.0f,0.0f};
-float4 speculatMaterial={1.0f,1.0f,1.0f,1.0f};
-//<
-	//string UIName="Specular material";
-	//string UIWidget="Color";
-//>;
-float4 specularLightColour={1.0f,1.0f,1.0f,1.0f};
-//<
-	//string UIName="Specular Light Color";
-	//string UIWidget="Color";
-//>;
+float4 ambientMaterial:COLOR
+<
+	string UIName="Ambient Material";
+	string UIWidget="Color";
+>;
+float4 ambientLightColour:COLOR
+<
+	string UIName="Ambient Light Color";
+	string UIWidget="Color";
+>;
+
+//float4 diffuseMaterial={1.0f,0.0225f,0.0442f,1.0f};
+float4 diffuseMaterial
+<
+	string UIName="Diffuse Material";
+	string UIWidget="Color";
+>;
+//float4 diffuseLightColour={0.943f,1.0f,1.0f,1.0f};
+float4 diffuseLightColour
+<
+	string UIName="Diffuse Light Color";
+	string UIWidget="Color";
+>;
+//float3 lightDirection={1.0f,1.0f,-1.0f};
+float3 lightDirection
+<
+	string Object="DirectionalLight";
+>;
+float4 cameraPosition;
+//float4 speculatMaterial={1.0f,1.0f,1.0f,1.0f};
+float4 speculatMaterial
+<
+	string UIName="Specular material";
+	string UIWidget="Color";
+>;
+//float4 specularLightColour={1.0f,1.0f,1.0f,1.0f};
+float4 specularLightColour
+<
+	string UIName="Specular Light Color";
+	string UIWidget="Color";
+>;
 float specularPower;
 //<
 	//string UIName="Specular Power";

@@ -2,27 +2,29 @@
 
 bool MyGame::initGame()
 {
-	 CubeVisualComponent *pCube1=new CubeVisualComponent();
+		CubeVisualComponent *pCube1=new CubeVisualComponent();
         pCube1->create(m_pRenderer);
         
         Material *pMaterial1=new Material();
         pMaterial1->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
 		pMaterial1->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
 
-       /* DirectionLightComponent * pDirLight=new DirectionLightComponent();
+        DirectionLightComponent * pDirLight=new DirectionLightComponent();
 
         GameObject * pTestObj2=new GameObject();
         pTestObj2->setName("TestObject2");
-        pTestObj2->addComponent(pCube1);
-       pTestObj2->addComponent(pDirLight);
+        pTestObj2->addComponent(pDirLight);
+		pDirLight->setDirection(1.0f,10.0f,1.0f);
+		pDirLight->setDiffuse(1.0f,0.0f,0.0f,1.0f);
+		pDirLight->setSpecular(1.0f,1.0f,1.0f,1.0f);
 
 
-        pCube1->createVertexLayout(m_pRenderer);
+        //pCube1->createVertexLayout(m_pRenderer);
         
         pTestObj2->getTransform().setPosition(0.0f,1.0f,1.0f);
 
 
-        m_GameObjectList.push_back(pTestObj2);*/
+        m_GameObjectList.push_back(pTestObj2);
 	
 
 		CameraComponent *pCameraComp = new CameraComponent();
