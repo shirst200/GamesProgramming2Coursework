@@ -122,8 +122,6 @@ void CGameApplication::run()
                 m_pWindow->checkForWindowMessages();
 				//Get inputs from window
 				inKey = m_pWindow->getInput();
-				//send input to player
-				m_pPlayer->setKey(inKey);
                 //update
                 update();
                 //render
@@ -157,6 +155,35 @@ void CGameApplication::update()
         {
                 (*iter)->update();
         }
+		//Player input
+		if(inKey=="w")
+		{
+			if(gridSpot[currentPos-17]!=1){
+				currentPos = currentPos-17;
+				m_pPlayer->SetMoveDirection(1);
+			}
+		}
+		if(inKey=="s")
+		{
+			if(gridSpot[currentPos+17]!=1){
+				currentPos = currentPos+17;
+				m_pPlayer->SetMoveDirection(-1);
+			}
+		}
+		if(inKey=="a")
+		{
+			if(gridSpot[currentPos-1]!=1){
+				currentPos = currentPos-1;
+				m_pPlayer->SetMoveDirection(2);
+			}
+		}
+		if(inKey=="d")
+		{
+			if(gridSpot[currentPos+1]!=1){
+				currentPos = currentPos+1;
+				m_pPlayer->SetMoveDirection(4);
+			}
+		}
 }
 
 void CGameApplication::clearObjectList()

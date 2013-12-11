@@ -24,7 +24,7 @@ public:
 	{
 		gameController=pController;
 	};
-	int checkDesired(){
-		return desiredSpot;
+	int checkPos(){
+		return currentPos;
 	}
 };

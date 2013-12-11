@@ -49,19 +49,14 @@ public:
                 m_pMainCamera=pMainCamera;
         }
 
+		void storeGrid(int gPos, int spotVal){
+			gridSpot[gPos] = spotVal;
+		}
+
 		 void setPlayer(Player *pPlayer)
         {
                 m_pPlayer=pPlayer;
-        }
-
-		 void setController(GameController *pController)
-        {
-                m_pController=pController;
-        }
-
-		Player* getPlayer()
-        {
-			return m_pPlayer;
+				currentPos = m_pPlayer->checkPos();
         }
 
 private:
@@ -73,8 +68,9 @@ private:
 
         bool initWindow();
 		Player *m_pPlayer;
-		GameController *m_pController;
 		string inKey;
+		int currentPos;
+		int gridSpot[357];
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;

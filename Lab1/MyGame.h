@@ -13,5 +13,5 @@ private:
 
         static const int width = 17;
 		static const int height = 21;
-		byte gridSpots[];
+		int gridSpots[];
 };

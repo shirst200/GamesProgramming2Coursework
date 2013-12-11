@@ -9,4 +9,3 @@
 #include "DirectionLightComponent.h"
 #include "Player.h"
 #include "AudioComponent.h"
-#include "GameController.h"

@@ -48,7 +48,7 @@ bool MyGame::initGame()
 
 	
 
-		byte gridSpots[height*width] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+		int gridSpots[height*width] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 										1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
 										1,2,1,1,0,1,1,0,1,0,1,1,0,1,1,2,1,
 										1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -81,8 +81,10 @@ bool MyGame::initGame()
 		
 
 		for(int i=0;i<(width*height);i++){
+			storeGrid(i,gridSpots[i]);
 			if(gridSpots[i]==1)
 			{
+				
 				CubeVisualComponent *pCube=new CubeVisualComponent();
 				pCube->create(m_pRenderer);
 				GameObject *pTestObj=new GameObject();
@@ -97,24 +99,12 @@ bool MyGame::initGame()
 				m_GameObjectList.push_back(pTestObj);
 			}
 		}
-		//Game Controller
-		GameController *controller = new GameController();
-		//controller->spawnMap();
-		setController(controller);
-
-		GameObject *pController=new GameObject();
-		pController->setName("GameController");
-		pController->addComponent(controller);
-		pController->getTransform().setPosition(-20, 20, -20);
-
-		m_GameObjectList.push_back(pController);
 
 		//Player
 		CubeVisualComponent *pCube=new CubeVisualComponent();
 		pCube->create(m_pRenderer);
-		Player *pPlayer = new Player(93);
+		Player *pPlayer = new Player(263);
 		pPlayer->SetMoveDirection(1);
-		pPlayer->setController(pController);
 		setPlayer(pPlayer);
 		Material *pPlayerMaterial=new Material();
 		pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
