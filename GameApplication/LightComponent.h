@@ -31,6 +31,7 @@ public:
                 m_Diffuse=XMFLOAT4(r,g,b,a);
         };
 
+		void update();
 
         XMFLOAT4& getDiffuse()
         {
@@ -48,7 +49,17 @@ public:
         {
                 return m_Specular;
         };
+
+		void setOrbit(XMFLOAT3 thecenter,float theradius)
+		{
+			Center=XMFLOAT3(thecenter.x,thecenter.y,thecenter.z);
+			radius = theradius;
+		}
+
 protected:
         XMFLOAT4 m_Diffuse;
         XMFLOAT4 m_Specular;
+		bool orbit;
+		XMFLOAT3 Center;
+		float radius;
 };

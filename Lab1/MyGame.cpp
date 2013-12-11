@@ -16,10 +16,10 @@ bool MyGame::initGame()
         GameObject * pTestObj2=new GameObject();
         pTestObj2->setName("TestObject2");
         pTestObj2->addComponent(pDirLight);
-                pDirLight->setDirection(-10.0f,10.0f,1.0f);
-                pDirLight->setDiffuse(1.0f,0.0f,0.0f,1.0f);
+                //pDirLight->setDirection(-10.0f,10.0f,1.0f);
+                pDirLight->setDiffuse(0.25f,0.8f,0.0f,1.0f);
                 pDirLight->setSpecular(1.0f,1.0f,1.0f,1.0f);
-
+				pDirLight->setOrbit(XMFLOAT3(0.0f,0.0f,0.0f),10.0f);
 
 
 
