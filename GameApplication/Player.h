@@ -1,4 +1,5 @@
 #include "GameComponent.h"
+#include <time.h>
 using std::string;
 
 class Player : public GameComponent
@@ -6,24 +7,15 @@ class Player : public GameComponent
 private:
 	int currentPos;
 	int currentDir;
-	string currentKey;
-	GameObject *gameController;
-	int desiredSpot;
-
+	int lastDir;
+	float waitTime;
 public:
 	Player(int startPos){
 		currentPos = startPos;
 	};
 	~Player(){};
 	void SetMoveDirection(int dir);
-	void update();
-	void setKey(string gotInput){
-		currentKey = gotInput;
-	};
-	void setController(GameObject *pController)
-	{
-		gameController=pController;
-	};
+	void update(float deltaTime);
 	int checkPos(){
 		return currentPos;
 	}

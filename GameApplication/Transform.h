@@ -66,6 +66,13 @@ public:
 		m_vecPosition.z=z;
 	};
 
+	void translate(float x,float y,float z)
+	{
+		m_vecPosition.x+=x;
+		m_vecPosition.y+=y;
+		m_vecPosition.z+=z;
+	};
+
 	XMFLOAT3& getPosition()
 	{
 		return m_vecPosition;

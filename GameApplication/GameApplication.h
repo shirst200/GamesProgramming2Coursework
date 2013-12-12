@@ -71,6 +71,7 @@ private:
 		string inKey;
 		int currentPos;
 		int gridSpot[357];
+		float lastUpdate;
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;
