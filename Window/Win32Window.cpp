@@ -1,8 +1,10 @@
 #include "Win32Window.h"
+#include "..//GameApplication//AudioComponent.h"
 
 //Global pointer, this is a bit of a trick to make the Win32
 //object orientated - BMD
 CWin32Window * g_pWindow=NULL;
+
 
 //Callback function for windows messages, this again is a bit of trick to make
 //the window work in an object orientated manner - BMD
@@ -170,6 +172,12 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 					inputKey = "s";
 					return 0;
 				}
+				if (wParam == 0x46)
+				{
+					inputKey = "f";
+					return 0;
+				}
+				
 				return 0;
 			}
 		

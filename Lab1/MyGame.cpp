@@ -76,7 +76,7 @@ bool MyGame::initGame()
 
 
 		AudioComponent *gameMusic=new AudioComponent();
-		gameMusic->playSound(L"Sounds\\Kiss From A Rose.wav",true);
+		setMusic(gameMusic);
 
 		
 

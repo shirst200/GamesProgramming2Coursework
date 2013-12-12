@@ -44,12 +44,15 @@ public:
 	};
 
 	string getInput(){
-		return inputKey;
+		string oldKey = inputKey;
+		//inputKey = "";
+		return oldKey;
 	};
 
 private:
 	bool m_bIsRunning;
 	bool m_bIsFullScreen;
+	bool m_bIsMusic;
 	HWND m_hWND;
 	string inputKey;
 };

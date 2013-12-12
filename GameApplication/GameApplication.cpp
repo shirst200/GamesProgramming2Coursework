@@ -186,6 +186,10 @@ void CGameApplication::update()
 				m_pPlayer->SetMoveDirection(4);
 			}
 		}
+		if(inKey=="f")
+		{
+			m_pAudio->pauseSound();
+		}
 }
 
 void CGameApplication::clearObjectList()

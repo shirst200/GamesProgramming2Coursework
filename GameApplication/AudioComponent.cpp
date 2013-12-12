@@ -96,3 +96,16 @@ void AudioComponent::playSound(LPWSTR theFilename, bool pLoop )					// Play soun
 
 
 }
+
+void AudioComponent::pauseSound()
+{
+    if (!pausedMusic)
+    {
+        mXAudio2->StopEngine();
+		pausedMusic=true;
+    }
+	else{
+		pausedMusic=false;
+		mXAudio2->StartEngine();
+	}
+}

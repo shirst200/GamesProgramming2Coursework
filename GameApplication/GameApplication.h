@@ -59,6 +59,12 @@ public:
 				currentPos = m_pPlayer->checkPos();
         }
 
+		void setMusic(AudioComponent *pMusic)
+		{
+			m_pAudio = pMusic;
+			m_pAudio->playSound(L"Sounds\\Kiss From A Rose.wav",true);
+		}
+
 private:
         bool parseConfigFile();
         bool initInput();
@@ -68,6 +74,7 @@ private:
 
         bool initWindow();
 		Player *m_pPlayer;
+		AudioComponent *m_pAudio;
 		string inKey;
 		int currentPos;
 		int gridSpot[357];

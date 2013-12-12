@@ -18,10 +18,12 @@ private:
     IXAudio2* mXAudio2;
     IXAudio2MasteringVoice* mMasteringVoice;
 	IXAudio2SourceVoice* mSourceVoice;
+	bool pausedMusic;
 
 public:
 	AudioComponent();						// Default constructor
 	~AudioComponent();						// Default destructor
 	void playSound(LPWSTR theFilename, bool pLoop );		// Play sound
+	void pauseSound();
 };
 #endif
