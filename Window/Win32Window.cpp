@@ -55,7 +55,7 @@ bool CWin32Window::init(const wstring &title,int width,int height,bool fullscree
 	wndClass.hCursor = LoadCursor( NULL, IDC_ARROW );
 	//background colour
 	//http://msdn.microsoft.com/en-us/library/dd144925%28v=vs.85%29.aspx - BMD
-	wndClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	wndClass.hbrBackground = (HBRUSH)GetStockObject(GRAY_BRUSH);
 	//menu name - BMD
 	wndClass.lpszMenuName = NULL;
 	//window class name - BMD

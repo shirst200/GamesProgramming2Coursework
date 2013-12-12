@@ -11,6 +11,7 @@ public:
                 m_LightDirection=XMFLOAT3(0.0f,0.0f,-1.0f);
                 m_Name="DirectionalLight";
 				time(&start);
+				count = 0.0f;
         };
 
 
@@ -32,4 +33,5 @@ private:
         XMFLOAT3 m_LightDirection;
 		time_t start;
 		time_t current;
+		float count;
 };

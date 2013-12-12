@@ -8,10 +8,10 @@ void DirectionLightComponent::update(){
 	if(orbit)
 	{
 		
-		time(&current);
+		count = count + 0.01;
 		XMFLOAT3 lightPos;
-		lightPos.x = m_LightDirection.x + sin(difftime(start,current));
-		lightPos.z = m_LightDirection.z + cos(difftime(start,current));
+		lightPos.x = sin(count);
+		lightPos.z = cos(count);
 		setDirection(lightPos.x,m_LightDirection.y,lightPos.z);
 		
 		
