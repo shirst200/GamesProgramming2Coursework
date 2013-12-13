@@ -66,11 +66,26 @@ public:
 		m_vecPosition.z=z;
 	};
 
+	void setPosition(XMFLOAT3 newPos)
+	{
+		m_vecPosition.x= newPos.x;
+		m_vecPosition.y= newPos.y;
+		m_vecPosition.z= newPos.z;
+	};
+
 	void translate(float x,float y,float z)
 	{
 		m_vecPosition.x+=x;
 		m_vecPosition.y+=y;
 		m_vecPosition.z+=z;
+	};
+
+	void roundToGrid()
+	{
+		int newX = (int)(m_vecPosition.x+0.5f);
+		int newY = (int)(m_vecPosition.y+0.5f);
+		int newZ = (int)(m_vecPosition.z+0.5f);
+		setPosition(newX, newY, newZ);
 	};
 
 	XMFLOAT3& getPosition()
