@@ -7,21 +7,22 @@ void Player::SetMoveDirection(int newDir){
 }
 
 void Player::update(float deltaTime){
-	Transform tForm = m_pOwnerGameObject->getTransform();
+	waitTime-=deltaTime;
 	if(waitTime>0){
-		waitTime-=deltaTime;
 		if(lastDir==1) //up
-			tForm.translate(0.0f,0.0f,1.0f*deltaTime);
+			m_pOwnerGameObject->getTransform().translate(0.0f,0.0f,(1.0f*deltaTime)*speed);
 		if(lastDir==2) //right
-			tForm.translate(1.0f*deltaTime,0.0f,0.0f);
+			m_pOwnerGameObject->getTransform().translate((1.0f*deltaTime)*speed,0.0f,0.0f);
 		if(lastDir==3) //down
-			tForm.translate(0.0f,0.0f,-1.0f*deltaTime);
+			m_pOwnerGameObject->getTransform().translate(0.0f,0.0f,(-1.0f*deltaTime)*speed);
 		if(lastDir==4) //left
-			tForm.translate(-1.0f*deltaTime,0.0f,0.0f);
+			m_pOwnerGameObject->getTransform().translate((-1.0f*deltaTime)*speed,0.0f,0.0f);
 	}
 	else{
-		waitTime = 1.0f;
+		waitTime = 1/speed;
 		lastDir = currentDir;
+		//ROund the position to the closest grid spot
+		m_pOwnerGameObject->getTransform().roundToGrid();
 		if(lastDir==1) //up
 			currentPos = currentPos-17;
 		if(lastDir==2) //right

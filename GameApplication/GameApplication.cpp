@@ -167,23 +167,35 @@ void CGameApplication::update()
 			if(gridSpot[currentPos-17]!=1){
 				m_pPlayer->SetMoveDirection(1);
 			}
+			else{
+				m_pPlayer->SetMoveDirection(0);
+			}
 		}
 		if(inKey=="s")
 		{
 			if(gridSpot[currentPos+17]!=1){
-				m_pPlayer->SetMoveDirection(-1);
+				m_pPlayer->SetMoveDirection(3);
+			}
+			else{
+				m_pPlayer->SetMoveDirection(0);
 			}
 		}
 		if(inKey=="a")
 		{
 			if(gridSpot[currentPos-1]!=1){
-				m_pPlayer->SetMoveDirection(2);
+				m_pPlayer->SetMoveDirection(4);
+			}
+			else{
+				m_pPlayer->SetMoveDirection(0);
 			}
 		}
 		if(inKey=="d")
 		{
 			if(gridSpot[currentPos+1]!=1){
-				m_pPlayer->SetMoveDirection(4);
+				m_pPlayer->SetMoveDirection(2);
+			}
+			else{
+				m_pPlayer->SetMoveDirection(0);
 			}
 		}
 		if(inKey=="f")

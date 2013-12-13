@@ -104,7 +104,7 @@ bool MyGame::initGame()
 		CubeVisualComponent *pCube=new CubeVisualComponent();
 		pCube->create(m_pRenderer);
 		Player *pPlayer = new Player(263);
-		pPlayer->SetMoveDirection(1);
+		pPlayer->SetMoveDirection(0);
 		setPlayer(pPlayer);
 		Material *pPlayerMaterial=new Material();
 		pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
