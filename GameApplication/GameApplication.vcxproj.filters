@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="GameApplication.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -86,5 +83,10 @@
     <ClCompile Include="AudioComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
