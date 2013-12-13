@@ -90,7 +90,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyGame.cpp" />
-    <ClCompile Include="ResourceHolder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\D3D10Renderer\D3D10Renderer.vcxproj">
@@ -110,7 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyGame.h" />
-    <ClInclude Include="ResourceHolder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
