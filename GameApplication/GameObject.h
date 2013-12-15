@@ -79,7 +79,6 @@ private:
         typedef map<const GameComponent::goc_id_type,GameComponent*> ComponentTable;
         typedef map<const GameComponent::goc_id_type,GameComponent*>::iterator ComponentTableIter;
         ComponentTable m_Components;
-
 		ChildrenGameObjects m_Children;
 		GameObject * m_pParent;
 };

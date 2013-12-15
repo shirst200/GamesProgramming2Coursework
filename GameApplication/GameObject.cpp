@@ -56,6 +56,7 @@ void GameObject::clearComponents()
 
 void GameObject::update()
 {
+
 	m_Transform.update();
 	for(ComponentTableIter iter=m_Components.begin();iter!=m_Components.end();iter++)
 	{

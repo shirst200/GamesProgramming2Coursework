@@ -16,14 +16,11 @@ bool MyGame::initGame()
         GameObject * pTestObj2=new GameObject();
         pTestObj2->setName("TestObject2");
         pTestObj2->addComponent(pDirLight);
-                pDirLight->setDirection(-10.0f,10.0f,1.0f);
-                pDirLight->setDiffuse(1.0f,0.0f,0.0f,1.0f);
-                pDirLight->setSpecular(1.0f,1.0f,1.0f,1.0f);
-
-
-
-
-        //pCube1->createVertexLayout(m_pRenderer);
+        pDirLight->setDirection(0.0f,0.0f,0.0f);
+        pDirLight->setDiffuse(1.0f,1.0f,1.0f,1.0f);
+        pDirLight->setSpecular(1.0f,1.0f,1.0f,1.0f);
+		pDirLight->RotateOn();
+		setLight(pDirLight);
         
         pTestObj2->getTransform().setPosition(0.0f,1.0f,1.0f);
 

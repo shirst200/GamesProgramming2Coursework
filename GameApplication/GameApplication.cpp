@@ -145,7 +145,7 @@ void CGameApplication::render()
                 m_pRenderer->addToRenderQueue((*iter));
         }
 
-        m_pRenderer->clear(1.0f,0.0f,0.0f,1.0f);
+        m_pRenderer->clear(0.5f,0.5f,0.5f,0.5f);
         m_pRenderer->render();
         m_pRenderer->present();
 }
@@ -153,13 +153,15 @@ void CGameApplication::render()
 //Update, called to update the game
 void CGameApplication::update()
 {
+		float dt =  ((float) clock() - lastUpdate)/CLOCKS_PER_SEC;
         for(GameObjectIter iter=m_GameObjectList.begin();iter!=m_GameObjectList.end();iter++)
         {
                 (*iter)->update();
         }
-		float dt =  ((float) clock() - lastUpdate)/CLOCKS_PER_SEC;
+	
 		lastUpdate = clock();
 		m_pPlayer->update(dt);
+		m_pLight->update(dt);
 		//Player input
 		if(inKey=="w")
 			attemptDir = 1;

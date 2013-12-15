@@ -65,6 +65,11 @@ public:
 			m_pAudio->playSound(L"Sounds\\Kiss From A Rose.wav",true);
 		}
 
+		void setLight(DirectionLightComponent *light)
+		{
+			m_pLight = light;
+		}
+
 private:
         bool parseConfigFile();
         bool initInput();
@@ -80,6 +85,7 @@ private:
 		int attemptDir;
 		int gridSpot[357];
 		float lastUpdate;
+		DirectionLightComponent *m_pLight;
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;
@@ -88,6 +94,6 @@ protected:
         GameOptionsDesc m_GameOptionDesc;
         wstring m_ConfigFileName;
         GameObjectList m_GameObjectList;
-
+		
         CameraComponent *m_pMainCamera;
 };

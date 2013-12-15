@@ -43,6 +43,7 @@ public:
                 m_Specular=XMFLOAT4(r,g,b,a);
         };
 
+		void update(float dt);
 
         XMFLOAT4& getSpecular()
         {

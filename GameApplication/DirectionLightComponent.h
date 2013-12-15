@@ -10,6 +10,8 @@ public:
         DirectionLightComponent(){
                 m_LightDirection=XMFLOAT3(0.0f,0.0f,-1.0f);
                 m_Name="DirectionalLight";
+				rotate=0;
+				count = 0.0f;
         };
 
 
@@ -20,11 +22,27 @@ public:
                 m_LightDirection=XMFLOAT3(x,y,z);
         };
 
+		void update(float deltaTime);
 
         XMFLOAT3& getDirection()
         {
                 return m_LightDirection;
         };
+
+		void RotateOn()
+        {
+                rotate=1;
+        };
+
+
+        void RoatateOff()
+        {
+               rotate=0;
+        };
+
+
 private:
         XMFLOAT3 m_LightDirection;
+		int rotate;
+		float count;
 };

@@ -40,4 +40,5 @@ public:
 protected:
 	GameObject *m_pOwnerGameObject;
 	goc_id_type m_Name;
+
 };
