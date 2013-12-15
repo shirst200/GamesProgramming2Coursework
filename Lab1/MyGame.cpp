@@ -100,6 +100,22 @@ bool MyGame::initGame()
 			}
 		}
 
+		//ResourceHolder resourceHolder = ResourceHolder();
+
+		/*GameObject *pCar=resourceHolder.GetMesh("Models/armoredrecon.fbx",m_pRenderer);
+        for(GameObject::ChildrenGameObjectsIter iter=pCar->getFirstChild();iter!=pCar->getLastChild();iter++)
+        {
+                pMaterial=new Material();
+                pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
+                pMaterial->loadDiffuseTexture("Textures/armoredrecon_diff.png",m_pRenderer);
+                iter->second->addComponent(pMaterial);
+                VisualComponent *pVisual=static_cast<VisualComponent*>(iter->second->getComponent("Visual"));
+                pVisual->createVertexLayout(m_pRenderer);
+        }
+
+        m_GameObjectList.push_back(pCar);*/
+
+
 		//Player
 		CubeVisualComponent *pCube=new CubeVisualComponent();
 		pCube->create(m_pRenderer);

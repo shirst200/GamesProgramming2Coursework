@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../GameApplication/GameApplication.h"
+#include "../GameApplication/ResourceHolder.h"
 
 class MyGame:public CGameApplication
 {
