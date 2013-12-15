@@ -77,6 +77,7 @@ private:
 		AudioComponent *m_pAudio;
 		string inKey;
 		int currentPos;
+		int attemptDir;
 		int gridSpot[357];
 		float lastUpdate;
 protected:

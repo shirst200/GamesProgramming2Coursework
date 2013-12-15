@@ -16,6 +16,8 @@ AudioComponent.cpp
 */
 AudioComponent::AudioComponent()
 {
+	//Audio is playing at start
+	pausedMusic = false;
 	HRESULT hResult;
 	// Initialize XAudio2
 	CoInitializeEx( NULL, COINIT_MULTITHREADED );

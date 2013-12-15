@@ -159,10 +159,21 @@ void CGameApplication::update()
         }
 		float dt =  ((float) clock() - lastUpdate)/CLOCKS_PER_SEC;
 		lastUpdate = clock();
-		float blah = CLOCKS_PER_SEC;
 		m_pPlayer->update(dt);
 		//Player input
 		if(inKey=="w")
+			attemptDir = 1;
+		if(inKey=="s")
+			attemptDir = 3;
+		if(inKey=="a")
+			attemptDir = 4;
+		if(inKey=="d")
+			attemptDir = 2;
+		if(inKey=="f")
+			m_pAudio->pauseSound();
+
+		//Checks grid for collisons
+		if(attemptDir == 1)
 		{
 			if(gridSpot[currentPos-17]!=1){
 				m_pPlayer->SetMoveDirection(1);
@@ -171,7 +182,7 @@ void CGameApplication::update()
 				m_pPlayer->SetMoveDirection(0);
 			}
 		}
-		if(inKey=="s")
+		if(attemptDir == 3)
 		{
 			if(gridSpot[currentPos+17]!=1){
 				m_pPlayer->SetMoveDirection(3);
@@ -180,7 +191,7 @@ void CGameApplication::update()
 				m_pPlayer->SetMoveDirection(0);
 			}
 		}
-		if(inKey=="a")
+		if(attemptDir == 4)
 		{
 			if(gridSpot[currentPos-1]!=1){
 				m_pPlayer->SetMoveDirection(4);
@@ -189,7 +200,7 @@ void CGameApplication::update()
 				m_pPlayer->SetMoveDirection(0);
 			}
 		}
-		if(inKey=="d")
+		if(attemptDir == 2)
 		{
 			if(gridSpot[currentPos+1]!=1){
 				m_pPlayer->SetMoveDirection(2);
@@ -197,10 +208,6 @@ void CGameApplication::update()
 			else{
 				m_pPlayer->SetMoveDirection(0);
 			}
-		}
-		if(inKey=="f")
-		{
-			m_pAudio->pauseSound();
 		}
 }
 

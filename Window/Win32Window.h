@@ -45,7 +45,7 @@ public:
 
 	string getInput(){
 		string oldKey = inputKey;
-		//inputKey = "";
+		inputKey = "";
 		return oldKey;
 	};
 
