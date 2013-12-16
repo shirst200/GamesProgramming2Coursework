@@ -22,8 +22,8 @@ class ResourceHolder
 {
 public:
 	//Default constructor and deconstructor
-	ResourceHolder();
-	~ResourceHolder();
+	ResourceHolder(){};
+	~ResourceHolder(){};
 
 	//Texture management
 	ID3D10Texture2D* GetTexture(LPCSTR fileName);

@@ -99,7 +99,7 @@ bool MyGame::initGame()
 			}
 		}
 
-		//ResourceHolder resourceHolder = ResourceHolder();
+		ResourceHolder resourceHolder = ResourceHolder();
 
 		/*GameObject *pCar=resourceHolder.GetMesh("Models/armoredrecon.fbx",m_pRenderer);
         for(GameObject::ChildrenGameObjectsIter iter=pCar->getFirstChild();iter!=pCar->getLastChild();iter++)
