@@ -33,6 +33,16 @@ bool ResourceHolder::DeleteTexture(LPCSTR fileName)
 	return true;
 }
 
+bool ResourceHolder::DeleteAllTextures()
+{
+	for (iterText = texture.begin(); iterText != texture.end(); ++iterText)
+	{
+		delete (*iterText).second;
+		iterText=texture.erase(iterText);
+	}
+	return true;
+}
+
 ID3D10Effect* ResourceHolder::GetEffect(LPCSTR fileName)
 {
 	//Searches for effect
@@ -90,6 +100,16 @@ bool ResourceHolder::DeleteEffect(LPCSTR fileName)
 	return true;
 }
 
+bool ResourceHolder::DeleteAllEffects()
+{
+	for (iterEffect = effect.begin(); iterEffect != effect.end(); ++iterEffect)
+	{
+		delete (*iterEffect).second;
+		iterEffect=effect.erase(iterEffect);
+	}
+	return true;
+}
+
 GameObject* ResourceHolder::GetMesh(LPCSTR fileName, IRenderer *pRenderer)
 {
 	//Searches for mesh
@@ -124,6 +144,17 @@ bool ResourceHolder::DeleteMesh(LPCSTR fileName)
 	//If deleted return true
 	return true;
 }
+
+bool ResourceHolder::DeleteAllMeshes()
+{
+	for (iterMesh = mesh.begin(); iterMesh != mesh.end(); ++iterMesh)
+	{
+		delete (*iterMesh).second;
+		iterMesh=mesh.erase(iterMesh);
+	}
+	return true;
+}
+
 GameObject* ResourceHolder::RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
 {
 	//Null Game Object
