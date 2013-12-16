@@ -91,6 +91,7 @@ private:
 		int attemptDir;
 		int gridSpot[357];
 		float lastUpdate;
+		bool collision;
 		DirectionLightComponent *m_pLight;
 protected:
         typedef vector<GameObject*> GameObjectList;

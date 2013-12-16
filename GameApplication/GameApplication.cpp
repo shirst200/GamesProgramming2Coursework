@@ -173,46 +173,57 @@ void CGameApplication::update()
 			attemptDir = 2;
 		if(inKey=="f")
 			m_pAudio->pauseSound();
-
 		//Checks grid for collisons
 		if(attemptDir == 1)
 		{
 			if(gridSpot[currentPos-17]!=1){
 				m_pPlayer->SetMoveDirection(1);
+				collision = false;
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
-				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				if(collision == false)
+					m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				collision = true;
 			}
 		}
 		if(attemptDir == 3)
 		{
 			if(gridSpot[currentPos+17]!=1){
 				m_pPlayer->SetMoveDirection(3);
+				collision = false;
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
-				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				if(collision == false)
+					m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				collision = true;
 			}
 		}
 		if(attemptDir == 4)
 		{
 			if(gridSpot[currentPos-1]!=1){
 				m_pPlayer->SetMoveDirection(4);
+				collision = false;
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
-				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				if(collision == false)
+					m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				collision = true;
 			}
 		}
 		if(attemptDir == 2)
 		{
 			if(gridSpot[currentPos+1]!=1){
 				m_pPlayer->SetMoveDirection(2);
+				collision = false;
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
-				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				if(collision == false)
+					m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
+				collision = true;
 			}
 		}
 }
