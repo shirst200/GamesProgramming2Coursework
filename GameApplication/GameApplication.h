@@ -67,7 +67,7 @@ public:
 
 		void setSoundEffect(AudioComponent *pSound)
 		{
-			m_pAudio = pSound;
+			m_pSoundEffect = pSound;
 		}
 
 		void setLight(DirectionLightComponent *light)
