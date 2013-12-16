@@ -182,6 +182,7 @@ void CGameApplication::update()
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
+				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
 			}
 		}
 		if(attemptDir == 3)
@@ -191,6 +192,7 @@ void CGameApplication::update()
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
+				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
 			}
 		}
 		if(attemptDir == 4)
@@ -200,6 +202,7 @@ void CGameApplication::update()
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
+				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
 			}
 		}
 		if(attemptDir == 2)
@@ -209,6 +212,7 @@ void CGameApplication::update()
 			}
 			else{
 				m_pPlayer->SetMoveDirection(0);
+				m_pSoundEffect->playSound(L"Sounds\\THUDBOX1.WAV",false);
 			}
 		}
 }

@@ -65,6 +65,11 @@ public:
 			m_pAudio->playSound(L"Sounds\\Kiss From A Rose.wav",true);
 		}
 
+		void setSoundEffect(AudioComponent *pSound)
+		{
+			m_pAudio = pSound;
+		}
+
 		void setLight(DirectionLightComponent *light)
 		{
 			m_pLight = light;
@@ -80,6 +85,7 @@ private:
         bool initWindow();
 		Player *m_pPlayer;
 		AudioComponent *m_pAudio;
+		AudioComponent *m_pSoundEffect;
 		string inKey;
 		int currentPos;
 		int attemptDir;

@@ -73,7 +73,9 @@ bool MyGame::initGame()
 
 
 		AudioComponent *gameMusic=new AudioComponent();
+		AudioComponent *hitWallNoise=new AudioComponent();
 		setMusic(gameMusic);
+		setSoundEffect(hitWallNoise);
 
 		
 
