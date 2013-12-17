@@ -113,8 +113,8 @@ bool ResourceHolder::DeleteAllEffects()
 GameObject* ResourceHolder::GetMesh(LPCSTR fileName, IRenderer *pRenderer)
 {
 	//Searches for mesh
-	if(mesh.find(fileName)==mesh.end())
-	{
+	//if(mesh.find(fileName)==mesh.end())
+	//{
 		//If not found add and return it
 		string file=string(fileName);
         string extension=file.substr(file.find('.')+1);
@@ -123,7 +123,7 @@ GameObject* ResourceHolder::GetMesh(LPCSTR fileName, IRenderer *pRenderer)
                 mesh[fileName]=RetreveMesh(fileName,pRenderer);
 
 		return mesh.at(fileName);
-	}
+	//}
 	//If found return it
 	return mesh.at(fileName);
 }
@@ -220,10 +220,9 @@ GameObject* ResourceHolder::RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
                                                 Vertex * pVerts=new Vertex[noVerts];
                                                 for(int i=0;i<noVerts;i++)
                                                 {
-
-                                                                pVerts[i].position.x=verts[i][0];
-                                                                pVerts[i].position.y=verts[i][1];
-                                                                pVerts[i].position.z=verts[i][2];
+														pVerts[i].position.x=verts[i][0];
+														pVerts[i].position.y=verts[i][1];
+														pVerts[i].position.z=verts[i][2];
                                                 }
                                                 for (int iPolygon = 0; iPolygon < pMesh->GetPolygonCount(); iPolygon++) { 
                                                         for (unsigned iPolygonVertex = 0; iPolygonVertex < 3; iPolygonVertex++) {        

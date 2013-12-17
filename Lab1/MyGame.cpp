@@ -72,8 +72,8 @@ bool MyGame::initGame()
 		pMaterial->loadDiffuseTexture("Textures/quickTestBrick.png",m_pRenderer);
 
 		Material *pCupMaterial=new Material();
-		pCupMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
-		pCupMaterial->loadDiffuseTexture("Textures/coffeeUV.png",m_pRenderer);
+		pCupMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
+		pCupMaterial->loadDiffuseTexture("Textures/coffeeCup.jpeg",m_pRenderer);
 
 
 		AudioComponent *gameMusic=new AudioComponent();
@@ -83,7 +83,7 @@ bool MyGame::initGame()
 
 		ResourceHolder resourceHolder = ResourceHolder();
 
-		for(int i=0;i<(width*height);i++){
+		/*for(int i=0;i<(width*height);i++){
 			storeGrid(i,gridSpots[i]);
 			if(gridSpots[i]==1)
 			{	
@@ -99,12 +99,13 @@ bool MyGame::initGame()
 				pTestObj->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
 				
 				m_GameObjectList.push_back(pTestObj);
-			}
-			if(gridSpots[i]==0)
-			{
+			}*/
+			//if(gridSpots[i]==0)
+			//{
 				//cups
 
-				GameObject *pCups =resourceHolder.GetMesh("Models/coffeeCup.fbx",m_pRenderer);
+				GameObject *pCups = new GameObject();
+				pCups = resourceHolder.GetMesh("Models/coffeeCup.fbx",m_pRenderer);
 				for(GameObject::ChildrenGameObjectsIter iter=pCups->getFirstChild();iter!=pCups->getLastChild();iter++)
 				{
 					if((*iter).second!=NULL){
@@ -115,10 +116,11 @@ bool MyGame::initGame()
 							pVisual->createVertexLayout(m_pRenderer);
 					}
 				}
-				pCups->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				pCups->getTransform().setPosition(1, 1, 1);
+				pCups->getTransform().setScale(50,50,50);
 				m_GameObjectList.push_back(pCups);
-			}
-		}
+			//}
+		//}
 
 		
 
