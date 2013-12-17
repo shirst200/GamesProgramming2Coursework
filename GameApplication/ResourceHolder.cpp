@@ -175,6 +175,7 @@ GameObject* ResourceHolder::RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
     // Use the first argument as the filename for the importer.
 		string file=string(fileName);
         if(!lImporter->Initialize(file.c_str(), -1, lSdkManager->GetIOSettings())) {
+			OutputDebugStringA(lImporter->GetStatus().GetErrorString());
                 return NULL;
     }
 

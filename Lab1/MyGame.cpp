@@ -32,14 +32,14 @@ bool MyGame::initGame()
 	
 
 		CameraComponent *pCameraComp = new CameraComponent();
-        pCameraComp->setLook(8.0f,1.5f,9.0f);
+        pCameraComp->setLook(8.0f,1.5f,9.75f);
         pCameraComp->setFOV(m_GameOptionDesc.width/m_GameOptionDesc.height);
         
 		GameObject *pCameraGO = new GameObject();
         pCameraGO->setName("MainCamera");
         pCameraGO->addComponent(pCameraComp);
         setMainCamera(pCameraComp);
-		pCameraGO->getTransform().setPosition(8.0f,25.0f,8.0f);
+		pCameraGO->getTransform().setPosition(8.0f,21.0f,9.0f);
 
         m_GameObjectList.push_back(pCameraGO);
 
@@ -104,15 +104,19 @@ bool MyGame::initGame()
 			{
 				//cups
 
-				/*GameObject *pCups =resourceHolder.GetMesh("Models/CoffeCup.fbx",m_pRenderer);
+				GameObject *pCups =resourceHolder.GetMesh("Models/coffeeCup.fbx",m_pRenderer);
 				for(GameObject::ChildrenGameObjectsIter iter=pCups->getFirstChild();iter!=pCups->getLastChild();iter++)
 				{
-						iter->second->addComponent(pCupMaterial);
-						VisualComponent *pVisual=static_cast<VisualComponent*>(iter->second->getComponent("Visual"));
-						pVisual->createVertexLayout(m_pRenderer);
+					if((*iter).second!=NULL){
+				
+						(*iter).second->addComponent(pCupMaterial);
+						VisualComponent *pVisual=static_cast<VisualComponent*>((*iter).second->getComponent("Visual"));
+						if(pVisual)
+							pVisual->createVertexLayout(m_pRenderer);
+					}
 				}
 				pCups->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
-				m_GameObjectList.push_back(pCups);*/
+				m_GameObjectList.push_back(pCups);
 			}
 		}
 
