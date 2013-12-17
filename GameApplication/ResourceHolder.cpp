@@ -110,11 +110,11 @@ bool ResourceHolder::DeleteAllEffects()
 	return true;
 }
 
-GameObject* ResourceHolder::GetMesh(LPCSTR fileName, IRenderer *pRenderer)
+GameObject* ResourceHolder::GetMeshObject(LPCSTR fileName, IRenderer *pRenderer)
 {
 	//Searches for mesh
-	//if(mesh.find(fileName)==mesh.end())
-	//{
+	if(mesh.find(fileName)==mesh.end())
+	{
 		//If not found add and return it
 		string file=string(fileName);
         string extension=file.substr(file.find('.')+1);
@@ -123,11 +123,26 @@ GameObject* ResourceHolder::GetMesh(LPCSTR fileName, IRenderer *pRenderer)
                 mesh[fileName]=RetreveMesh(fileName,pRenderer);
 
 		return mesh.at(fileName);
-	//}
+	}
 	//If found return it
 	return mesh.at(fileName);
 }
 
+VisualComponent* ResourceHolder::GetMeshVisual(LPCSTR fileName, IRenderer *pRenderer)
+{
+		//Searches for mesh
+	if(mesh.find(fileName)==mesh.end())
+	{
+		//If not found add and return it
+		string file=string(fileName);
+        string extension=file.substr(file.find('.')+1);
+        if (extension.compare("fbx")==0)
+                mesh[fileName]=RetreveMesh(fileName,pRenderer);
+		return visual.at(fileName);
+	}
+	//If found return it
+	return visual.at(fileName);
+}
 bool ResourceHolder::DeleteMesh(LPCSTR fileName)
 {
 	//Searches for mesh
@@ -261,6 +276,8 @@ GameObject* ResourceHolder::RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
                                                 pVisualComponent->createIndexBuffer(noIndices,pIndices,pRenderer);
                                                 pChildGO->addComponent(pVisualComponent);
                                                 pRootObject->addChild(pChildGO);
+												visual[fileName]=pVisualComponent;
+
                                                 if (pVerts)
                                                 {
                                                         delete [] pVerts;

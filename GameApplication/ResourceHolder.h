@@ -36,7 +36,8 @@ public:
 	bool DeleteAllEffects();
 
 	//Mesh management
-	GameObject* GetMesh(LPCSTR fileName, IRenderer *pRenderer);
+	GameObject* GetMeshObject(LPCSTR fileName, IRenderer *pRenderer);
+	VisualComponent* GetMeshVisual(LPCSTR fileName, IRenderer *pRenderer);
 	bool DeleteMesh(LPCSTR fileName);
 	bool DeleteAllMeshes();
 
@@ -57,4 +58,6 @@ private:
 	map < LPCSTR, ID3D10Effect* > ::iterator iterEffect;
 	map < LPCSTR, GameObject* > mesh;
 	map < LPCSTR, GameObject* > ::iterator iterMesh;
+	map < LPCSTR, VisualComponent* > visual;
+	map < LPCSTR, VisualComponent* > ::iterator iterVisual;
 };

@@ -105,13 +105,14 @@ bool MyGame::initGame()
 				//cups
 
 				GameObject *pCups = new GameObject();
-				pCups = resourceHolder.GetMesh("Models/coffeeCup.fbx",m_pRenderer);
+				//pCups = 
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/coffeeCup.fbx",m_pRenderer);
 				for(GameObject::ChildrenGameObjectsIter iter=pCups->getFirstChild();iter!=pCups->getLastChild();iter++)
 				{
 					if((*iter).second!=NULL){
 				
 						(*iter).second->addComponent(pCupMaterial);
-						VisualComponent *pVisual=static_cast<VisualComponent*>((*iter).second->getComponent("Visual"));
+						VisualComponent *pVisual=static_cast<VisualComponent*>(res);
 						if(pVisual)
 							pVisual->createVertexLayout(m_pRenderer);
 					}
