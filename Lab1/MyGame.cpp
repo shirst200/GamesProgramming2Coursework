@@ -71,19 +71,22 @@ bool MyGame::initGame()
 		pMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
 		pMaterial->loadDiffuseTexture("Textures/quickTestBrick.png",m_pRenderer);
 
+		Material *pCupMaterial=new Material();
+		pCupMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
+		pCupMaterial->loadDiffuseTexture("Textures/coffeeUV.png",m_pRenderer);
+
 
 		AudioComponent *gameMusic=new AudioComponent();
 		AudioComponent *hitWallNoise=new AudioComponent();
 		setMusic(gameMusic);
 		setSoundEffect(hitWallNoise);
 
-		
+		ResourceHolder resourceHolder = ResourceHolder();
 
 		for(int i=0;i<(width*height);i++){
 			storeGrid(i,gridSpots[i]);
 			if(gridSpots[i]==1)
-			{
-				
+			{	
 				CubeVisualComponent *pCube=new CubeVisualComponent();
 				pCube->create(m_pRenderer);
 				GameObject *pTestObj=new GameObject();
@@ -97,9 +100,23 @@ bool MyGame::initGame()
 				
 				m_GameObjectList.push_back(pTestObj);
 			}
+			if(gridSpots[i]==0)
+			{
+				//cups
+
+				/*GameObject *pCups =resourceHolder.GetMesh("Models/CoffeCup.fbx",m_pRenderer);
+				for(GameObject::ChildrenGameObjectsIter iter=pCups->getFirstChild();iter!=pCups->getLastChild();iter++)
+				{
+						iter->second->addComponent(pCupMaterial);
+						VisualComponent *pVisual=static_cast<VisualComponent*>(iter->second->getComponent("Visual"));
+						pVisual->createVertexLayout(m_pRenderer);
+				}
+				pCups->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				m_GameObjectList.push_back(pCups);*/
+			}
 		}
 
-		ResourceHolder resourceHolder = ResourceHolder();
+		
 
 		/*GameObject *pCar=resourceHolder.GetMesh("Models/armoredrecon.fbx",m_pRenderer);
         for(GameObject::ChildrenGameObjectsIter iter=pCar->getFirstChild();iter!=pCar->getLastChild();iter++)
