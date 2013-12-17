@@ -97,6 +97,7 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceHolder.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="VisualComponent.h" />
   </ItemGroup>
@@ -110,6 +111,8 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResourceHolder.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="VisualComponent.cpp" />
   </ItemGroup>
   <ItemGroup>

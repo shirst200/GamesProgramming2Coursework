@@ -4,6 +4,7 @@
 #include "../Window/Win32Window.h"
 #include "../D3D10Renderer/D3D10Renderer.h"
 #include "GameObject.h"
+#include "Timer.h"
 
 //boost header for program options
 //#include <boost/program_options.hpp>
