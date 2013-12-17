@@ -93,6 +93,8 @@ private:
 		float lastUpdate;
 		bool collision;
 		DirectionLightComponent *m_pLight;
+		int totalTime;
+
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;

@@ -17,6 +17,7 @@ void GameObject::addComponent(GameComponent* pComponent)
 	
 }
 
+
 void GameObject::clearChildren()
  {
          ChildrenGameObjectsIter iter=m_Children.begin();

@@ -154,9 +154,11 @@ void CGameApplication::render()
 void CGameApplication::update()
 {
 		float dt =  ((float) clock() - lastUpdate)/CLOCKS_PER_SEC;
+		totalTime = totalTime - dt;
         for(GameObjectIter iter=m_GameObjectList.begin();iter!=m_GameObjectList.end();iter++)
         {
                 (*iter)->update();
+
         }
 	
 		lastUpdate = clock();
