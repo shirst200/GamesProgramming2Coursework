@@ -47,6 +47,8 @@ float specularPower;
 
 //>;
 
+float seconds:TIME;
+
 struct VS_INPUT
 {
 	float4 pos:POSITION;
@@ -77,7 +79,8 @@ PS_INPUT VS(VS_INPUT input)
 float4 PS(PS_INPUT input):SV_TARGET
 {
 	float3 normal=normalize(input.normal);
-	float3 lightDir=normalize(lightDirection);
+	float3 light = float3(sin(seconds), 0.0f, cos(seconds));
+	float3 lightDir=normalize(light);
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
 	float specular=pow(saturate(dot(normal,halfVec)),25.0f);

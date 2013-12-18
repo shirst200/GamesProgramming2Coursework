@@ -3,6 +3,12 @@
 #include "GameObject.h"
 #include "../D3D10Renderer/D3D10Renderer.h"
 
+
+
+void VisualComponent::createTangents()
+{
+
+}
 //this should be done when the effect has been created
 bool VisualComponent::createVertexLayout(IRenderer * pRenderer)
 {

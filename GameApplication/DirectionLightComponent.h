@@ -12,6 +12,7 @@ public:
                 m_Name="DirectionalLight";
 				rotate=0;
 				count = 0.0f;
+				check =0.0f;
         };
 
 
@@ -45,4 +46,5 @@ private:
         XMFLOAT3 m_LightDirection;
 		int rotate;
 		float count;
+		int check;
 };

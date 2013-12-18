@@ -39,7 +39,7 @@ public:
 	virtual bool create(IRenderer * pRenderer){
 		return true;
 	};
-
+	virtual void createTangents();
 	bool createVertexLayout(IRenderer * pRenderer);
 	bool createVertexBuffer(int size,Vertex *pVerts,IRenderer *pRenderer);
 	bool createIndexBuffer(int size,int *pIndices,IRenderer *pRenderer);

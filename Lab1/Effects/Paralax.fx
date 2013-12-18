@@ -46,7 +46,7 @@ float specularPower
 	float UIStep = 1.0; 
 
 >;
-
+float seconds:TIME;
 struct VS_INPUT
 {
 	float4 pos:POSITION;
@@ -89,7 +89,8 @@ PS_INPUT VS(VS_INPUT input)
 	
 	float4 worldPos=mul(input.pos,matWorld);
 	output.cameraDirection=mul((cameraPosition-worldPos.xyz),worldToTangent);
-	output.lightDir=mul(lightDirection,worldToTangent);
+	float3 light = float3(sin(seconds),0.0f,cos(seconds));
+	output.lightDir=mul(light,worldToTangent);
 	output.texCoord=input.texCoord;
 	return output;
 }

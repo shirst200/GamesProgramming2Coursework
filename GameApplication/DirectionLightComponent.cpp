@@ -6,6 +6,11 @@ void DirectionLightComponent::update(float deltaTime)
 {
 	if(rotate==1)
 	{
+		if (check == 0.0f)
+		{
+			check = 1.0f;
+			deltaTime=0.0f;
+		}
 		count = count + deltaTime/2;
 		XMFLOAT3 lightPos;
         lightPos.x = sin(count);

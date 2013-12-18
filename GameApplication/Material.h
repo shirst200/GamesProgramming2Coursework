@@ -108,7 +108,7 @@ public:
 
         bool loadDiffuseTexture(const string& filename,IRenderer *pRenderer);
         bool loadSpecularTexture(const string& filename,IRenderer *pRenderer);
-
+		bool loadHeightTexture(const string& filename,IRenderer *pRenderer);
 
         ID3D10ShaderResourceView * getDiffuseTexture()
         {
@@ -120,6 +120,12 @@ public:
         {
                 return m_pSpecularTexture;
         };
+
+		ID3D10ShaderResourceView * getHeightTexture()
+        {
+                return m_pSpecularTexture;
+        };
+
 private:
         XMFLOAT4 m_Ambient;
         XMFLOAT4 m_Diffuse;
@@ -128,4 +134,5 @@ private:
         ID3D10EffectTechnique *m_pCurrentTechnique;
         ID3D10ShaderResourceView * m_pDiffuseTexture;
         ID3D10ShaderResourceView * m_pSpecularTexture;
+		ID3D10ShaderResourceView * m_pHeightTexture;
 };

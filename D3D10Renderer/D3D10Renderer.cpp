@@ -28,6 +28,14 @@ const D3D10_INPUT_ELEMENT_DESC VerexLayout[] =
 	20, //Offset, this will increase as we add more elements(such texture coords) to the layout - BMD
 	D3D10_INPUT_PER_VERTEX_DATA, //Input classification - BMD
 	0 }, //Instance Data slot - BMD
+
+    { "TANGENT", //Name of the semantic, this helps to bind the vertex inside the Vertex Shader - BMD
+	0, //The index of the semantic, see above - BMD
+	DXGI_FORMAT_R32G32B32_FLOAT, //The format of the element, in this case 32 bits of each sub element - BMD
+	0, //Input slot - BMD
+	32, //Offset, this will increase as we add more elements(such texture coords) to the layout - BMD
+	D3D10_INPUT_PER_VERTEX_DATA, //Input classification - BMD
+	0 }, //Instance Data slot - BMD
 };
 
 const char basicEffect[]=\
@@ -318,15 +326,22 @@ void D3D10Renderer::render(GameObject *pObject)
 
 				if (pMaterial->getSpecularTexture())
 				{
-					ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("specularMap")->AsShaderResource();
+					ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("bumpMap")->AsShaderResource();
 					pSpecularTextureVar->SetResource(pMaterial->getSpecularTexture());
 				}
+
+				if (pMaterial->getHeightTexture())
+				{
+					ID3D10EffectShaderResourceVariable * pHeightTextureVar=pCurrentEffect->GetVariableByName("heightMap")->AsShaderResource();
+					pHeightTextureVar->SetResource(pMaterial->getHeightTexture());
+				}
+
 				//Retrieve & send material stuff
 				ID3D10EffectVectorVariable *pAmbientMatVar=pCurrentEffect->GetVariableByName("ambientMaterial")->AsVector();
 				ID3D10EffectVectorVariable *pDiffuseMatVar=pCurrentEffect->GetVariableByName("diffuseMaterial")->AsVector();
 				ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("specularMaterial")->AsVector();
 				ID3D10EffectVectorVariable *m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("diffuseLightColour")->AsVector();
-               ID3D10EffectVectorVariable *m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
+                ID3D10EffectVectorVariable *m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
                 ID3D10EffectVectorVariable *m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLight")->AsVector();
                 m_pDiffuseLightColour->SetFloatVector((float*)&m_diffuseLightColour);
                 m_pLightDirection->SetFloatVector((float*)&lightDirection);
