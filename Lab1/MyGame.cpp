@@ -102,27 +102,20 @@ bool MyGame::initGame()
 				
 				m_GameObjectList.push_back(pTestObj);
 			}
-			//if(gridSpots[i]==0)
-			//{
-				//cups
-
-				//GameObject *pCups = new GameObject();
-				////pCups = 
-				//VisualComponent* res = resourceHolder.GetMeshVisual("Models/coffeeCup.fbx",m_pRenderer);
-				//for(GameObject::ChildrenGameObjectsIter iter=pCups->getFirstChild();iter!=pCups->getLastChild();iter++)
-				//{
-				//	if((*iter).second!=NULL){
-				//
-				//		(*iter).second->addComponent(pCupMaterial);
-				//		VisualComponent *pVisual=static_cast<VisualComponent*>(res);
-				//		if(pVisual)
-				//			pVisual->createVertexLayout(m_pRenderer);
-				//	}
-				//}
-				//pCups->getTransform().setPosition(1, 1, 1);
-				//pCups->getTransform().setScale(50,50,50);
-				//m_GameObjectList.push_back(pCups);
-			//}
+			if(gridSpots[i]==0)
+			{
+				GameObject *pCups =new GameObject();
+				//pCups = 
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/coffeeCup.fbx",m_pRenderer);
+				pCups->addComponent(res);
+				pCups->addComponent(pCupMaterial);
+				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
+				if(pVisual)
+						pVisual->createVertexLayout(m_pRenderer);
+				pCups->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+						
+				m_GameObjectList.push_back(pCups);
+			}
 		}
 
 		
