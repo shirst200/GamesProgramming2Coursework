@@ -22,7 +22,7 @@ float4 diffuseLightColour={0.943f,1.0f,1.0f,1.0f};
 	//string UIName="Diffuse Light Color";
 	//string UIWidget="Color";
 //>;
-float3 lightDirection={10.0f,1.0f,1.0f};
+float3 lightDirection;
 //<
 	//string Object="DirectionalLight";
 //>;

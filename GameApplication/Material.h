@@ -32,6 +32,7 @@ public:
                 m_Specular=XMFLOAT4(0.1f,0.1f,0.1f,1.0f);
                 m_pDiffuseTexture=NULL;
                 m_pSpecularTexture=NULL;
+				m_pHeightTexture=NULL;
         };
 
 

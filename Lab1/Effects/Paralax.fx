@@ -53,6 +53,8 @@ struct VS_INPUT
 	float3 tangent:TANGENT;
 	float2 texCoord:TEXCOORD0;
 };
+
+float time:TIME;
 Texture2D diffuseMap;
 Texture2D bumpMap;
 Texture2D heightMap;
@@ -85,7 +87,6 @@ PS_INPUT VS(VS_INPUT input)
 	
 	output.pos=mul(input.pos,matWorldViewProjection);
 	output.normal=mul(input.normal,worldToTangent);
-	
 	float4 worldPos=mul(input.pos,matWorld);
 	output.cameraDirection=mul((cameraPosition-worldPos.xyz),worldToTangent);
 	output.lightDir=mul(lightDirection,worldToTangent);
@@ -107,7 +108,7 @@ float4 PS(PS_INPUT input):SV_TARGET
 	float3 lightDir=normalize(input.lightDir);
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
-	float specular=pow(saturate(dot(normal,halfVec)),specularPower);
+	float specular=pow(saturate(dot(normal,halfVec)),50);
 	float4 diffuseTextureColour=diffuseMap.Sample(WrapPointSampler,newTexCoord);
 	return float4(((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+((diffuseMaterial+diffuseTextureColour)*diffuseLightColour*diffuseHeightlight)));
 }

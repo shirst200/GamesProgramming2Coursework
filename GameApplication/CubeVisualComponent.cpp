@@ -39,20 +39,7 @@ bool CubeVisualComponent::create(IRenderer * pRenderer)
 	verts[7].normal=XMFLOAT3(0.25f,0.25f,-0.5f);
 	verts[7].textureCoords=XMFLOAT2(1.0f,0.0f);
 
-
-	for(int i=0; i<m_iNoVerts; i++)
-	{
-		bool end = false;
-		if(i+2>=m_iNoVerts)
-		{
-			verts[i].tangent=verts[i-1].tangent;
-		}
-		else
-		{
-			createTangent(&verts[i], &verts[i+1],&verts[i+2]);
-		}
-	}
-
+	computeTangents(verts,m_iNoVerts);
 
 	int indices[]={0,1,2,1,3,2,		//front 
 					4,5,6,5,7,6,	//back
@@ -71,37 +58,89 @@ bool CubeVisualComponent::create(IRenderer * pRenderer)
 
 	return true;
 }
-void CubeVisualComponent::createTangent(Vertex *vertex1, Vertex *vertex2, Vertex *vertex3)
+void CubeVisualComponent::computeTangents(Vertex *pVerts,int vertexCount)
 {
-	float vector1[3], vector2[3];
-	float tuVector[2], tvVector[2];
-	float den;
-	float length;
+	 int triCount=vertexCount/3; 
+    XMFLOAT3 * tan1=new XMFLOAT3[vertexCount]; 
+    XMFLOAT3 * tan2=new XMFLOAT3[vertexCount]; 
+  
+    for (int i=0;i<triCount;i+=3) 
+    { 
+        XMFLOAT3 v1=pVerts[i].position; 
+        XMFLOAT3 v2=pVerts[i+1].position; 
+        XMFLOAT3 v3=pVerts[i+2].position; 
+  
+        XMFLOAT3 uv1=XMFLOAT3((float*)&pVerts[i].textureCoords); 
+        XMFLOAT3 uv2=XMFLOAT3((float*)&pVerts[i+1].textureCoords); 
+        XMFLOAT3 uv3=XMFLOAT3((float*)&pVerts[i+2].textureCoords); 
+              
+        float x1 = v2.x - v1.x; 
+        float x2 = v3.x - v1.x; 
+        float y1 = v2.y - v1.y; 
+        float y2 = v3.y - v1.y; 
+        float z1 = v2.z - v1.z; 
+        float z2 = v3.z - v1.z; 
+  
+        float s1 = uv2.x - uv1.x; 
+        float s2 = uv3.x - uv1.x; 
+        float t1 = uv2.y - uv1.y; 
+        float t2 = uv3.y - uv1.y; 
+  
+        float r=1.0f/(s1*t2-s2*t1); 
+        XMFLOAT3 sdir = XMFLOAT3((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r, (t2 * z1 - t1 * z2) * r); 
+        XMFLOAT3 tdir = XMFLOAT3((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r, (s1 * z2 - s2 * z1) * r); 
+  
+		tan1[i].x += sdir.x; 
+		tan1[i].y += sdir.y; 
+		tan1[i].z += sdir.z; 
 
-	vector1[0] = vertex2->position.x - vertex1->position.x;
-	vector1[1] = vertex2->position.y - vertex1->position.y;
-	vector1[2] = vertex2->position.z - vertex1->position.z;
+		tan1[i+1].x += sdir.x; 
+		tan1[i+1].y += sdir.y; 
+		tan1[i+1].z += sdir.z;
 
-	vector2[0] = vertex3->position.x - vertex1->position.x;
-	vector2[1] = vertex3->position.y - vertex1->position.y;
-	vector2[2] = vertex3->position.z - vertex1->position.z;
+		tan1[i+2].x += sdir.x; 
+		tan1[i+2].y += sdir.y; 
+		tan1[i+2].z += sdir.z;
+  
+		tan2[i].x += tdir.x; 
+		tan2[i].y += tdir.y; 
+		tan2[i].z += tdir.z; 
 
-	tuVector[0] = vertex2->textureCoords.x - vertex1->textureCoords.x;
-	tvVector[0] = vertex2->textureCoords.y - vertex1->textureCoords.y;
+		tan2[i+1].x += tdir.x; 
+		tan2[i+1].y += tdir.y; 
+		tan2[i+1].z += tdir.z;
 
-	tuVector[1] = vertex3->textureCoords.x - vertex1->textureCoords.x;
-	tvVector[1] = vertex3->textureCoords.y - vertex1->textureCoords.y;
-
-	den = 1.0f / (tuVector[0] * tvVector[1] - tuVector[1] * tvVector[0]);
-
-	vertex1->tangent.x = (tvVector[1] * vector1[0] - tvVector[0] * vector2[0]) * den;
-	vertex1->tangent.y = (tvVector[1] * vector1[1] - tvVector[0] * vector2[1]) * den;
-	vertex1->tangent.z = (tvVector[1] * vector1[2] - tvVector[0] * vector2[2]) * den;
-
-	length = sqrt((vertex1->tangent.x * vertex1->tangent.x) + (vertex1->tangent.y * vertex1->tangent.y) + (vertex1->tangent.z * vertex1->tangent.z));
-			
-	vertex1->tangent.x = vertex1->tangent.x / length;
-	vertex1->tangent.y = vertex1->tangent.y / length;
-	vertex1->tangent.z = vertex1->tangent.z / length;
+		tan2[i+2].x += tdir.x; 
+		tan2[i+2].y += tdir.y; 
+		tan2[i+2].z += tdir.z; 
+    } 
+    for (int i=0;i<vertexCount;i++) 
+    { 
+		XMFLOAT3 n=pVerts[i].normal; 
+        XMFLOAT3 t=tan1[i]; 
+		XMVECTOR nDotT=XMVector3Dot(XMLoadFloat3(&n), XMLoadFloat3(&t));
+		XMFLOAT3 nDotT3;
+		XMStoreFloat3(&nDotT3,nDotT);
+		//XMFLOAT3 tmp = t - n * nDotT3); 
+		XMFLOAT3 tmp = t;
+		tmp.x=tmp.x-n.x*nDotT3.x;
+		tmp.y=tmp.y-n.y*nDotT3.y;
+		tmp.z=tmp.z-n.z*nDotT3.z;
+        XMVECTOR v=XMVector3Normalize(XMLoadFloat3(&tmp)); 
+		XMStoreFloat3(&pVerts[i].tangent,v);
+		//pVerts[i].tangent = ; 
+        //tangents[a].w = (Vector3.Dot(Vector3.Cross(n, t), tan2[a]) < 0.0f) ? -1.0f : 1.0f; 
+  
+    } 
+    if (tan1) 
+    { 
+        delete [] tan1; 
+        tan1=NULL; 
+    } 
+    if (tan2) 
+    { 
+        delete [] tan2; 
+        tan2=NULL; 
+    } 
 
 }

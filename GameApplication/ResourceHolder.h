@@ -41,6 +41,8 @@ public:
 	bool DeleteMesh(LPCSTR fileName);
 	bool DeleteAllMeshes();
 
+	void computeTangents(Vertex *pVerts,int vertexCount); 
+
 private:
 	GameObject* RetreveMesh(LPCSTR fileName, IRenderer *pRenderer);
 

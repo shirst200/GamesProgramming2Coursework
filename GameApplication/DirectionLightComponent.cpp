@@ -15,7 +15,7 @@ void DirectionLightComponent::update(float deltaTime)
 		XMFLOAT3 lightPos;
         lightPos.x = sin(count);
         lightPos.z = cos(count);
-		setDirection(lightPos.x,m_LightDirection.y,lightPos.z);
+		setDirection(lightPos.x,0.0f,lightPos.z);
 
 	}
 }

@@ -343,9 +343,11 @@ void D3D10Renderer::render(GameObject *pObject)
 				ID3D10EffectVectorVariable *m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("diffuseLightColour")->AsVector();
                 ID3D10EffectVectorVariable *m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
                 ID3D10EffectVectorVariable *m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLight")->AsVector();
+				ID3D10EffectVectorVariable *m_pCameraPosition=pCurrentEffect->GetVariableByName("cameraPosition")->AsVector();
                 m_pDiffuseLightColour->SetFloatVector((float*)&m_diffuseLightColour);
                 m_pLightDirection->SetFloatVector((float*)&lightDirection);
 				m_pSpecularLightColour->SetFloatVector((float*)&m_specularLightColour);
+				m_pCameraPosition->SetFloatVector((float*)&m_camera);
 
 				if (pAmbientMatVar)
 				{
@@ -382,13 +384,7 @@ void D3D10Renderer::render(GameObject *pObject)
 				pProjectionMatrixVar->SetMatrix((float*)&m_Projection);
 			}
 
-			CameraComponent *pCamera=static_cast<CameraComponent*>(pObject->getComponent("Camera"));
-			if (pCamera)
-		    {
-			    Transform t=pObject->getTransform();
-                ID3D10EffectVectorVariable *pCameraVar=pCurrentEffect->GetVariableByName("cameraPosition")->AsVector();
-				pCameraVar->SetFloatVector((float*)&t.getPosition());
-            }
+
 
 			D3D10_TECHNIQUE_DESC techniqueDesc;
 			pCurrentTechnique->GetDesc(&techniqueDesc); 
@@ -581,6 +577,13 @@ void D3D10Renderer::addToRenderQueue(GameObject *pObject)
         lightDirection=pDirectionLightComponent->getDirection();
 		m_specularLightColour=pDirectionLightComponent->getSpecular();
 
+    }
+
+	CameraComponent *pCamera=static_cast<CameraComponent*>(pObject->getComponent("Camera"));
+	if (pCamera)
+	{
+		Transform t=pObject->getTransform();             
+		m_camera=t.getPosition();
     }
 	m_RenderQueue.push(pObject);
 }
