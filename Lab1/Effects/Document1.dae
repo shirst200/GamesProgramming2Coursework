@@ -21,7 +21,7 @@
 		</contributor>
 		<created>2013-10-15T06:17:43Z</created>
 		<keywords>FXComposer, NVIDIA</keywords>
-		<modified>2013-12-18T01:19:57Z</modified>
+		<modified>2013-12-18T01:58:51Z</modified>
 		<subject/>
 		<title/>
 		<unit/>
@@ -31,7 +31,7 @@
 		<visual_scene id="DefaultScene" name="DefaultScene">
 			<node id="Node1" name="Node1" layer="">
 				<matrix sid="">0.694332 0.695147 0.186211 1.76085 0.606813 -0.426417 -0.670781 2.15995 -0.386888 0.57874 -0.717899 0.00248551 0 0 0 1</matrix>
-				<matrix sid="FXComposer2DiffMatrix">0.430207 -0.35862 -0.828439 -1.88841 0.902669 0.181556 0.390162 -0.180182 0.0104893 -0.915658 0.401821 -1.81828 0 0 0 1</matrix>
+				<matrix sid="FXComposer2DiffMatrix">0.430208 -0.358619 -0.828439 -1.88841 0.902669 0.181555 0.390161 -0.180182 0.010489 -0.915658 0.401822 -1.81828 0 0 0 1</matrix>
 				<instance_light url="#DirectionalLight" sid="Light" name="DirectionalLight"/>
 			</node>
 			<node id="Node4" name="Node4" layer="">
@@ -55,7 +55,7 @@
 				</instance_geometry>
 			</node>
 			<node id="Node" name="Node" layer="">
-				<matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+				<matrix sid="">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
 				<instance_geometry url="#Plane2" sid="GeometryInstance" name="Plane2">
 					<bind_material>
 						<technique_common>
@@ -283,13 +283,13 @@
 				<technique_hint platform="PC-D3D10" ref="Render"/>
 				<technique_hint platform="PC-D3D" ref="Render"/>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 			</instance_effect>
 		</material>
@@ -337,13 +337,13 @@
 					<float4>0.679795 0.853376 1 1</float4>
 				</setparam>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 			</instance_effect>
 		</material>
@@ -355,13 +355,13 @@
 					<float4>1 1 1 1</float4>
 				</setparam>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="diffuseMap">
 					<surface type="2D">
@@ -387,13 +387,13 @@
 					<float4>1 1 1 1</float4>
 				</setparam>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="diffuseMap">
 					<surface type="2D">
@@ -412,13 +412,13 @@
 					<float4>1 0.0644476 0.689286 1</float4>
 				</setparam>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="time">
 					<float>0</float>
@@ -444,13 +444,13 @@
 				<technique_hint platform="PC-D3D10" ref="Render"/>
 				<technique_hint platform="PC-D3D" ref="Render"/>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="ambientMaterial">
 					<float4>1 1 1 1</float4>
@@ -465,13 +465,13 @@
 				<technique_hint platform="PC-D3D10" ref="Render"/>
 				<technique_hint platform="PC-D3D" ref="Render"/>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="ambientMaterial">
 					<float4>1 0 0 1</float4>
@@ -495,13 +495,13 @@
 				<technique_hint platform="PC-D3D10" ref="Render"/>
 				<technique_hint platform="PC-D3D" ref="Render"/>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="ambientMaterial">
 					<float4>0.5 0.5 0.5 0.5</float4>
@@ -530,6 +530,9 @@
 				<setparam ref="specularPower">
 					<float>25</float>
 				</setparam>
+				<setparam ref="seconds">
+					<float>0</float>
+				</setparam>
 			</instance_effect>
 		</material>
 		<material id="New_Effect5" name="SpecularTextured_Effect_Material">
@@ -537,13 +540,13 @@
 				<technique_hint platform="PC-D3D10" ref="Render"/>
 				<technique_hint platform="PC-D3D" ref="Render"/>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="ambientMaterial">
 					<float4>0.5 0.5 0.5 1</float4>
@@ -586,13 +589,13 @@
 				<technique_hint platform="PC-D3D10" ref="Render"/>
 				<technique_hint platform="PC-D3D" ref="Render"/>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="ambientMaterial">
 					<float4>0.629317 0.638158 0.592294 1</float4>
@@ -631,8 +634,8 @@
 				<setparam ref="bumpMap">
 					<surface type="2D">
 						<init_from>Normal</init_from>
-						<format>R8G8B8</format>
-						<size>8 8 1</size>
+						<format>R8G8B8A8</format>
+						<size>40 40 1</size>
 					</surface>
 				</setparam>
 			</instance_effect>
@@ -642,13 +645,13 @@
 				<technique_hint platform="PC-D3D10" ref="Render"/>
 				<technique_hint platform="PC-D3D" ref="Render"/>
 				<setparam ref="matWorld">
-					<float4x4>0.84277 -0.266319 -0.208088 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316387 0.818273 0.23413 1.93415 0 0 0 1</float4x4>
+					<float4x4>0.84277 -0.266319 -0.208089 -0.0141702 -0.118853 0.289813 -0.852274 2.31054 0.316386 0.818273 0.234129 1.93415 0 0 0 1</float4x4>
 				</setparam>
 				<setparam ref="matView">
-					<float4x4>0.995368 -5.88803e-006 -0.0961413 1.34418 -0.0961301 -0.0154896 -0.995248 1.4022 -0.00148303 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
+					<float4x4>0.995368 -5.84598e-006 -0.0961414 1.34418 -0.09613 -0.0154896 -0.995248 1.4022 -0.00148381 0.99988 -0.0154183 -11.271 -0 0 -0 1</float4x4>
 				</setparam>
 				<setparam ref="matProjection">
-					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.002054 0 0 -1 0</float4x4>
+					<float4x4>1.50253 0 0 0 0 2.74748 0 0 0 0 -1.00006 -0.00130678 0 0 -1 0</float4x4>
 				</setparam>
 				<setparam ref="ambientMaterial">
 					<float4>0.5 0.5 0.5 1</float4>
@@ -663,7 +666,7 @@
 					<float4>1 1 1 1</float4>
 				</setparam>
 				<setparam ref="lightDirection">
-					<float3>0.229169 0.938614 -0.257849</float3>
+					<float3>0.229169 0.938614 -0.257847</float3>
 				</setparam>
 				<setparam ref="cameraPosition">
 					<float4>0 0 0 0</float4>
@@ -677,28 +680,25 @@
 				<setparam ref="specularPower">
 					<float>2</float>
 				</setparam>
-				<setparam ref="seconds">
-					<float>0</float>
-				</setparam>
 				<setparam ref="diffuseMap">
 					<surface type="2D">
-						<init_from>quickTestBrick</init_from>
+						<init_as_null/>
 						<format>R8G8B8</format>
-						<size>8 8 1</size>
+						<size>0 0 1</size>
 					</surface>
 				</setparam>
 				<setparam ref="bumpMap">
 					<surface type="2D">
-						<init_from>Normal</init_from>
+						<init_as_null/>
 						<format>R8G8B8A8</format>
-						<size>40 40 1</size>
+						<size>0 0 1</size>
 					</surface>
 				</setparam>
 				<setparam ref="heightMap">
 					<surface type="2D">
-						<init_from>Height</init_from>
+						<init_as_null/>
 						<format>R8G8B8</format>
-						<size>8 8 1</size>
+						<size>0 0 1</size>
 					</surface>
 				</setparam>
 			</instance_effect>
@@ -4548,16 +4548,16 @@
 			<init_from>../../../../Downloads/xid-1404134_2.png</init_from>
 		</image>
 		<image id="quickTestBrick" name="quickTestBrick">
-			<init_from>../../../../quickTestBrick.png</init_from>
+			<init_from>../../../../quicktestbrick.png</init_from>
 		</image>
 		<image id="Bump" name="Bump">
-			<init_from>../../../../Bump.png</init_from>
+			<init_from>../../../../bump.png</init_from>
 		</image>
 		<image id="Normal" name="Normal1">
-			<init_from>../../../../Normal.png</init_from>
+			<init_from>../../../../normal.png</init_from>
 		</image>
 		<image id="Height" name="Height">
-			<init_from>../../../../Height.png</init_from>
+			<init_from>../../../../height.png</init_from>
 		</image>
 	</library_images>
 	<library_lights>
