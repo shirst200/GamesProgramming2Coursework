@@ -43,8 +43,16 @@ void GameObject::clearComponents()
 	{
 		if ((*iter).second)
 		{
-			delete (*iter).second;
-			iter=m_Components.erase(iter);
+			if ((*iter).first!="Material"||(*iter).first!="Visual")
+			{
+				(*iter).second=NULL;
+				iter=m_Components.erase(iter);
+			}
+			else
+			{
+				delete (*iter).second;
+				iter=m_Components.erase(iter);
+			}
 		}
 		else
 		{
