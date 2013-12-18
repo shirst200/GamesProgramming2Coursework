@@ -16,6 +16,7 @@ public:
         GameObject()
         {
                 m_Transform.setOwner(this);
+				m_pParent=NULL;
         };
 
         ~GameObject()
