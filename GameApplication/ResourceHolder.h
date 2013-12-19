@@ -39,7 +39,9 @@ public:
 	GameObject* GetMeshObject(LPCSTR fileName, IRenderer *pRenderer);
 	VisualComponent* GetMeshVisual(LPCSTR fileName, IRenderer *pRenderer);
 	bool DeleteMesh(LPCSTR fileName);
+	void computeTangents(Vertex *pVerts,int vertexCount); 
 	bool DeleteAllMeshes();
+
 
 private:
 	GameObject* RetreveMesh(LPCSTR fileName, IRenderer *pRenderer);

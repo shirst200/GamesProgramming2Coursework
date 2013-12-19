@@ -92,18 +92,16 @@ bool MyGame::initGame()
 			storeGrid(i,gridSpots[i]);
 			if(gridSpots[i]==1)
 			{	
-				CubeVisualComponent *pCube=new CubeVisualComponent();
-				pCube->create(m_pRenderer);
-				GameObject *pTestObj=new GameObject();
-				pTestObj->setName("TestObject");
-				pTestObj->addComponent(pCube);
-				pTestObj->addComponent(pMaterial);
-
-				pCube->createVertexLayout(m_pRenderer);
-        
-				pTestObj->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
-				
-				m_GameObjectList.push_back(pTestObj);
+				GameObject *pCube =new GameObject();
+				pCube->setName("Cube");
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/cube.fbx",m_pRenderer);
+				pCube->addComponent(res);
+				pCube->addComponent(pMaterial);
+				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
+				if(pVisual)
+				pVisual->createVertexLayout(m_pRenderer);
+				pCube->getTransform().setPosition(i%width, 1, (height-1)-(i/width)-0.5f);
+				m_GameObjectList.push_back(pCube);
 			}
 			if(gridSpots[i]==0)
 			{

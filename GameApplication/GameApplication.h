@@ -101,7 +101,7 @@ private:
 		DirectionLightComponent *m_pLight;
 		int totalTime;
 		int score;
-
+		int debugMove;
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;
@@ -110,6 +110,6 @@ protected:
         GameOptionsDesc m_GameOptionDesc;
         wstring m_ConfigFileName;
         GameObjectList m_GameObjectList;
-		
+		bool debug;
         CameraComponent *m_pMainCamera;
 };

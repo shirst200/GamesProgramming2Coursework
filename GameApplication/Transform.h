@@ -69,6 +69,7 @@ public:
                 return m_matWorld;
         };
 
+	//Used to move the player over time, increases each axis by a set ammount
 	void translate(float x,float y,float z)
 	{
 		m_vecPosition.x+=x;
@@ -76,6 +77,7 @@ public:
 		m_vecPosition.z+=z;
 	};
 
+	//Used to rotate the player over time, increases each axis by a set ammount
 	void rotate(float x,float y,float z)
 	{
 		m_vecRotation.x+=x;
@@ -83,6 +85,7 @@ public:
 		m_vecRotation.z+=z;
 	};
 
+	//Rounds the players position to exact grid coordinate
 	void roundToGrid()
 	{
 		int newX = (int)(m_vecPosition.x+0.5f);

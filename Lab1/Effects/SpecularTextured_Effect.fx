@@ -30,10 +30,10 @@ float4 diffuseLightColour
 	string UIWidget="Color";
 >;
 //float3 lightDirection={1.0f,1.0f,-1.0f};
-float3 lightDirection
-<
-	string Object="DirectionalLight";
->;
+float3 lightDirection:DIRECTION;
+//<
+	//string Object="DirectionalLight";
+//>;
 float4 cameraPosition;
 //float4 speculatMaterial={1.0f,1.0f,1.0f,1.0f};
 float4 speculatMaterial
@@ -56,12 +56,13 @@ float specularPower;
 	//float UIStep = 1.0; 
 
 //>;
-
+float time:TIME;
 struct VS_INPUT
 {
 	float4 pos:POSITION;
 	float3 normal:NORMAL;
 	float2 texCoord:TEXCOORD0;
+	float3 tangent:TANGENT;
 };
 Texture2D diffuseMap;
 SamplerState WrapPointSampler
@@ -99,7 +100,7 @@ float4 PS(PS_INPUT input):SV_TARGET
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
 	float specular=pow(saturate(dot(normal,halfVec)),30.0f);
-	return float4(((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight))+diffuseMap.Sample(WrapPointSampler,input.texCoord));
+	return float4(((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight))*diffuseMap.Sample(WrapPointSampler,input.texCoord));
 }
 
 RasterizerState DisableCulling
