@@ -166,7 +166,7 @@ void CGameApplication::update()
 		lastUpdate = clock();
 		m_pPlayer->update(dt);
 		m_pLight->update(dt);
-		//Player input
+		//Input's for player and debug camera
 		if(inKey=="w")
 		{
 			attemptDir = 1;
@@ -206,6 +206,7 @@ void CGameApplication::update()
 		}
 		if(!debug)
 		{
+			// Returns the camera to its original position after exiting debug mode
 			m_pMainCamera->setLook(8.0f,1.5f,9.75f);
 			m_pMainCamera->getOwner()->getTransform().setPosition(8.0f,21.0f,9.0f);
 			//Checks grid for collisons
@@ -305,17 +306,13 @@ void CGameApplication::update()
 				debugMove = 0;
 				pos.y = pos.y +1.0f;
 				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
-				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
 			if(debugMove == 6)
 			{
 				debugMove = 0;
 				pos.y = pos.y -1.0f;
 				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
-				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
-
-
 		}
 }
 
