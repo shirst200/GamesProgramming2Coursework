@@ -176,6 +176,15 @@ void CGameApplication::update()
 			attemptDir = 2;
 		if(inKey=="f")
 			m_pAudio->pauseSound();
+
+		//Check Player for pickups
+		if(gridSpot[currentPos-17]==0){
+			//pickup[currentPos].~GameObject();
+			pickup[currentPos].getTransform().setPosition(0,0,0);
+			gridSpot[currentPos-17] = 4;
+			score++;
+		}
+
 		//Checks grid for collisons
 		if(attemptDir == 1)
 		{

@@ -53,10 +53,15 @@ public:
 			gridSpot[gPos] = spotVal;
 		}
 
+		void storePickups(int gPos, GameObject cup){
+			pickup[gPos] = cup;
+		}
+
 		 void setPlayer(Player *pPlayer)
         {
                 m_pPlayer=pPlayer;
 				currentPos = m_pPlayer->checkPos();
+				score = 0;
         }
 
 		void setMusic(AudioComponent *pMusic)
@@ -90,10 +95,12 @@ private:
 		int currentPos;
 		int attemptDir;
 		int gridSpot[357];
+		GameObject pickup[357];
 		float lastUpdate;
 		bool collision;
 		DirectionLightComponent *m_pLight;
 		int totalTime;
+		int score;
 
 protected:
         typedef vector<GameObject*> GameObjectList;

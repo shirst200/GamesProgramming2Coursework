@@ -23,6 +23,7 @@ void Player::update(float deltaTime){
 		lastDir = currentDir;
 		//ROund the position to the closest grid spot
 		m_pOwnerGameObject->getTransform().roundToGrid();
+
 		if(lastDir==1) //up
 			currentPos = currentPos-17;
 		if(lastDir==2) //right
@@ -31,5 +32,14 @@ void Player::update(float deltaTime){
 			currentPos = currentPos+17;
 		if(lastDir==4) //left
 			currentPos = currentPos-1;
+
+		if(currentPos==169 && currentDir == 2){
+			m_pOwnerGameObject->getTransform().setPosition(0.0f,1.0f,11.0f);
+			currentPos = 154;
+		}
+		if(currentPos==153 && currentDir == 4){
+			m_pOwnerGameObject->getTransform().setPosition(16.0f,0,11.0f);
+			currentPos = 168;
+		}
 	}
 }
