@@ -53,8 +53,8 @@ bool MyGame::initGame()
 										1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,
 										1,1,1,1,0,1,1,4,1,4,1,1,0,1,1,1,1,
 										4,4,4,1,0,1,4,4,4,4,4,1,0,1,4,4,4,
-										1,1,1,1,0,1,4,1,5,1,4,1,0,1,1,1,1,
-										4,5,4,4,0,4,4,1,4,1,4,4,0,4,4,5,4,
+										1,1,1,1,0,1,4,1,6,1,4,1,0,1,1,1,1,
+										5,4,4,4,0,4,4,1,4,1,4,4,0,4,4,5,4,
 										1,1,1,1,0,1,4,1,1,1,4,1,0,1,1,1,1,
 										4,4,4,1,0,1,4,4,3,4,4,1,0,1,4,4,4,
 										1,1,1,1,0,1,4,1,1,1,4,1,0,1,1,1,1,
@@ -77,6 +77,9 @@ bool MyGame::initGame()
 		pCupMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
 		pCupMaterial->loadDiffuseTexture("Textures/coffeeUV.png",m_pRenderer);
 
+		Material *pTeleporterMaterial=new Material();
+		pTeleporterMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
+		pTeleporterMaterial->loadDiffuseTexture("Textures/portalUV.png",m_pRenderer);
 
 		AudioComponent *gameMusic=new AudioComponent();
 		AudioComponent *hitWallNoise=new AudioComponent();
@@ -118,7 +121,16 @@ bool MyGame::initGame()
 			}
 			if(gridSpots[i]==5)
 			{
-				//TP here
+				GameObject *pTelporter=new GameObject();
+				//pCups = 
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/teleporter.fbx",m_pRenderer);
+				pTelporter->addComponent(res);
+				pTelporter->addComponent(pTeleporterMaterial);
+				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
+				if(pVisual)
+						pVisual->createVertexLayout(m_pRenderer);
+				pTelporter->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				m_GameObjectList.push_back(pTelporter);
 			}
 		}
 
