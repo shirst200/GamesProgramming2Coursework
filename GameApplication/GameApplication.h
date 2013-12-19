@@ -94,6 +94,7 @@ private:
 		bool collision;
 		DirectionLightComponent *m_pLight;
 		int totalTime;
+		int debugMove;
 
 protected:
         typedef vector<GameObject*> GameObjectList;
@@ -103,6 +104,6 @@ protected:
         GameOptionsDesc m_GameOptionDesc;
         wstring m_ConfigFileName;
         GameObjectList m_GameObjectList;
-		
+		bool debug;
         CameraComponent *m_pMainCamera;
 };

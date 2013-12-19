@@ -177,6 +177,22 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 					inputKey = "f";
 					return 0;
 				}
+				if (wParam == 0x54)
+				{
+					inputKey = "t";
+					return 0;
+				}
+
+				if (wParam == 0x51)
+				{
+					inputKey = "q";
+					return 0;
+				}
+				if (wParam == 0x45)
+				{
+					inputKey = "e";
+					return 0;
+				}
 				
 				return 0;
 			}

@@ -29,6 +29,7 @@ CGameApplication::CGameApplication(void)
         //Config options
         m_ConfigFileName=TEXT("game.cfg");
         m_pMainCamera=NULL;
+		debug = false;
 }
 
 //Desconstructor
@@ -167,67 +168,154 @@ void CGameApplication::update()
 		m_pLight->update(dt);
 		//Player input
 		if(inKey=="w")
+		{
 			attemptDir = 1;
+			debugMove = 1;
+		}
 		if(inKey=="s")
+		{
 			attemptDir = 3;
+			debugMove = 3;
+		}
 		if(inKey=="a")
+		{
 			attemptDir = 4;
+			debugMove = 4;
+		}
 		if(inKey=="d")
+		{
 			attemptDir = 2;
+			debugMove = 2;
+		}
+		if(inKey=="q")
+		{
+			debugMove = 5;
+		}
+		if(inKey=="e")
+		{
+			debugMove = 6;
+		}
 		if(inKey=="f")
 			m_pAudio->pauseSound();
-		//Checks grid for collisons
-		if(attemptDir == 1)
+		if(inKey=="t")
 		{
-			if(gridSpot[currentPos-17]!=1){
-				m_pPlayer->SetMoveDirection(1);
-				collision = false;
+			if(!debug)
+				debug=true;
+			else
+				debug=false;
+		}
+		if(!debug)
+		{
+			m_pMainCamera->setLook(8.0f,1.5f,9.75f);
+			m_pMainCamera->getOwner()->getTransform().setPosition(8.0f,21.0f,9.0f);
+			//Checks grid for collisons
+			if(attemptDir == 1)
+			{
+				if(gridSpot[currentPos-17]!=1){
+					m_pPlayer->SetMoveDirection(1);
+					collision = false;
+				}
+				else{
+					m_pPlayer->SetMoveDirection(0);
+					if(collision == false)
+						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					collision = true;
+				}
 			}
-			else{
-				m_pPlayer->SetMoveDirection(0);
-				if(collision == false)
-					m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
-				collision = true;
+			if(attemptDir == 3)
+			{
+				if(gridSpot[currentPos+17]!=1){
+					m_pPlayer->SetMoveDirection(3);
+					collision = false;
+				}
+				else{
+					m_pPlayer->SetMoveDirection(0);
+					if(collision == false)
+						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					collision = true;
+				}
+			}
+			if(attemptDir == 4)
+			{
+				if(gridSpot[currentPos-1]!=1){
+					m_pPlayer->SetMoveDirection(4);
+					collision = false;
+				}
+				else{
+					m_pPlayer->SetMoveDirection(0);
+					if(collision == false)
+						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					collision = true;
+				}
+			}
+			if(attemptDir == 2)
+			{
+				if(gridSpot[currentPos+1]!=1){
+					m_pPlayer->SetMoveDirection(2);
+					collision = false;
+				}
+				else{
+					m_pPlayer->SetMoveDirection(0);
+					if(collision == false)
+						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					collision = true;
+				}
 			}
 		}
-		if(attemptDir == 3)
+		else
 		{
-			if(gridSpot[currentPos+17]!=1){
-				m_pPlayer->SetMoveDirection(3);
-				collision = false;
+			attemptDir =0;
+			m_pPlayer->SetMoveDirection(0);
+			XMFLOAT3 look = m_pMainCamera->getLookAt();
+			XMFLOAT3 pos = m_pMainCamera->getOwner()->getTransform().getPosition();
+			if(debugMove == 1)
+			{
+				debugMove = 0;
+				pos.z = pos.z +1.0f;
+				look.z = look.z + 1.0f;
+				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
+				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
-			else{
-				m_pPlayer->SetMoveDirection(0);
-				if(collision == false)
-					m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
-				collision = true;
+			if(debugMove == 3)
+			{
+				debugMove = 0;
+				pos.z = pos.z -1.0f;
+				look.z = look.z -1.0f;
+				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
+				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
-		}
-		if(attemptDir == 4)
-		{
-			if(gridSpot[currentPos-1]!=1){
-				m_pPlayer->SetMoveDirection(4);
-				collision = false;
+			if(debugMove == 4)
+			{
+				debugMove = 0;
+				pos.x = pos.x -1.0f;
+				look.x = look.x -1.0f;
+				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
+				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
-			else{
-				m_pPlayer->SetMoveDirection(0);
-				if(collision == false)
-					m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
-				collision = true;
+			if(debugMove == 2)
+			{
+				debugMove = 0;
+				pos.x = pos.x +1.0f;
+				look.x = look.x +1.0f;
+				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
+				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
-		}
-		if(attemptDir == 2)
-		{
-			if(gridSpot[currentPos+1]!=1){
-				m_pPlayer->SetMoveDirection(2);
-				collision = false;
+			if(debugMove == 5)
+			{
+				debugMove = 0;
+				pos.y = pos.y +1.0f;
+				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
+				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
-			else{
-				m_pPlayer->SetMoveDirection(0);
-				if(collision == false)
-					m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
-				collision = true;
+			if(debugMove == 6)
+			{
+				debugMove = 0;
+				pos.y = pos.y -1.0f;
+				m_pMainCamera->getOwner()->getTransform().setPosition(pos.x,pos.y,pos.z);
+				m_pMainCamera->setLook(look.x,look.y,look.z);
 			}
+
+
 		}
 }
 
