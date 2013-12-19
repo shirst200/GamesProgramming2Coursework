@@ -2,37 +2,37 @@ float4x4 matWorld:WORLD<string UIWidget="NONE";>;
 float4x4 matView:VIEW<string UIWidget="NONE";>;
 float4x4 matProjection:PROJECTION<string UIWidget="NONE";>;
 
-float4 ambientMaterial={0.5f,0.5f,0.5f,0.5f};
+float4 ambientMaterial;
 //<
 //	string UIName="Ambient Material";
 //	string UIWidget="Color";
 //>;
-float4 ambientLightColour={0.5f,0.5f,0.5f,0.5f};
+float4 ambientLightColour;
 //<
 	//string UIName="Ambient Light Color";
 	//string UIWidget="Color";
 //>;
-float4 diffuseMaterial={1.0f,0.0225f,0.0442f,1.0f};
+float4 diffuseMaterial;
 //<
 	//string UIName="Diffuse Material";
 	//string UIWidget="Color";
 //>;
-float4 diffuseLightColour={0.943f,1.0f,1.0f,1.0f};
+float4 diffuseLightColour;
 //<
 	//string UIName="Diffuse Light Color";
 	//string UIWidget="Color";
 //>;
-float3 lightDirection={10.0f,1.0f,1.0f};
+float3 lightDirection:DIRECTION;
 //<
 	//string Object="DirectionalLight";
 //>;
-float4 cameraPosition={0.0f,0.0f,0.0f,0.0f};
-float4 speculatMaterial={1.0f,1.0f,1.0f,1.0f};
+float4 cameraPosition;
+float4 speculatMaterial;
 //<
 	//string UIName="Specular material";
 	//string UIWidget="Color";
 //>;
-float4 specularLightColour={1.0f,1.0f,1.0f,1.0f};
+float4 specularLightColour;
 //<
 	//string UIName="Specular Light Color";
 	//string UIWidget="Color";
@@ -79,12 +79,10 @@ PS_INPUT VS(VS_INPUT input)
 float4 PS(PS_INPUT input):SV_TARGET
 {
 	float3 normal=normalize(input.normal);
-	float3 light = float3(sin(seconds), 0.0f, cos(seconds));
-	float3 lightDir=normalize(light);
+	float3 lightDir=normalize(lightDirection);
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
-	float specular=pow(saturate(dot(normal,halfVec)),25.0f);
-	//return float4((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight));
+	float specular=pow(saturate(dot(normal,halfVec)),50.0f);
 	return (ambientMaterial*ambientLightColour)+(diffuseMaterial*diffuseLightColour*diffuseHeightlight)+(speculatMaterial*specularLightColour*specular);
 	}
 

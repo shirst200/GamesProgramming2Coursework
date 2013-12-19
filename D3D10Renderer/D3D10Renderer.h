@@ -85,7 +85,7 @@ private:
 		XMFLOAT4 m_specularLightColour;
 		XMFLOAT4 m_diffuseLightColour;
 		XMFLOAT3 lightDirection;
-
+		XMFLOAT3 m_camera;
         GameObject * m_pMainCamera;
         GameObject * m_pMainLight;
 };
