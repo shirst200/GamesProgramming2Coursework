@@ -205,8 +205,8 @@ void CGameApplication::update()
 				debug=false;
 		}
 
-				//Check Player for pickups
-		if(gridSpot[currentPos-17]==0){
+		//Check Player for pickups
+		if(gridSpot[currentPos]==0){
 			GameObjectIter iter=m_GameObjectList.begin();
 			while(iter!=m_GameObjectList.end())
 			{
@@ -219,7 +219,7 @@ void CGameApplication::update()
 					++iter;
                 }
 			}
-			gridSpot[currentPos-17] = 4;
+			gridSpot[currentPos] = 4;
 			score++;
 		}
 
