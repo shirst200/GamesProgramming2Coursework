@@ -69,8 +69,8 @@ bool MyGame::initGame()
 		Material *pCupMaterial=new Material();
 		pCupMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
 		pCupMaterial->loadDiffuseTexture("Textures/coffeeUV.png",m_pRenderer);
-		//pCupMaterial->setAmbient(194.0f,156.0f,93.0f,1.0f);
-		//pCupMaterial->setDiffuse(194.0f,156.0f,93.0f,1.0f);
+		pCupMaterial->setAmbient(0.776f,0.611f,0.36f,1.0f);
+		pCupMaterial->setDiffuse(0.776f,0.611f,0.36f,1.0f);
 
 		AudioComponent *gameMusic=new AudioComponent();
 		AudioComponent *hitWallNoise=new AudioComponent();
