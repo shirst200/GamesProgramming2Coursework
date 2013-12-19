@@ -75,7 +75,7 @@ bool MyGame::initGame()
 
 		Material *pCupMaterial=new Material();
 		pCupMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
-		pCupMaterial->loadDiffuseTexture("Textures/coffeeCup.jpeg",m_pRenderer);
+		pCupMaterial->loadDiffuseTexture("Textures/coffeeUV.png",m_pRenderer);
 
 
 		AudioComponent *gameMusic=new AudioComponent();
@@ -139,21 +139,26 @@ bool MyGame::initGame()
 
 
 		//Player
-		CubeVisualComponent *pCube=new CubeVisualComponent();
-		pCube->create(m_pRenderer);
+
+		VisualComponent* res = resourceHolder.GetMeshVisual("Models/sphere.fbx",m_pRenderer);
+				Material *pPlayerMaterial=new Material();
+                pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
+                pPlayerMaterial->loadDiffuseTexture("Textures/mat_planet.png",m_pRenderer);
+		VisualComponent *pVisual=static_cast<VisualComponent*>(res);
+		if(pVisual)
+			pVisual->createVertexLayout(m_pRenderer);
+					
 		Player *pPlayer = new Player(263);
 		pPlayer->SetMoveDirection(0);
 		setPlayer(pPlayer);
-		Material *pPlayerMaterial=new Material();
-		pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
 
 		GameObject *pTestObj=new GameObject();
 		pTestObj->setName("Player");
 		pTestObj->addComponent(pPlayer);
-		pTestObj->addComponent(pCube);
+		pTestObj->addComponent(res);
 		pTestObj->addComponent(pPlayerMaterial);
 
-		pCube->createVertexLayout(m_pRenderer);
+		res->createVertexLayout(m_pRenderer);
         
 		pTestObj->getTransform().setPosition(8.0f, 1.0f, 5.0f);
 
