@@ -204,6 +204,25 @@ void CGameApplication::update()
 			else
 				debug=false;
 		}
+
+				//Check Player for pickups
+		if(gridSpot[currentPos-17]==0){
+			GameObjectIter iter=m_GameObjectList.begin();
+			while(iter!=m_GameObjectList.end())
+			{
+				if(*iter==pickup[currentPos]){
+					delete (*iter);
+					iter=m_GameObjectList.erase(iter);
+                }
+                else
+                {
+					++iter;
+                }
+			}
+			gridSpot[currentPos-17] = 4;
+			score++;
+		}
+
 		if(!debug)
 		{
 			// Returns the camera to its original position after exiting debug mode
