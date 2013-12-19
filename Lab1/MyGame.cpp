@@ -116,7 +116,7 @@ bool MyGame::initGame()
 				if(pVisual)
 						pVisual->createVertexLayout(m_pRenderer);
 				pCups->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
-				storePickups(i,*pCups);
+				storePickups(i,pCups);
 				m_GameObjectList.push_back(pCups);
 			}
 			if(gridSpots[i]==5)

@@ -179,8 +179,18 @@ void CGameApplication::update()
 
 		//Check Player for pickups
 		if(gridSpot[currentPos-17]==0){
-			//pickup[currentPos].~GameObject();
-			pickup[currentPos].getTransform().setPosition(0,0,0);
+			GameObjectIter iter=m_GameObjectList.begin();
+			while(iter!=m_GameObjectList.end())
+			{
+				if(*iter==pickup[currentPos]){
+					delete (*iter);
+					iter=m_GameObjectList.erase(iter);
+                }
+                else
+                {
+					++iter;
+                }
+			}
 			gridSpot[currentPos-17] = 4;
 			score++;
 		}

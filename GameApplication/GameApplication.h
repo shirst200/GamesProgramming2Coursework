@@ -53,7 +53,7 @@ public:
 			gridSpot[gPos] = spotVal;
 		}
 
-		void storePickups(int gPos, GameObject cup){
+		void storePickups(int gPos, GameObject* cup){
 			pickup[gPos] = cup;
 		}
 
@@ -95,7 +95,7 @@ private:
 		int currentPos;
 		int attemptDir;
 		int gridSpot[357];
-		GameObject pickup[357];
+		GameObject* pickup[357];
 		float lastUpdate;
 		bool collision;
 		DirectionLightComponent *m_pLight;
