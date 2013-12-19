@@ -1,9 +1,4 @@
-Pellets
-Score
-Teleporters
+Pellets delete
 move input to input component
 Move sound to player
-Model for player
-Fix wall textures/paralax mapping
 Menus
-debug camera
