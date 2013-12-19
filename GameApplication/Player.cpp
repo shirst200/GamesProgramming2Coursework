@@ -48,8 +48,8 @@ void Player::update(float deltaTime){
 		//Checks to see if the player is on the left hand teleporter
 		if(currentPos==153 && currentDir == 4){
 			//Move the player right and set its new position
-			m_pOwnerGameObject->getTransform().setPosition(16.0f,1.0,11.0f);
-			currentPos = 168;
+			m_pOwnerGameObject->getTransform().setPosition(15.0f,1.0,11.0f);
+			currentPos = 167;
 		}
 	}
 }
