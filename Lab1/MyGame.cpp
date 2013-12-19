@@ -134,24 +134,7 @@ bool MyGame::initGame()
 			}
 		}
 
-		
-
-		/*GameObject *pCar=resourceHolder.GetMesh("Models/armoredrecon.fbx",m_pRenderer);
-        for(GameObject::ChildrenGameObjectsIter iter=pCar->getFirstChild();iter!=pCar->getLastChild();iter++)
-        {
-                pMaterial=new Material();
-                pMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
-                pMaterial->loadDiffuseTexture("Textures/armoredrecon_diff.png",m_pRenderer);
-                iter->second->addComponent(pMaterial);
-                VisualComponent *pVisual=static_cast<VisualComponent*>(iter->second->getComponent("Visual"));
-                pVisual->createVertexLayout(m_pRenderer);
-        }
-
-        m_GameObjectList.push_back(pCar);*/
-
-
 		//Player
-
 		VisualComponent* res = resourceHolder.GetMeshVisual("Models/sphere.fbx",m_pRenderer);
 				Material *pPlayerMaterial=new Material();
                 pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
@@ -171,7 +154,7 @@ bool MyGame::initGame()
 		pTestObj->addComponent(pPlayerMaterial);
 
 		res->createVertexLayout(m_pRenderer);
-        
+		pTestObj->getTransform().setRotation(2.0f,0.0f,0.0f);
 		pTestObj->getTransform().setPosition(8.0f, 1.0f, 5.0f);
 
 		m_GameObjectList.push_back(pTestObj);

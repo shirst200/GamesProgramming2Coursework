@@ -8,6 +8,7 @@ void Player::SetMoveDirection(int newDir){
 
 void Player::update(float deltaTime){
 	waitTime-=deltaTime;
+	m_pOwnerGameObject->getTransform().rotate(0.0f,0.0f,(1.0f*deltaTime)*speed);
 	if(waitTime>0){
 		if(lastDir==1) //up
 			m_pOwnerGameObject->getTransform().translate(0.0f,0.0f,(1.0f*deltaTime)*speed);

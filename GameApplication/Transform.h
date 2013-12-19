@@ -76,6 +76,13 @@ public:
 		m_vecPosition.z+=z;
 	};
 
+	void rotate(float x,float y,float z)
+	{
+		m_vecRotation.x+=x;
+		m_vecRotation.y+=y;
+		m_vecRotation.z+=z;
+	};
+
 	void roundToGrid()
 	{
 		int newX = (int)(m_vecPosition.x+0.5f);
