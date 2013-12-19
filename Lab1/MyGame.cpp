@@ -6,8 +6,8 @@ bool MyGame::initGame()
         pCube1->create(m_pRenderer);
         
         Material *pMaterial1=new Material();
-        pMaterial1->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
-        pMaterial1->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
+        pMaterial1->loadEffect("Effects/Specular.fx",m_pRenderer);
+        //pMaterial1->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
 
 
         DirectionLightComponent * pDirLight=new DirectionLightComponent();
@@ -68,8 +68,9 @@ bool MyGame::initGame()
 
 		Material *pCupMaterial=new Material();
 		pCupMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
-		pCupMaterial->loadDiffuseTexture("Textures/coffeeCup.png",m_pRenderer);
-
+		pCupMaterial->loadDiffuseTexture("Textures/coffeeUV.png",m_pRenderer);
+		//pCupMaterial->setAmbient(194.0f,156.0f,93.0f,1.0f);
+		//pCupMaterial->setDiffuse(194.0f,156.0f,93.0f,1.0f);
 
 		AudioComponent *gameMusic=new AudioComponent();
 		AudioComponent *hitWallNoise=new AudioComponent();
@@ -83,12 +84,13 @@ bool MyGame::initGame()
 			if(gridSpots[i]==1)
 			{	
 				GameObject *pCube =new GameObject();
+				pCube->setName("Cube");
 				VisualComponent* res = resourceHolder.GetMeshVisual("Models/cube.fbx",m_pRenderer);
 				pCube->addComponent(res);
 				pCube->addComponent(pMaterial);
 				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
 				if(pVisual)
-						pVisual->createVertexLayout(m_pRenderer);
+				pVisual->createVertexLayout(m_pRenderer);
 				pCube->getTransform().setPosition(i%width, 1, (height-1)-(i/width)-0.5f);
 				m_GameObjectList.push_back(pCube);
 				
@@ -97,12 +99,13 @@ bool MyGame::initGame()
 			if(gridSpots[i]==0)
 			{
 				GameObject *pCups =new GameObject();
+				pCups->setName("Cup");
 				VisualComponent* res = resourceHolder.GetMeshVisual("Models/coffeeCup.fbx",m_pRenderer);
 				pCups->addComponent(res);
 				pCups->addComponent(pCupMaterial);
 				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
 				if(pVisual)
-						pVisual->createVertexLayout(m_pRenderer);
+				pVisual->createVertexLayout(m_pRenderer);
 				pCups->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
 						
 				m_GameObjectList.push_back(pCups);

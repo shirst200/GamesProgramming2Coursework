@@ -339,16 +339,19 @@ void D3D10Renderer::render(GameObject *pObject)
 				//Retrieve & send material stuff
 				ID3D10EffectVectorVariable *pAmbientMatVar=pCurrentEffect->GetVariableByName("ambientMaterial")->AsVector();
 				ID3D10EffectVectorVariable *pDiffuseMatVar=pCurrentEffect->GetVariableByName("diffuseMaterial")->AsVector();
-				ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("specularMaterial")->AsVector();
+				ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("speculatMaterial")->AsVector();
 				ID3D10EffectVectorVariable *m_pDiffuseLightColour=pCurrentEffect->GetVariableByName("diffuseLightColour")->AsVector();
                 ID3D10EffectVectorVariable *m_pLightDirection=pCurrentEffect->GetVariableByName("lightDirection")->AsVector();
-                ID3D10EffectVectorVariable *m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLight")->AsVector();
+                ID3D10EffectVectorVariable *m_pSpecularLightColour=pCurrentEffect->GetVariableByName("specularLightColour")->AsVector();
 				ID3D10EffectVectorVariable *m_pCameraPosition=pCurrentEffect->GetVariableByName("cameraPosition")->AsVector();
                 m_pDiffuseLightColour->SetFloatVector((float*)&m_diffuseLightColour);
                 m_pLightDirection->SetFloatVector((float*)&lightDirection);
 				m_pSpecularLightColour->SetFloatVector((float*)&m_specularLightColour);
 				m_pCameraPosition->SetFloatVector((float*)&m_camera);
-
+				if(pObject->getName()=="Cup")
+				{
+					int five = 10;
+				}
 				if (pAmbientMatVar)
 				{
 					pAmbientMatVar->SetFloatVector((float*)&pMaterial->getAmbient());

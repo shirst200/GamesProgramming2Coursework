@@ -54,7 +54,6 @@ struct VS_INPUT
 	float2 texCoord:TEXCOORD0;
 };
 
-float time:TIME;
 Texture2D diffuseMap;
 Texture2D bumpMap;
 Texture2D heightMap;
@@ -108,7 +107,7 @@ float4 PS(PS_INPUT input):SV_TARGET
 	float3 lightDir=normalize(input.lightDir);
 	float diffuseHeightlight=saturate(dot(normal,lightDir));
 	float3 halfVec=normalize(lightDir+input.cameraDirection);
-	float specular=pow(saturate(dot(normal,halfVec)),50);
+	float specular=pow(saturate(dot(normal,halfVec)),50.0f);
 	float4 diffuseTextureColour=diffuseMap.Sample(WrapPointSampler,newTexCoord);
 	return float4(((speculatMaterial*specularLightColour*specular)+(ambientMaterial*ambientLightColour)+((diffuseMaterial+diffuseTextureColour)*diffuseLightColour*diffuseHeightlight)));
 }
