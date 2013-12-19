@@ -35,7 +35,7 @@ void Player::update(float deltaTime){
 			currentPos = currentPos-1;
 
 		if(currentPos==169 && currentDir == 2){
-			m_pOwnerGameObject->getTransform().setPosition(0.0f,1.0f,11.0f);
+			m_pOwnerGameObject->getTransform().setPosition(1.0f,1.0f,11.0f);
 			currentPos = 154;
 		}
 		if(currentPos==153 && currentDir == 4){
