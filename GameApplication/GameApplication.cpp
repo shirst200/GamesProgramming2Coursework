@@ -210,7 +210,7 @@ void CGameApplication::update()
 		}
 
 		//Check Player for pickups
-		if(gridSpot[currentPos]==0){
+		if(gridSpot[currentPos]==0 || gridSpot[currentPos]==2){
 			//Iterate though gameobjects and delete the cup the player is standing on
 			GameObjectIter iter=m_GameObjectList.begin();
 			while(iter!=m_GameObjectList.end())
@@ -227,7 +227,10 @@ void CGameApplication::update()
 			//Set the grid spot to an empty space, denoted by 4
 			gridSpot[currentPos] = 4;
 			//Increase the score
-			score++;
+			if(gridSpot[currentPos]==0)
+				score++;
+			if(gridSpot[currentPos]==2)
+				score+=5;
 		}
 		//checks if we are in debug mode
 		if(!debug)

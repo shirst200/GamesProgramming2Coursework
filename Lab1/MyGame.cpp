@@ -131,6 +131,11 @@ bool MyGame::initGame()
 				storePickups(i,pCups);
 				m_GameObjectList.push_back(pCups);
 			}
+			if(gridSpots[i]==2)
+			{
+				//Bottle here, remember to add to pickups
+				//eg storePickups(i,pBottle);
+			}
 			if(gridSpots[i]==5)
 			{
 				//creates a new GameObject
