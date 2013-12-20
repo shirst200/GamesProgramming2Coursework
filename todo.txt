@@ -1,4 +1,0 @@
-Pellets delete
-move input to input component
-Move sound to player
-Menus

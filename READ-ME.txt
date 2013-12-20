@@ -1,0 +1,63 @@
+Team members:
+
+Nick Athanasopoulos - S1106460	
+Jamie Cooper - S1105624
+Ryan Coughlan - S1108765
+Sam Hirst - S1105709
+
+---------------------------------------------
+Note:
+
+Most of the work was done together, and so there are few seperate branches for each person. Most of the work was done in the Complete branch, with other tests going on in other branches before being brought in when ready.
+
+---------------------------------------------
+Controls:
+
+To control the player (the globe) you use:
+
+w - Up
+A - left
+S - Down
+D - Right
+
+To start/stop debug mode you press T
+
+To control the debug Camera you use:
+
+w - Up
+A - left
+S - Down
+D - Right
+Q - Zoom out
+E - Zoom in
+
+---------------------------------------------
+Team member roles:
+
+Nick:
+
+- Directional Light
+- Texturing
+- Paralax Mapping
+- Debug Camera
+
+Jamie:
+
+- Audio Component
+- Sourcing Audio
+- Main Camera
+
+Ryan:
+
+- Input
+- Map creator
+- Movement/Collision
+- Pickups/Score
+- Player Component
+- 3D models/Textures
+
+Sam:
+
+- Resource manager
+- Integrating Model Loader/Mesh sharing
+- Organized group meetings
