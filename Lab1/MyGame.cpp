@@ -27,12 +27,7 @@ bool MyGame::initGame()
         
         pTestObj2->getTransform().setPosition(0.0f,1.0f,1.0f);
 
-
-
-
         m_GameObjectList.push_back(pTestObj2);
-
-	
 
 		CameraComponent *pCameraComp = new CameraComponent();
         pCameraComp->setLook(8.0f,1.5f,9.75f);
@@ -45,9 +40,12 @@ bool MyGame::initGame()
 		pCameraGO->getTransform().setPosition(8.0f,21.0f,9.0f);
 
         m_GameObjectList.push_back(pCameraGO);
-
 	
-
+		//Grid used for collisions and build map
+		//0 - Cup			3 - Cherry
+		//1 - Wall			4 - Empty spot
+		//2 - Whiskey		5 - Teleporter
+	
 		int gridSpots[height*width] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 										1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,
 										1,2,1,1,0,1,1,0,1,0,1,1,0,1,1,2,1,
@@ -56,7 +54,7 @@ bool MyGame::initGame()
 										1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,1,
 										1,1,1,1,0,1,1,4,1,4,1,1,0,1,1,1,1,
 										4,4,4,1,0,1,4,4,4,4,4,1,0,1,4,4,4,
-										1,1,1,1,0,1,4,1,6,1,4,1,0,1,1,1,1,
+										1,1,1,1,0,1,4,1,4,1,4,1,0,1,1,1,1,
 										4,5,4,4,0,4,4,1,4,1,4,4,0,4,4,5,4,
 										1,1,1,1,0,1,4,1,1,1,4,1,0,1,1,1,1,
 										4,4,4,1,0,1,4,4,3,4,4,1,0,1,4,4,4,
@@ -94,7 +92,9 @@ bool MyGame::initGame()
 
 		ResourceHolder resourceHolder = ResourceHolder();
 
+		//Map maker
 		for(int i=0;i<(width*height);i++){
+			//Sends grid values to the Gameapp
 			storeGrid(i,gridSpots[i]);
 			if(gridSpots[i]==1)
 			{	
@@ -127,6 +127,7 @@ bool MyGame::initGame()
 						pVisual->createVertexLayout(m_pRenderer);
 				//sets the position of object reletive to the position of the loop
 				pCups->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				//Store this object in the pickup array of GameApp
 				storePickups(i,pCups);
 				m_GameObjectList.push_back(pCups);
 			}
@@ -160,7 +161,9 @@ bool MyGame::initGame()
 					
 		//creates the player component
 		Player *pPlayer = new Player(263);
+		//Set the player not moving to begin with
 		pPlayer->SetMoveDirection(0);
+		//Store the player componenent in GameApp
 		setPlayer(pPlayer);
 
 		//creates player game object and adds the visual, player and material components

@@ -43,9 +43,13 @@ public:
 		return m_hWND;
 	};
 
+	//Sends the player input to the GameApp
 	string getInput(){
+		//Store the key pressed
 		string oldKey = inputKey;
+		//Reset the key pressed to nothing
 		inputKey = "";
+		//Return the input
 		return oldKey;
 	};
 
@@ -54,5 +58,6 @@ private:
 	bool m_bIsFullScreen;
 	bool m_bIsMusic;
 	HWND m_hWND;
+	//The key pressed
 	string inputKey;
 };

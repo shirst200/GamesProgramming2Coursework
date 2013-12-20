@@ -11,8 +11,9 @@ public:
 	bool initGame();
 
 private:
-
-        static const int width = 17;
-		static const int height = 21;
-		int gridSpots[];
+	//Width and height of map
+	static const int width = 17;
+	static const int height = 21;
+	//Array of grid positions
+	int gridSpots[];
 };

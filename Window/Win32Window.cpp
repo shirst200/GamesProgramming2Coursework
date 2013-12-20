@@ -152,6 +152,7 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 	{
 		case WM_KEYDOWN:
 			{
+				//All keys used in program, sent to GameApp for use
 				if (wParam == 0x41)
 				{
 					inputKey = "a";
@@ -198,6 +199,7 @@ LRESULT CALLBACK CWin32Window::wndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPA
 		
 		case WM_LBUTTONDOWN:
 			{
+				//Catch mouse click and where on the screen the cursor was at the time
 				POINT mouseXY;
 				mouseXY.x = LOWORD(lParam);
 				mouseXY.y = HIWORD(lParam);
