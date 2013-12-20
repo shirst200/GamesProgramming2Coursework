@@ -43,38 +43,38 @@ public:
         virtual bool initGame();
 
         void clearObjectList();
-
+		//Stores the main camera
         void setMainCamera(CameraComponent *pMainCamera)
         {
                 m_pMainCamera=pMainCamera;
         }
-
+		//Array of grid positions
 		void storeGrid(int gPos, int spotVal){
 			gridSpot[gPos] = spotVal;
 		}
-
+		//Array of pickup objects
 		void storePickups(int gPos, GameObject* cup){
 			pickup[gPos] = cup;
 		}
-
+		//Stores the player, sets its position and sets the score to 0
 		 void setPlayer(Player *pPlayer)
         {
                 m_pPlayer=pPlayer;
 				currentPos = m_pPlayer->checkPos();
 				score = 0;
         }
-
+		//Stores and plays the background music component
 		void setMusic(AudioComponent *pMusic)
 		{
 			m_pAudio = pMusic;
 			m_pAudio->playSound(L"Sounds\\Kiss From A Rose.wav",true);
 		}
-
+		//Stores the sound effect component for player
 		void setSoundEffect(AudioComponent *pSound)
 		{
 			m_pSoundEffect = pSound;
 		}
-
+		//Stores the main light component
 		void setLight(DirectionLightComponent *light)
 		{
 			m_pLight = light;
@@ -88,18 +88,29 @@ private:
         bool initPhysics();
 
         bool initWindow();
+		//Player component
 		Player *m_pPlayer;
 		AudioComponent *m_pAudio;
 		AudioComponent *m_pSoundEffect;
+		//stores the input key from window
 		string inKey;
+		//Player position
 		int currentPos;
+		//Direction that corresponds to input
 		int attemptDir;
+		//Holds all the grid positions for collisions
 		int gridSpot[357];
+		//Holds all the pickup objects
 		GameObject* pickup[357];
+		//Time of last update
 		float lastUpdate;
+		//Collision with wall
 		bool collision;
+		//Directional light component
 		DirectionLightComponent *m_pLight;
+		//Total time elapsed
 		int totalTime;
+		//Score from pickups
 		int score;
 		int debugMove;
 protected:

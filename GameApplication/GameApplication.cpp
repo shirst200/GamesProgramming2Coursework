@@ -155,36 +155,39 @@ void CGameApplication::render()
 //Update, called to update the game
 void CGameApplication::update()
 {
+		//Delta time, time elapsed since last frame
 		float dt =  ((float) clock() - lastUpdate)/CLOCKS_PER_SEC;
+		//Total time the program has been running
 		totalTime = totalTime - dt;
         for(GameObjectIter iter=m_GameObjectList.begin();iter!=m_GameObjectList.end();iter++)
         {
                 (*iter)->update();
 
         }
-	
+		//Stores the time at current frame
 		lastUpdate = clock();
+		//Update componenets with delta time
 		m_pPlayer->update(dt);
 		m_pLight->update(dt);
 		//Input's for player and debug camera
 		if(inKey=="w")
 		{
-			attemptDir = 1;
+			attemptDir = 1; //Up Player
 			debugMove = 1;
 		}
 		if(inKey=="s")
 		{
-			attemptDir = 3;
+			attemptDir = 3; //Down Player
 			debugMove = 3;
 		}
 		if(inKey=="a")
 		{
-			attemptDir = 4;
+			attemptDir = 4; //Left Player
 			debugMove = 4;
 		}
 		if(inKey=="d")
 		{
-			attemptDir = 2;
+			attemptDir = 2; //Right Player
 			debugMove = 2;
 		}
 		if(inKey=="q")
@@ -196,7 +199,8 @@ void CGameApplication::update()
 			debugMove = 6;
 		}
 		if(inKey=="f")
-			m_pAudio->pauseSound();
+			//Pause or continue audio
+			m_pAudio->pauseSound(); 
 		if(inKey=="t")
 		{
 			if(!debug)
@@ -207,6 +211,7 @@ void CGameApplication::update()
 
 		//Check Player for pickups
 		if(gridSpot[currentPos]==0){
+			//Iterate though gameobjects and delete the cup the player is standing on
 			GameObjectIter iter=m_GameObjectList.begin();
 			while(iter!=m_GameObjectList.end())
 			{
@@ -219,7 +224,9 @@ void CGameApplication::update()
 					++iter;
                 }
 			}
+			//Set the grid spot to an empty space, denoted by 4
 			gridSpot[currentPos] = 4;
+			//Increase the score
 			score++;
 		}
 		//checks if we are in debug mode
@@ -231,53 +238,73 @@ void CGameApplication::update()
 			//Checks grid for collisons
 			if(attemptDir == 1)
 			{
+				//Check if there is a wall above
 				if(gridSpot[currentPos-17]!=1){
+					//Move up, set colliding with walls to false
 					m_pPlayer->SetMoveDirection(1);
 					collision = false;
 				}
 				else{
+					//If hitting a wall, stop moving
 					m_pPlayer->SetMoveDirection(0);
+					//If you weren't hitting a wall but are now, play hitting wall sound
 					if(collision == false)
 						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					//Now hitting a wall
 					collision = true;
 				}
 			}
 			if(attemptDir == 3)
 			{
+				//Check if there is a wall below
 				if(gridSpot[currentPos+17]!=1){
+					//Move down, set colliding with walls to false
 					m_pPlayer->SetMoveDirection(3);
 					collision = false;
 				}
 				else{
+					//If hitting a wall, stop moving
 					m_pPlayer->SetMoveDirection(0);
+					//If you weren't hitting a wall but are now, play hitting wall sound
 					if(collision == false)
 						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					//Now hitting a wall
 					collision = true;
 				}
 			}
 			if(attemptDir == 4)
 			{
+				//Check if there is a wall left
 				if(gridSpot[currentPos-1]!=1){
+					//Move left, set colliding with walls to false
 					m_pPlayer->SetMoveDirection(4);
 					collision = false;
 				}
 				else{
+					//If hitting a wall, stop moving
 					m_pPlayer->SetMoveDirection(0);
+					//If you weren't hitting a wall but are now, play hitting wall sound
 					if(collision == false)
 						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					//Now hitting a wall
 					collision = true;
 				}
 			}
 			if(attemptDir == 2)
 			{
+				//Check if there is a wall right
 				if(gridSpot[currentPos+1]!=1){
+					//Move right, set colliding with walls to false
 					m_pPlayer->SetMoveDirection(2);
 					collision = false;
 				}
 				else{
+					//If hitting a wall, stop moving
 					m_pPlayer->SetMoveDirection(0);
+					//If you weren't hitting a wall but are now, play hitting wall sound
 					if(collision == false)
 						m_pSoundEffect->playSound(L"Sounds\\thud.wav",false);
+					//Now hitting a wall
 					collision = true;
 				}
 			}
