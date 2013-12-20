@@ -28,11 +28,14 @@ bool MyGame::initGame()
         pTestObj2->getTransform().setPosition(0.0f,1.0f,1.0f);
 
         m_GameObjectList.push_back(pTestObj2);
-
+		//create new CameraComponent to represent our main camera
+		 //set the position the camera looks at
+		//set the camera's field of view
 		CameraComponent *pCameraComp = new CameraComponent();
         pCameraComp->setLook(8.0f,1.5f,9.75f);
         pCameraComp->setFOV(m_GameOptionDesc.width/m_GameOptionDesc.height);
-        
+        //assign the Camera to a new gameobject
+		 //set the camera defined above to be the main camera and set its position
 		GameObject *pCameraGO = new GameObject();
         pCameraGO->setName("MainCamera");
         pCameraGO->addComponent(pCameraComp);
@@ -95,6 +98,9 @@ bool MyGame::initGame()
 		pTeleporterMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
 		pTeleporterMaterial->loadDiffuseTexture("Textures/portalUV.png",m_pRenderer);
 
+		//create new AudioComponents for the background music
+		 //and the sound effect for hitting a wall
+		 //call the methods associated with setting audio files to these components
 		AudioComponent *gameMusic=new AudioComponent();
 		AudioComponent *hitWallNoise=new AudioComponent();
 		setMusic(gameMusic);
