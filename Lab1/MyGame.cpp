@@ -97,13 +97,13 @@ bool MyGame::initGame()
 			{	
 				GameObject *pCube =new GameObject();
 				pCube->setName("Cube");
-				VisualComponent* res = resourceHolder.GetMeshVisual("Models/cube.fbx",m_pRenderer);
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/wall.fbx",m_pRenderer);
 				pCube->addComponent(res);
 				pCube->addComponent(pMaterial);
 				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
 				if(pVisual)
 				pVisual->createVertexLayout(m_pRenderer);
-				pCube->getTransform().setPosition(i%width, 1, (height-1)-(i/width)-0.5f);
+				pCube->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
 				m_GameObjectList.push_back(pCube);
 			}
 			if(gridSpots[i]==0)
@@ -138,7 +138,7 @@ bool MyGame::initGame()
 		//Player
 		VisualComponent* res = resourceHolder.GetMeshVisual("Models/sphere.fbx",m_pRenderer);
 				Material *pPlayerMaterial=new Material();
-                pPlayerMaterial->loadEffect("Effects/Texture.fx",m_pRenderer);
+                pPlayerMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
                 pPlayerMaterial->loadDiffuseTexture("Textures/mat_planet.png",m_pRenderer);
 		VisualComponent *pVisual=static_cast<VisualComponent*>(res);
 		if(pVisual)

@@ -94,7 +94,7 @@ bool D3D10Renderer::init(void *pWindowHandle,bool fullScreen)
 	RECT windowRect;
 	GetClientRect(window,&windowRect);
 
-	m_AmbientLightColour = XMFLOAT4(0.1f,0.1f,0.1f,1.0f);
+	m_AmbientLightColour = XMFLOAT4(1.0f,1.0f,1.0f,1.0f);
 
 	UINT width=windowRect.right-windowRect.left;
 	UINT height=windowRect.bottom-windowRect.top;
