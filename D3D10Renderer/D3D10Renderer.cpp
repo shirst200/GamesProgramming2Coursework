@@ -302,6 +302,7 @@ void D3D10Renderer::render(GameObject *pObject)
 			Material *pMaterial=static_cast<Material*>(pObject->getComponent("Material"));
 			if (pMaterial)
 			{
+				//Gets the effect from the material
 				if (pMaterial->getEffect())
 				{
 					pCurrentEffect=pMaterial->getEffect();
@@ -310,26 +311,27 @@ void D3D10Renderer::render(GameObject *pObject)
 				{
 					pCurrentTechnique=pMaterial->getCurrentTechnique();
 				}
+				//Checks if we need to send a diffuse texture to the effect then sends if we do
 				if (pMaterial->getDiffuseTexture())
 				{
 					ID3D10EffectShaderResourceVariable * pDiffuseTextureVar=pCurrentEffect->GetVariableByName("diffuseMap")->AsShaderResource();
 					pDiffuseTextureVar->SetResource(pMaterial->getDiffuseTexture());
 				}
 
-
+				//Checks if we need to send a specular texture to the effect then sends if we do
 				if (pMaterial->getSpecularTexture())
 				{
 					ID3D10EffectShaderResourceVariable * pSpecularTextureVar=pCurrentEffect->GetVariableByName("bumpMap")->AsShaderResource();
 					pSpecularTextureVar->SetResource(pMaterial->getSpecularTexture());
 				}
-
+				//Checks if we need to send a height texture to the effect then sends if we do
 				if (pMaterial->getHeightTexture())
 				{
 					ID3D10EffectShaderResourceVariable * pHeightTextureVar=pCurrentEffect->GetVariableByName("heightMap")->AsShaderResource();
 					pHeightTextureVar->SetResource(pMaterial->getHeightTexture());
 				}
 
-				//Retrieve & send material stuff
+				//Retrieve & send material colours, light colours, light direction and camera position
 				ID3D10EffectVectorVariable *pAmbientMatVar=pCurrentEffect->GetVariableByName("ambientMaterial")->AsVector();
 				ID3D10EffectVectorVariable *pDiffuseMatVar=pCurrentEffect->GetVariableByName("diffuseMaterial")->AsVector();
 				ID3D10EffectVectorVariable *pSpecularMatVar=pCurrentEffect->GetVariableByName("speculatMaterial")->AsVector();
@@ -355,7 +357,7 @@ void D3D10Renderer::render(GameObject *pObject)
 					pSpecularMatVar->SetFloatVector((float*)&pMaterial->getSpecular());
 				}
 			}
-
+			//Sends world view projection matrices and the ambient colour to the effect
 			ID3D10EffectMatrixVariable * pWorldMatrixVar=pCurrentEffect->GetVariableByName("matWorld")->AsMatrix();
 			ID3D10EffectMatrixVariable * pViewMatrixVar=pCurrentEffect->GetVariableByName("matView")->AsMatrix();
 			ID3D10EffectMatrixVariable * pProjectionMatrixVar=pCurrentEffect->GetVariableByName("matProjection")->AsMatrix();
@@ -562,6 +564,7 @@ ID3D10InputLayout * D3D10Renderer::createVertexLayout(ID3D10Effect * pEffect)
 
 void D3D10Renderer::addToRenderQueue(GameObject *pObject)
 {
+	//gets the light direction and colour values and saves them
 	if(DirectionLightComponent *pDirectionLightComponent=static_cast<DirectionLightComponent *>(pObject->getComponent("DirectionalLight")))
     {                     
 		m_diffuseLightColour=pDirectionLightComponent->getDiffuse();
@@ -573,6 +576,7 @@ void D3D10Renderer::addToRenderQueue(GameObject *pObject)
 	CameraComponent *pCamera=static_cast<CameraComponent*>(pObject->getComponent("Camera"));
 	if (pCamera)
 	{
+		//saves the cmeras position
 		Transform t=pObject->getTransform();             
 		m_camera=t.getPosition();
     }

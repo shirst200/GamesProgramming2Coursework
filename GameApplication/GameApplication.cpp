@@ -222,7 +222,7 @@ void CGameApplication::update()
 			gridSpot[currentPos] = 4;
 			score++;
 		}
-
+		//checks if we are in debug mode
 		if(!debug)
 		{
 			// Returns the camera to its original position after exiting debug mode
@@ -284,10 +284,13 @@ void CGameApplication::update()
 		}
 		else
 		{
+			//if we are in debug mode we stop the player moving
 			attemptDir =0;
 			m_pPlayer->SetMoveDirection(0);
 			XMFLOAT3 look = m_pMainCamera->getLookAt();
 			XMFLOAT3 pos = m_pMainCamera->getOwner()->getTransform().getPosition();
+			//movement of the camera,, checks the input
+			//Depending on the input the cameras position and the cameras focus are adjusted by 1 in the appropriate direction
 			if(debugMove == 1)
 			{
 				debugMove = 0;

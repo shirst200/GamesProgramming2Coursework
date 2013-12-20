@@ -9,17 +9,20 @@ bool MyGame::initGame()
         pMaterial1->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
         pMaterial1->loadDiffuseTexture("Textures/Spotlight.jpg",m_pRenderer);
 
-
+		//Creates the dirctional light component
         DirectionLightComponent * pDirLight=new DirectionLightComponent();
 
-
+		
         GameObject * pTestObj2=new GameObject();
         pTestObj2->setName("TestObject2");
         pTestObj2->addComponent(pDirLight);
+		//sets the direction and colour of the directional light
         pDirLight->setDirection(1.0f,0.0f,0.0f);
         pDirLight->setDiffuse(1.0f,1.0f,1.0f,1.0f);
         pDirLight->setSpecular(1.0f,1.0f,1.0f,1.0f);
+		//tells the light to rotate
 		pDirLight->RotateOn();
+		//sets this light as the main light
 		setLight(pDirLight);
         
         pTestObj2->getTransform().setPosition(0.0f,1.0f,1.0f);

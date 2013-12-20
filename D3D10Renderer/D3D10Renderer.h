@@ -48,7 +48,7 @@ public:
         {
                 m_View=view;
         };
-
+		//Sets the ambient light colour
         void setAmbientLightColour(float r,float g,float b,float a)
         {
                 m_AmbientLightColour=XMFLOAT4(r,g,b,a);
@@ -80,12 +80,14 @@ private:
 
         XMMATRIX m_View;
         XMMATRIX m_Projection;
-
+		// Holds the Colour values for the main light
         XMFLOAT4 m_AmbientLightColour;
 		XMFLOAT4 m_specularLightColour;
 		XMFLOAT4 m_diffuseLightColour;
 		XMFLOAT3 lightDirection;
+		//Holds the main cameras position
 		XMFLOAT3 m_camera;
+		//Holds the MainCamera and Light
         GameObject * m_pMainCamera;
         GameObject * m_pMainLight;
 };

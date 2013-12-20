@@ -24,6 +24,7 @@ class Material:public GameComponent
 public:
         Material()
         {
+			//initislaises the variables
                 m_Name="Material";
                 m_pEffect=NULL;
                 m_pCurrentTechnique=NULL;
@@ -34,7 +35,7 @@ public:
                 m_pSpecularTexture=NULL;
         };
 
-
+		//Deconstructor
         ~Material()
         {
                 if (m_pDiffuseTexture)
@@ -54,7 +55,7 @@ public:
                 }
         };
 
-
+		//sets the ambient colour
         void setAmbient(float r,float g,float b,float a)
         {
                 m_Ambient=XMFLOAT4(r,g,b,a);
@@ -105,7 +106,7 @@ public:
                 return m_pCurrentTechnique;
         };
 
-
+		//loads textures from files
         bool loadDiffuseTexture(const string& filename,IRenderer *pRenderer);
         bool loadSpecularTexture(const string& filename,IRenderer *pRenderer);
 		bool loadHeightTexture(const string& filename,IRenderer *pRenderer);
@@ -127,11 +128,14 @@ public:
         };
 
 private:
+	//holds the colour values
         XMFLOAT4 m_Ambient;
         XMFLOAT4 m_Diffuse;
         XMFLOAT4 m_Specular;
+		//holds the effect
         ID3D10Effect *m_pEffect;
         ID3D10EffectTechnique *m_pCurrentTechnique;
+		//holds the tetures
         ID3D10ShaderResourceView * m_pDiffuseTexture;
         ID3D10ShaderResourceView * m_pSpecularTexture;
 		ID3D10ShaderResourceView * m_pHeightTexture;

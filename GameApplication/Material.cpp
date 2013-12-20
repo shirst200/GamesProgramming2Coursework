@@ -3,7 +3,7 @@
 
 #include "../D3D10Renderer/D3D10Renderer.h"
 
-
+//gets the effect
 bool Material::loadEffect(const string& filename,IRenderer * pRenderer)
 {
         D3D10Renderer *pD3D10Renderer=static_cast<D3D10Renderer*>(pRenderer);
@@ -18,7 +18,7 @@ bool Material::loadEffect(const string& filename,IRenderer * pRenderer)
         return true;
 }
 
-
+//gets the textures usinfg a file name
 bool Material::loadDiffuseTexture(const string& filename,IRenderer *pRenderer)
 {
         D3D10Renderer *pD3D10Renderer=static_cast<D3D10Renderer*>(pRenderer);

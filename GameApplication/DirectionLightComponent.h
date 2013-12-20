@@ -43,8 +43,13 @@ public:
 
 
 private:
+	//Directional light has a direction
         XMFLOAT3 m_LightDirection;
+		//used to implement the roating light
+		//rotate is set to 1 if we want the light to rotate
 		int rotate;
+		//the value of time we use for calculating the rotation
 		float count;
+		//used to check if it is the first time we are calculating the rotating direction
 		int check;
 };

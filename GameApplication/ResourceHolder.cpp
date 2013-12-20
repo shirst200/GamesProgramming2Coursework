@@ -270,6 +270,7 @@ GameObject* ResourceHolder::RetreveMesh(LPCSTR fileName, IRenderer *pRenderer)
                                                                 }
                                                         }
                                                 }
+												//Computes the tangents
 												computeTangents(pVerts,noVerts);
                                                 VisualComponent *pVisualComponent=new VisualComponent();
                                                 pVisualComponent->createVertexBuffer(noVerts,pVerts,pRenderer);
