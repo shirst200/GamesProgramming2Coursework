@@ -1,20 +1,13 @@
 #pragma once
 
+//Bring in the external files needed for model loading
 #define FBXSDK_NEW_API
-
-
-#include "../D3D10Renderer/Vertex.h"
-#include "../D3D10Renderer/D3D10Renderer.h"
+#include <fbxsdk.h>
 
 class GameObject;
 
-//Includes files needed for the variables
-#include "D3D10.h"
-#include "D3DX10.h"
+//Includes files needed to create the variables
 #include <map>
-#include <string>
-#include <fbxsdk.h>
-#include "..\Renderer\Renderer.h"
 #include "..\GameApplication\components.h"
 using namespace std;
 
@@ -44,6 +37,7 @@ public:
 
 
 private:
+	//To bring in a mesh as gameobject and visual component
 	GameObject* RetreveMesh(LPCSTR fileName, IRenderer *pRenderer);
 
 	//Mapped variables
@@ -54,10 +48,15 @@ private:
 	ID3D10EffectTechnique * holder;
 	ID3D10Device * m_pD3D10Device;
 
+	//A variable mapping file names to textures and it's iterator
 	map < LPCSTR, ID3D10Texture2D* > texture;
 	map < LPCSTR, ID3D10Texture2D* > ::iterator iterText;
+
+	//A variable mapping file names to effects and it's iterator
 	map < LPCSTR, ID3D10Effect* > effect;
 	map < LPCSTR, ID3D10Effect* > ::iterator iterEffect;
+
+	//Variables mapping filenames to gameobjects or visual components and their iterators
 	map < LPCSTR, GameObject* > mesh;
 	map < LPCSTR, GameObject* > ::iterator iterMesh;
 	map < LPCSTR, VisualComponent* > visual;

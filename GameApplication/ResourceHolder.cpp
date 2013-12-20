@@ -9,7 +9,7 @@ ID3D10Texture2D* ResourceHolder::GetTexture(LPCSTR fileName)
 		//If not found add and return the added value
 		ID3D10ShaderResourceView * m_pBaseTextureMap;
 		D3DX10CreateShaderResourceViewFromFileA(m_pD3D10Device,fileName,NULL,NULL,&m_pBaseTextureMap,NULL);
-		//texture[fileName]=;
+		//texture[fileName]=texture;
 		return texture.at(fileName);
 	}
 	//If found return
@@ -35,8 +35,10 @@ bool ResourceHolder::DeleteTexture(LPCSTR fileName)
 
 bool ResourceHolder::DeleteAllTextures()
 {
+	//loops through all values in the map
 	for (iterText = texture.begin(); iterText != texture.end(); ++iterText)
 	{
+		//Deletes values at current map
 		delete (*iterText).second;
 		iterText=texture.erase(iterText);
 	}
@@ -102,8 +104,10 @@ bool ResourceHolder::DeleteEffect(LPCSTR fileName)
 
 bool ResourceHolder::DeleteAllEffects()
 {
+	//loops through effects
 	for (iterEffect = effect.begin(); iterEffect != effect.end(); ++iterEffect)
 	{
+		//deletes current effect
 		delete (*iterEffect).second;
 		iterEffect=effect.erase(iterEffect);
 	}
@@ -162,8 +166,10 @@ bool ResourceHolder::DeleteMesh(LPCSTR fileName)
 
 bool ResourceHolder::DeleteAllMeshes()
 {
+	//loops through map
 	for (iterMesh = mesh.begin(); iterMesh != mesh.end(); ++iterMesh)
 	{
+		//deleted current value
 		delete (*iterMesh).second;
 		iterMesh=mesh.erase(iterMesh);
 	}
