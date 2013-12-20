@@ -63,12 +63,6 @@ public:
 				currentPos = m_pPlayer->checkPos();
 				score = 0;
         }
-		//Stores and plays the background music component
-		void setMusic(AudioComponent *pMusic)
-		{
-			m_pAudio = pMusic;
-			m_pAudio->playSound(L"Sounds\\Kiss From A Rose.wav",true);
-		}
 		//Stores the sound effect component for player
 		void setSoundEffect(AudioComponent *pSound)
 		{
@@ -79,6 +73,36 @@ public:
 		{
 			m_pLight = light;
 		}
+		void setMusic(AudioComponent *pMusic)
+		{
+			   m_pAudio = pMusic;
+			   srand ( (unsigned int)time(NULL) );
+			   int songShuffle = 1 + rand() % 500;
+			   if (songShuffle <= 100)
+			   {
+					m_pAudio->playSound(L"Sounds\\Overkill.wav", true);
+			   }
+			   if (songShuffle >= 101 && songShuffle <= 199)
+			   {
+					m_pAudio->playSound(L"Sounds\\Kiss From A Rose.wav", true);
+			   }
+			   if (songShuffle >= 200 && songShuffle <= 299)
+			   {
+					m_pAudio->playSound(L"Sounds\\2 Minutes to Midnight.wav", true);
+			   }
+			   if (songShuffle >= 300 && songShuffle <= 399)
+			   {
+					m_pAudio->playSound(L"Sounds\\Around the World.wav", true);
+			   }
+			   if (songShuffle >= 400 && songShuffle <= 499)
+			   {
+					m_pAudio->playSound(L"Sounds\\Plato's Tripartite.wav", true);
+			   }
+			   if (songShuffle == 500)
+			   {
+					m_pAudio->playSound(L"Sounds\\song.wav", true);
+			   }
+		  }
 
 private:
         bool parseConfigFile();
@@ -113,6 +137,7 @@ private:
 		//Score from pickups
 		int score;
 		int debugMove;
+		int songShuffle;
 protected:
         typedef vector<GameObject*> GameObjectList;
         typedef vector<GameObject*>::iterator GameObjectIter;
