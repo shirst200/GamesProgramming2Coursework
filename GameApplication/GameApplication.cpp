@@ -224,6 +224,8 @@ void CGameApplication::update()
 					++iter;
                 }
 			}
+			//Play sound
+			m_pSoundEffect->playSound(L"Sounds\\gulp.wav",false);
 			//Set the grid spot to an empty space, denoted by 4
 			gridSpot[currentPos] = 4;
 			//Increase the score
