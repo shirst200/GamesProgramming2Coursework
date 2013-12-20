@@ -80,6 +80,11 @@ bool MyGame::initGame()
 		pCupMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
 		pCupMaterial->loadDiffuseTexture("Textures/coffeeUV.png",m_pRenderer);
 
+		//Creates the material for the bottle before the bottles to save on memory
+		Material *pBottleMat=new Material();
+		pBottleMat->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
+		pBottleMat->loadDiffuseTexture("Textures/bottleUv.png",m_pRenderer);
+
 		//Creates the material for the teleporter before the teleporter to save on memory
 		Material *pTeleporterMaterial=new Material();
 		pTeleporterMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
@@ -133,8 +138,21 @@ bool MyGame::initGame()
 			}
 			if(gridSpots[i]==2)
 			{
-				//Bottle here, remember to add to pickups
-				//eg storePickups(i,pBottle);
+				//Creates a new gameobject
+				GameObject *pBottle =new GameObject();
+				//gets the mesh as a visual component and adds it to the gameobject
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/bottle.fbx",m_pRenderer);
+				pBottle->addComponent(res);
+				//adds predefined pBottleMat
+				pBottle->addComponent(pBottleMat);
+				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
+				if(pVisual)
+						pVisual->createVertexLayout(m_pRenderer);
+				//sets the position of object reletive to the position of the loop
+				pBottle->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				//Store this object in the pickup array of GameApp
+				storePickups(i,pBottle);
+				m_GameObjectList.push_back(pBottle);
 			}
 			if(gridSpots[i]==5)
 			{
