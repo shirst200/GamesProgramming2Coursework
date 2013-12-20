@@ -87,8 +87,8 @@ bool MyGame::initGame()
 
 		//Creates the material for the steak before the steak to save on memory
 		Material *pSteakMat=new Material();
-		pBottleMat->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
-		pBottleMat->loadDiffuseTexture("Textures/steakUV.png",m_pRenderer);
+		pSteakMat->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
+		pSteakMat->loadDiffuseTexture("Textures/steakUV.png",m_pRenderer);
 
 		//Creates the material for the teleporter before the teleporter to save on memory
 		Material *pTeleporterMaterial=new Material();
