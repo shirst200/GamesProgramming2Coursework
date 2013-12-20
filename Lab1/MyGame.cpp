@@ -85,6 +85,11 @@ bool MyGame::initGame()
 		pBottleMat->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
 		pBottleMat->loadDiffuseTexture("Textures/bottleUv.png",m_pRenderer);
 
+		//Creates the material for the steak before the steak to save on memory
+		Material *pSteakMat=new Material();
+		pBottleMat->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
+		pBottleMat->loadDiffuseTexture("Textures/steakUV.png",m_pRenderer);
+
 		//Creates the material for the teleporter before the teleporter to save on memory
 		Material *pTeleporterMaterial=new Material();
 		pTeleporterMaterial->loadEffect("Effects/SpecularTextured_Effect.fx",m_pRenderer);
@@ -153,6 +158,24 @@ bool MyGame::initGame()
 				//Store this object in the pickup array of GameApp
 				storePickups(i,pBottle);
 				m_GameObjectList.push_back(pBottle);
+			}
+			if(gridSpots[i]==3)
+			{
+				//creates a new GameObject
+				GameObject *pSteak=new GameObject();
+				//retreves the mesh and sets stores it in res, adds res to pSteak
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/steak.fbx",m_pRenderer);
+				pSteak->addComponent(res);
+				//adds predefined pSteakMat
+				pSteak->addComponent(pSteakMat);
+				VisualComponent *pVisual=static_cast<VisualComponent*>(res);
+				if(pVisual)
+						pVisual->createVertexLayout(m_pRenderer);
+				//sets the position of object reletive to the position of the loop
+				pSteak->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				//Store this object in the pickup array of GameApp
+				storePickups(i,pSteak);
+				m_GameObjectList.push_back(pSteak);
 			}
 			if(gridSpots[i]==5)
 			{
