@@ -112,7 +112,7 @@ bool MyGame::initGame()
 				GameObject *pCube =new GameObject();
 				pCube->setName("Cube");
 				//gets the mesh as a visual components and adds it to the gameObject
-				VisualComponent* res = resourceHolder.GetMeshVisual("Models/wall.fbx",m_pRenderer);
+				VisualComponent* res = resourceHolder.GetMeshVisual("Models/cube.fbx",m_pRenderer);
 				pCube->addComponent(res);
 				//adds predefined pMaterial
 				pCube->addComponent(pMaterial);
@@ -120,7 +120,7 @@ bool MyGame::initGame()
 				if(pVisual)
 				pVisual->createVertexLayout(m_pRenderer);
 				//sets the position of object reletive to the position of the loop
-				pCube->getTransform().setPosition(i%width, 1, (height-1)-(i/width));
+				pCube->getTransform().setPosition(i%width, 1, (height-1)-(i/width)-0.5);
 				m_GameObjectList.push_back(pCube);
 			}
 			if(gridSpots[i]==0)
